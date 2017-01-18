@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>读者中心</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+  <style>
+    body{
+      background: url("img/y_bgImgBig.png") no-repeat fixed;
+      background-size: 100%;
+    }
+    .header {
+      width: 100%;
+      height: 400px;
+      background: url("img/y_header_bgImg.png") no-repeat;
+      /*background-size: 100%;*/
+      filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      position: relative;
+    }
+    .headerContain {
+      width: 100%;
+      height: 49px;
+      /*background: url("img/y_headerContain_bg.png");*/
+      position: absolute;
+      bottom: 0;
+      /*background-size:100%;*/
+    }
+    .headermengBan{
+      width: 100%;
+      height: 49px;
+      /*background: url("img/y_headerContain_bg.png");*/
+      position: absolute;
+      bottom: 0;
+      background: #000;
+      opacity: 0.4;
+      filter: alpha(opacity:40);
+    }
+
+    .headerUser {
+      position: absolute;
+      bottom: 10px;
+      right: 12%;
+    }
+
+    .headerUser b, .headerUser p, .headerUser a {
+      float: left;
+    }
+
+    .headerUser p, .headerUser a {
+      font-size: 14px;
+      color: #fff;
+    }
+    .headerUser p{
+      color: #b28850;
+    }
+
+    .headerUser p {
+      margin-right: 50px;
+      height: 20px;
+    }
+    .headerUser p b{
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      width: 18px;
+      height: 20px;
+      background: url("img/y_headerUser_user_icon.png") no-repeat left top;
+      margin-top: -4px;
+      margin-right: 8px;
+    }
+    .headerUser a {
+      margin-right: 15px;
+    }
+
+    #logout{
+      text-decoration: none;
+    }
+
+    #navContain {
+      overflow: hidden;
+      width: 43%;
+      margin: 0px auto;
+    }
+
+    #navContain li {
+      width: 24%;
+      text-align: center;
+      float: left;
+      height: 49px;
+      padding-top: 15px;
+    }
+
+    #navContain li a {
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      width: 100%;
+      height: 14px;
+      text-decoration: none;
+      color: #fff;
+      border-right: 1px solid #FFF;
+      font-size: 14px;
+      line-height: 14px;
+    }
+    .lastNavLiA{
+      border-right:none !important;
+    }
+
+
+    .nav_click {
+      background: url("img/y_nav_click_bgImg.png") no-repeat bottom center;
+    }
+
+    .nav_click a{
+      color: #e5ab1f !important;
+    }
+    .loginContent{
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      position: relative;
+    }
+    .loginMain{
+      position: absolute;
+      width: 256px;
+      height: 320px;
+      background: url("img/y_loginMain_bgImg.png") no-repeat right center;
+      right: -10px;
+      top: 45px;
+    }
+    .loginMain b{
+      position: absolute;
+      width: 20px;
+      height: 17px;
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      background: url("img/y_loginMain_b_bgImg.png") no-repeat;
+      right: 28px;
+      top: -17px;
+    }
+    .loginMainMengban{
+      position: absolute;
+      width: 256px;
+      height: 320px;
+      background:#1b1b1b;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      right: -10px;
+      top: 45px;
+
+    }
+    .loginForm{
+      width: 200px;
+      margin: 0 auto;
+    }
+    .loginForm input{
+      width: 200px;
+      height: 28px;
+      margin-bottom: 10px;
+      outline: 0;
+      border: 1px solid #eee;
+      padding-left: 5px;
+      font-size: 12px;
+    }
+    .loginForm input:focus{
+      border: 1px solid #00a0e9;
+    }
+    .loginMain p{
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      margin: 30px 0;
+    }
+    #loginBtn{
+      width: 200px;
+      height: 32px;
+      background: #448aca;
+      border-radius: 4px;
+      margin-top: 6px;
+      font-size: 10px;
+    }
+    .forgetPwd{
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+      margin-top: 10px !important;
+      /*-webkit-transform-origin-x: 0;*/
+      -webkit-transform: scale(0.8);
+      margin-bottom: 30px;
+    }
+    .fenggexian{
+      background: url("img/y_fenggexian_bgImg.png") no-repeat;
+      width: 200px;
+      height: 8px;
+    }
+    .loginFormDetail{
+      height: 253px;
+    }
+    #registration{
+      width: 200px;
+      height: 32px;
+      margin-top: 12px;
+      /*background: #8f8f8c;*/
+      border: 1px solid #fff;
+      /*background: url("img/y_registration_bgImg.png") no-repeat;*/
+    }
+    #registration:hover{
+      color: #fff;
+    }
+
+    /*主体代码开始*/
+    .qtzxskContainer {
+      width: 1080px;
+      margin: 50px auto;
+      overflow: hidden;
+    }
+    .userTitle{
+      height: 88px;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .qtzxskLeft {
+      float: left;
+      width: 228px;
+    }
+
+    .personalInfomation {
+      text-align: center;
+    }
+
+    .personalInfomation b {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: 54px;
+      height: 54px;
+      background: url("img/personalInformation_icon.png") no-repeat;
+    }
+
+    .personalInfomation h3 {
+      margin-top: 14px;
+      font-size: 14px;
+      color: #3a3a3a;
+    }
+
+    .personalInfomation p {
+      margin-top: 10px;
+      font-size: 10px;
+      color: #818181;
+    }
+
+    .userinfoDetail {
+      margin-top: 65px;
+      width: 100%;
+    }
+
+    .userinfoDetail li {
+      height: 35px;
+      text-align: center;
+    }
+
+    .userinfoDetail li a {
+      position: relative;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      height: 12px;
+      line-height: 12px;
+      text-decoration: none;
+      font-size: 12px;
+      color: #3a3a3a;
+    }
+
+    .userinfoDetail li .userinfoDetailLiAClick {
+      color: #921818;
+    }
+
+    .userinfoDetail li a b {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      left: -20px;
+      background: url("img/personalInformation_small_icon.png") no-repeat;
+    }
+
+    .userinfoDetail li .pwd {
+      background-position-y: -35px;
+    }
+
+    .userinfoDetail li .history {
+      background-position-y: -71px;
+    }
+
+    .qtzxskRight {
+      float: right;
+      width: 732px;
+    }
+
+    .saveMain {
+      margin-left: 28px;
+      color: #818181;
+    }
+
+    .saveMain p {
+      font-size: 12px;
+      color: #921818;
+    }
+
+    .saveMain input {
+      font-size: 12px;
+      color: #4d4d4d;
+      border: 1px solid #d2d2d2;
+      padding: 5px;
+      height: 26px;
+    }
+    .saveMessage{
+      background: #fff;
+    }
+    .saveMessage table {
+      margin: 23px 0 0 27px;
+    }
+
+    .savePassword table tr,.saveMessage table tr {
+      height: 40px;
+    }
+
+    .saveMessage table .td1 {
+      width: 60px;
+      text-align: right;
+    }
+
+    .savePassword table .td2,.saveMessage table .td2 {
+      padding-left: 10px;
+    }
+
+    .saveMessage table input {
+      width: 120px;
+    }
+
+    #userLevel {
+      color: #3a3a3a;
+    }
+
+    #userLevelUp {
+      margin-left: 38px;
+      text-decoration: none;
+      font-size: 12px;
+      color: #448aca;
+    }
+
+    #userEmail {
+      border: none;
+      width: 100%;
+      outline: none;
+    }
+    .btn{
+      width: 64px;
+      height: 24px;
+      margin-top: 12px;
+      border: 1px solid #818181;
+      border-radius: 0;
+      background: #fcfcfc;
+      padding-top: 1px;
+      color: #818181;
+    }
+    .savePassword{
+      margin-top: 67px;
+      background: #fff;
+    }
+    .savePassword table{
+      margin: 23px 0 0 15px;
+    }
+    .savePassword input{
+      width: 240px;
+    }
+    .savePassword table .td1{
+      width: 72px;
+      text-align: right;
+    }
+    .savePassword table .td2 span,.savePassword table .td2 input{
+      float: left;
+    }
+    .savePassword table .td2 span{
+      margin-left: 20px;
+    }
+    .pwdError{
+      width: 14px;
+      height: 14px;
+      margin-top: 5px;
+      background: url("img/pwdError_icon.png") no-repeat right center;
+    }
+    .repwdSuccess{
+      float: right;
+      width: 14px;
+      height: 14px;
+      margin-top: 6px;
+      background: url("img/repwdSuccess_icon.png") no-repeat right center;
+    }
+    .PwdMessageTip{
+      height: 24px;
+      line-height: 24px;
+      color: #d2d2d2;
+    }
+    .readHistory{
+      margin-top: 80px;
+      overflow: hidden;
+    }
+    .readHistory .readHistoryTip{
+      width: 732px;
+      height: 24px;
+      line-height: 24px;
+      overflow: hidden;
+      background: #eeeeee;
+    }
+    .readHistory .readHistoryTip span{
+      float:left;
+      margin-left: 20px;
+      font-size: 12px;
+      color: #921818;
+    }
+    .readHistory .readHistoryTip div{
+      float:right;
+      width: 58px;
+    }
+    .moveBarMain{
+      width: 56px;
+      height: 14px;
+      float: right;
+      margin-top: 5px;
+      overflow: hidden;
+      margin-right: 25px;
+    }
+    .moveBarLeft{
+      float: left;
+      height: 14px;
+      width: 25px;
+      border: 1px solid #d2d2d2;
+      text-align: center;
+      line-height: 14px;
+      text-decoration: none !important;
+    }
+    .moveBarRight{
+      float: left;
+      height: 14px;
+      width: 23px;
+      border: 1px solid #d2d2d2;
+      border-left: none;
+      text-align: center;
+      line-height: 14px;
+      text-decoration: none !important;
+    }
+
+    #dzzxBooksDetail{
+      padding: 18px 0px 0 8px;
+      overflow: hidden;
+    }
+    .qtdzzxDetail {
+      float: left;
+      width: 150px;
+      height: 188px;
+      padding: 20px 10px;
+      margin-right: 40px;
+      background: url("img/big_book_bg_icon.png") no-repeat;
+    }
+
+    .qtdzzxDetailLast {
+      margin-right: 0px;
+    }
+
+    .qtdzzxDetail dt {
+      margin-bottom: 5px;
+    }
+
+    .qtdzzxDetail dd span {
+      font-size: 12px;
+      color: #454040;
+      display: block;
+    }
+    .dzzxBooksDetailMain{
+      height: 200px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    .dzzxBooksDetailMain dl:first-child{
+      margin-left: 1px;
+    }
+    .clickShadow{
+      box-shadow: 0px 7px 5px #c68a8a;
+    }
+    .dzzxBooksDetailMain dl:hover{
+      box-shadow: 0px 7px 5px #c68a8a;
+    }
+    /*主体代码结束*/
+
+    .footer {
+      width: 100%;
+      margin-top: 43px;
+      height: 97px;
+      position: relative;
+    }
+
+    .footerMain {
+      margin: 0 auto;
+      width: 360px;
+      text-align: center;
+      font-size: 11px;
+      color: #818181;
+    }
+
+    .footerLink {
+      height: 13px;
+      font-size: 11px;
+      padding-top: 26px;
+    }
+
+    .footerLink a {
+      margin-right: 24px;
+      color: #fff;
+    }
+
+    .copy {
+      height: 11px;
+      margin-top: 25px;
+      color: #fff;
+    }
+    .footerMengban{
+      position: absolute;
+      width: 100%;
+      height: 97px;
+      background: #1d1d1d;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      z-index: -1;
+    }
+    #pageBar{
+      margin-right: 90px;
+    }
+    .pagebarMain{
+      overflow: hidden;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="headermengBan"></div>
+  <div class="headerContain">
+    <ul id="navContain">
+      <li class="qtIndex nav_click" id="qtIndex"><a href="qt-index.html">首页</a></li>
+      <!--<li class="qtgcdt" id="qtgcdt"><a href="qt-gcgl.html">馆藏概览</a></li>-->
+      <li class="qtzxsk" id="qtzxsk"><a href="qt-zxsk.html">在线书库</a></li>
+      <li class="qtdzzx" id="qtdzzx"><a href="qt-dzzx.html">读者中心</a></li>
+      <li class="qtgywm" id="qtgywm"><a class="lastNavLiA" href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+  <div class="headerUser">
+
+    <p><b></b><span id="userName">游客</span></p>
+    <div class="loginContent">
+      <a href="javascript:;" id="logout"></a>
+      <div class="loginMainMengban"></div>
+      <div class="loginMain">
+        <b></b>
+        <p>快速登录</p>
+        <div class="loginForm">
+          <div class="loginFormDetail">
+            <input type="text" placeholder="邮箱"/>
+            <input type="password" placeholder="密码"/>
+            <a href="javascript:;" class="btn btn-primary" id="loginBtn">登录</a>
+            <a href="qt-dzzx.html" class="forgetPwd">忘记密码</a>
+          </div>
+
+          <div class="fenggexian"></div>
+
+          <a href="qt-login.html" class="btn" id="registration">注册</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--主体代码开始-->
+<div class="qtzxskContainer">
+  <div class="userTitle">
+    <div>
+      <span></span>
+      <div>
+
+      </div>
+    </div>
+  </div>
+  <div class="qtzxskleft">
+    <div>
+
+    </div>
+    <div>
+      <div>
+        <div class="readHistory">
+          <div class="readHistoryTip">
+            <span>阅读记录</span>
+            <div class="moveBarMain" id="bookPageBtn" currentPage=0>
+              <a class="moveBarLeft" href="javascript:;">&lt;</a>
+              <a class="moveBarRight" href="javascript:;">&gt;</a>
+            </div>
+          </div>
+          <div id="dzzxBooksDetail">
+            <div class="dzzxBooksDetailMain">
+              <dl class="qtdzzxDetail">
+                <dt><a href="#"><img src="img/img_pic/lg_qt_zxsk01.png" alt=""/></a></dt>
+                <dd>
+                  <span>洛阳卷</span>
+                  <span>李白</span>
+                  <span>共二十二片</span>
+                </dd>
+              </dl>
+              <dl class="qtdzzxDetail">
+                <dt><a href="#"><img src="img/img_pic/lg_qt_zxsk01.png" alt=""/></a></dt>
+                <dd>
+                  <span>洛阳卷</span>
+                  <span>李白</span>
+                  <span>共二十四片</span>
+                </dd>
+              </dl>
+              <dl class="qtdzzxDetail">
+                <dt><a href="#"><img src="img/img_pic/lg_qt_zxsk01.png" alt=""/></a></dt>
+                <dd>
+                  <span>洛阳卷</span>
+                  <span>李白</span>
+                  <span>共八片</span>
+                </dd>
+              </dl>
+              <dl class="qtdzzxDetail qtdzzxDetailLast">
+                <dt><a href="#"><img src="img/img_pic/lg_qt_zxsk01.png" alt=""/></a></dt>
+                <dd>
+                  <span>洛阳卷</span>
+                  <span>李白</span>
+                  <span>共六片</span>
+                </dd>
+              </dl>
+            </div>
+            <div class="dzzxBooksDetailMain">
+              <dl class="qtdzzxDetail">
+                <dt><a href="#"><img src="img/img_pic/lg_qt_zxsk01.png" alt=""/></a></dt>
+                <dd>
+                  <span>洛阳卷</span>
+                  <span>李白</span>
+                  <span>共二十二片</span>
+                </dd>
+              </dl>
+              <dl class="qtdzzxDetail">
+                <dt><a href="#"><img src="img/img_pic/lg_qt_zxsk01.png" alt=""/></a></dt>
+                <dd>
+                  <span>洛阳卷</span>
+                  <span>李白</span>
+                  <span>共二十四片</span>
+                </dd>
+              </dl>
+              <dl class="qtdzzxDetail">
+                <dt><a href="#"><img src="img/img_pic/lg_qt_zxsk01.png" alt=""/></a></dt>
+                <dd>
+                  <span>洛阳卷</span>
+                  <span>李白</span>
+                  <span>共八片</span>
+                </dd>
+              </dl>
+              <dl class="qtdzzxDetail qtdzzxDetailLast">
+                <dt><a href="#"><img src="img/img_pic/lg_qt_zxsk01.png" alt=""/></a></dt>
+                <dd>
+                  <span>洛阳卷</span>
+                  <span>李白</span>
+                  <span>共六片</span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="pagebarMain">
+          <div style="float:right">
+            <div id="pageBar"></div>
+          </div>
+        </div>
+      </div>
+      <div>
+
+      </div>
+    </div>
+  </div>
+  <div class="qtzxskRight">
+    <div class="saveMain">
+      <form class="saveMessage" action="" method="post">
+        <p>个人信息</p>
+        <table>
+          <tr>
+            <td class="td1">用户名：</td>
+            <td class="td2"><input id="reuserName" type="text"/></td>
+          </tr>
+          <tr>
+            <td class="td1">用户级别：</td>
+            <td class="td2"><span id="userLevel"></span><a id="userLevelUp" href="#">升级</a></td>
+          </tr>
+          <tr>
+            <td class="td1">邮箱：</td>
+            <td class="td2"><span id="userEmail"></span></td>
+          </tr>
+          <tr>
+            <td class="td1">手机：</td>
+            <td class="td2"><input id="userPhone" type="text"/></td>
+          </tr>
+          <tr>
+            <td class="td1"></td>
+            <td class="td2"><a class="btn" id="userInfoModifyBtn" href="#">保存</a></td>
+          </tr>
+        </table>
+      </form>
+      <form class="savePassword" action="" method="post">
+        <p>修改密码</p>
+        <table>
+          <tr>
+            <td class="td1">原密码：</td>
+            <td class="td2"><input type="password" id="oldPassword" oninput="veryfyPassword()"/><span id="passwordIcon"></span></td>
+          </tr>
+          <tr>
+            <td class="td1">新密码：</td>
+            <td class="td2"><input type="password" id="newPassword1" oninput="veryfyRePassword()"/><span class="PwdMessageTip">输入新密码.....</span></td>
+          </tr>
+          <tr>
+            <td class="td1">确认新密码：</td>
+            <td class="td2"><input type="password" id="newPassword2" oninput="veryfyRePassword()"/><span id="retryPasswordIcon"></span></td>
+          </tr>
+          <tr>
+            <td class="td1"></td>
+            <td class="td2"><a class="btn" id="changePasswdBtn" >保存</a></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+<!--主体代码结束-->
+<div class="footer">
+  <div class="footerMengban"></div>
+  <div class="footerMain">
+    <p class="footerLink"><a href="about.html">关于我们</a><a href="#">版权声明</a><a href="#">商务合作</a><a href="#">技术支持</a></p>
+
+    <p class="copy">&copy;版权所有：云南省图书馆</p>
+  </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/awacs.js"></script>
+
+<script>
+  function veryfyPassword(){}
+  function veryfyRePassword(){}
+  $(function () {
+
+    function drawBooks(data){
+//      //设置当前的页数
+//      $("#bookPageBtn>a").attr("currentPage", data.page.pageNum);
+//      //先解除原有的click事件
+//      $("#bookPageBtn>a.moveBarRight").unbind("click");
+//      $("#bookPageBtn>a.moveBarRight").click(function () {
+//        var tmpPageNum = data.page.pageNum+1;
+//        if (tmpPageNum > Math.floor(data.page.totalCount/data.page.pageSize)+1){
+//          alert("超出翻页范围");
+//          return ;
+//        }
+//        getReadList(tmpPageNum);
+//      });
+//      $("#bookPageBtn>a.moveBarLeft").unbind("click");
+//      $("#bookPageBtn>a.moveBarLeft").click(function () {
+//        var tmpPageNum = data.page.pageNum-1;
+//        if (tmpPageNum < Math.floor(data.page.totalCount/data.page.pageSize)+1){
+//          alert("超出翻页范围");
+//          return ;
+//        }
+//        getReadList(tmpPageNum);
+//      });
+      //清空当前页面中的所有书籍
+      $("#dzzxBooksDetail").children().remove();
+      var tmpHang = "";
+      //循环画出书籍
+      for (var i=0; i<data.data.length; i++){
+        if (i%6 == 0){
+          tmpHang = $("<div class='dzzxBooksDetailMain'></div>");
+          $("#dzzxBooksDetail").append(tmpHang );
+        }
+
+        tmpHang.append($("<dl class='qtdzzxDetail'>" +
+                "<dt><a href='qt-tsxq.html?id="+data.data[i].id +"'><img src='img/img_pic/index-rstj01.png' alt=''/></a></dt>" +
+                  //"<dt><a href='#'><img src='"+ data.data[i].pic +"' alt=''/></a></dt>" +
+                "<dd><span>" +data.data[i].bookName + "</span>" +
+                "<span>"+data.data[i].author+"</span>" +
+                "<span>共二十二片</span></dd></dl>"));
+      }
+    }
+    function getReadList(pageNum) {
+      $.ajax({
+        type: "get",
+        url: ipAddress + "portal/user/history?userId=" + $.cookie("userId") + "&pageNum=" + pageNum + "&pageSize=8",
+        dateType: "json",
+        success: function (data) {
+          if (data.status == 1) {
+            drawBooks(data);
+          }
+        },
+        error: function () {
+//          alert("网络通讯失败，请求失败！");
+          return;
+        },
+        async: true
+      });
+    }
+
+    veryfyPassword = function(){
+      var data = "";
+      data = addURLParam(data, "userId",  $.cookie('userId'));
+      data = addURLParam(data, "password",  $("#oldPassword").val());
+      $.ajax({
+        type: "get",
+        url: ipAddress + "portal/user/verifyPassword" + data,
+        //data: data,
+        dataType: "json",
+        success: function (data) {
+          if (data.status == 1) {
+            //loginFunc(data, tmpEmail);
+            $("#passwordIcon").removeClass("pwdError");
+            $("#passwordIcon").addClass("repwdSuccess");
+          } else {
+            $("#passwordIcon").removeClass("repwdSuccess");
+            $("#passwordIcon").addClass("pwdError");
+          }
+        },
+        error: function () {
+          alert("网络通讯异常,登录请求失败！");
+          return;
+        },
+        async: true
+      });
+    };
+
+    veryfyRePassword = function(){
+      if ($("#newPassword1").val() == $("#newPassword2").val()) {
+        $("#retryPasswordIcon").removeClass("pwdError");
+        $("#retryPasswordIcon").addClass("repwdSuccess");
+      } else {
+        $("#retryPasswordIcon").removeClass("repwdSuccess");
+        $("#retryPasswordIcon").addClass("pwdError");
+      }
+    };
+
+    if ($.cookie("username") != "null" && $.cookie("username") != undefined) {
+
+      $.ajax({
+        type: "get",
+        url: ipAddress + "portal/user/info?userId=" + $.cookie("userId"),
+        dataType: "json",
+        success: function (data) {
+          if (data.status == 1) {
+            //alert(JSON.stringify(data));
+            $("#reuserName").val(data.data.userName);
+            $("#userEmail").text(data.data.email);
+            $("#userPhone").val(data.data.phone);
+            $("#userLevel").text(userDescDict[data.data.permissionLevel]);
+          }
+        },
+        error: function () {
+          alert("网络通讯异常,登录请求失败！");
+          return;
+        },
+        async: true
+      });
+
+
+
+      $("#userInfoModifyBtn").click(function () {
+        if($("#reuserName").val()=="" || $("#userPhone").val() == ""){
+          alert("请输入用户名!");
+          return;
+        }
+
+        var req = "";
+        req = addURLParam(req , "userId", $.cookie("userId"));
+        req = addURLParam(req , "userName", $("#reuserName").val());
+        req = addURLParam(req , "permissionLevel", $.cookie("permissionLevel"));
+        req = addURLParam(req , "cellphone", $("#userPhone").val());
+        $.ajax({
+          type: "get",
+          url: ipAddress + "portal/user/modify" + req,
+          //data: data,
+          dataType: "json",
+          success: function (data) {
+            if (data.status == 1) {
+              alert("保存成功!");
+              window.location.herf = "qt-dzzx.html";
+            } else{
+              alert("保存失败! ["+data.errorCode+"]:"+data.errorMessage);
+            }
+          },
+          error: function () {
+            alert("网络通讯异常,登录请求失败！");
+            return;
+          },
+          async: true
+        });
+      });
+
+
+      $("#changePasswdBtn").click(function () {
+        if($("#passwordIcon").hasClass("pwdError")|| $("#oldPassword").val() == ""){
+          alert("原密码错误!");
+          return;
+        }
+        if($("#newPassword2").val()=="" || ($("#newPassword1").val() != $("#newPassword2").val())){
+          alert("请输入正确的新密码!");
+          return;
+        }
+
+        var req = "";
+        req = addURLParam(req , "userId", $.cookie("userId"));
+        req = addURLParam(req , "password", $("#oldPassword").val());
+        req = addURLParam(req , "newPassword", $("#newPassword2").val());
+
+        $.ajax({
+          type: "get",
+          url: ipAddress + "portal/user/modifyPassword" + req,
+          //data: data,
+          dataType: "json",
+          success: function (data) {
+            if (data.status == 1) {
+              alert("保存成功!");
+              window.location.herf = "qt-dzzx.html";
+            } else{
+              alert("保存失败! ["+data.errorCode+"]:"+data.errorMessage);
+            }
+          },
+          error: function () {
+            alert("网络通讯异常,登录请求失败！");
+            return;
+          },
+          async: false
+        });
+      });
+    } else {
+      //alert("请您先登录!");
+      //window.location.href="qt-login.html?req=login";
+
+    }
+
+    getReadList(1);
+
+  });
+</script>
+
+</body>
+</html>

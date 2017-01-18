@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>创建用户</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+</head>
+<style>
+  body {
+    background: #fff;
+  }
+
+  .fallback {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    background: #fdf1f0;
+  }
+
+  .fallback a {
+    margin-left: 17px;
+    padding-left: 18px;
+    font-size: 12px;
+    color: #8a8281;
+    text-decoration: none !important;
+    background: url("img/fallback.png") no-repeat left center;
+  }
+
+  .outMain {
+    width: 920px;
+    margin: 22px auto 0;
+  }
+
+  .userInfoTip {
+    height: 20px;
+    overflow: hidden;
+  }
+
+  .userInfoTip span {
+    float: left;
+    height: 18px;
+    margin: 0 1px 0 20px;
+    padding-left: 24px;
+    font-size: 14px;
+    color: #5d6062;
+    background: url("img/userInfoTip.png") no-repeat 0 2px;
+  }
+
+  input[type='radio'].radio {
+    opacity: 0;
+    display: inline-block;
+    height: 20px;
+  }
+
+  label.radio {
+    background: url(img/radio_check.png) no-repeat 0 2px;
+    height: 20px;
+    padding-left: 18px;
+  }
+
+  input[type='radio'].radio:checked + .radio {
+    background: url(img/radio_checked.png) no-repeat;
+  }
+
+  #userInfoDetail {
+    position: relative;
+    background: #fbfbfb;
+  }
+
+  #userInfoDetail table {
+    margin-top: 5px;
+    margin-left: 56px;
+  }
+
+  #userInfoDetail table td {
+    height: 30px;
+    text-align: right;
+  }
+
+  #userInfoDetail table td input[type="password"],#userInfoDetail table td input[type="text"] {
+    border: none;
+    width: 85%;
+    outline: 0;
+    background: #fbfbfb;
+  }
+
+  .td1 {
+    width: 50px;
+  }
+
+  .td2 {
+    width: 304px;
+  }
+
+  .radio1 {
+    margin-left: 8px;
+  }
+
+  #submit {
+    position: absolute;
+    border: 0;
+    left: 42.6%;
+    width: 140px;
+    height: 26px;
+    background: #eb7969;
+    border-radius: 0;
+    padding-top: 3px;
+    bottom: -60px;
+  }
+
+  .validation {
+    border: 1px solid #eb7969 !important;
+    padding-left: 2px;
+  }
+
+  #showError {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin: 15px 0 10px 153px;
+    font-size: 14px;
+    color: #eb7969;
+  }
+</style>
+
+<body>
+<div class="fallback">
+  <a href="userManagement.html" class="fallbackSpan">返回</a>
+</div>
+<div class="outMain" data-height="600">
+  <div class="userInfoTip">
+    <span>用户信息</span>
+  </div>
+  <form id="userInfoDetail" action="" method="post" autocomplete="off">
+    <table>
+      <tr>
+        <td class="td1">用户类型</td>
+        <td class="td2 userParent">
+          <input type="radio" name="user" id="guest" value="X" class="radio" checked="checked"><label for="guest"
+                                                                                                      class="radio">注册用户</label>
+          <input type="radio" name="user" id="vip" value="M" class="radio"><label for="vip"
+                                                                                  class="radio radio1">vip用户</label>
+          <input type="radio" name="user" id="admin" value="F" class="radio"><label for="admin" class="radio radio1">管理员用户</label>
+        </td>
+      </tr>
+      <!--<tr>-->
+        <!--<td class="td1">ID</td>-->
+        <!--<td><input type="text" id="userId" name="id"/></td>-->
+      <!--</tr>-->
+      <tr>
+        <td class="td1">用户名</td>
+        <td><input type="text" id="userName" name="userName"/></td>
+      </tr>
+      <tr style="display: none">
+        <td class="td1">权限</td>
+        <td><input type="text" name="type" id="jurisdiction" value="0" readonly/></td>
+      </tr>
+      <tr>
+        <td class="td1">邮箱</td>
+        <td><input type="text" id="email" name="email"/></td>
+      </tr>
+      <tr>
+        <td class="td1">手机</td>
+        <td><input type="text" id="cellphone" name="cellphone"/></td>
+      </tr>
+      <tr>
+        <td class="td1">密码</td>
+        <td><input type="password" id="password" placeholder="请输入密码"/></td>
+      </tr>
+      <tr>
+        <td class="td1">确认密码</td>
+        <td><input type="password" id="rePassword" placeholder="请输入密码" name="password"/></td>
+      </tr>
+    </table>
+    <span id="showError"></span>
+    <a id="submit" href="javascript:;" class="btn btn-danger btn-group-lg">保存</a>
+  </form>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+
+  var id = getQueryString("id");
+
+  $(".userParent input").bind("click", function () {
+    switch ($(this).attr("id")) {
+      case "guest":
+        $("#jurisdiction").val("0");
+        break;
+      case "vip":
+        $("#jurisdiction").val("1");
+        break;
+      case "admin":
+        $("#jurisdiction").val("2");
+        break;
+      default:
+        $("#jurisdiction").val("0");
+        break;
+    }
+  });
+
+
+  //获取修改数据
+  if (id) {
+    $.ajax({
+      type: "post",
+      url: ipAddress + "portal/user/info?userId=" + id,
+      dateType: "text",
+      //data: "",
+      success: function (data) {
+        if (data.status == "1") {
+          getUserMesList(data);
+        }
+      },
+      error: function () {
+        var data = {
+          "status": 0,
+          "data": {"userName": "mingzi", "permissionLevel": 1, "email": "abc@112.com", "phone": 12341234123}
+        };
+        getUserMesList(data);
+      },
+      async: true
+    });
+  }
+  function getUserMesList(data){
+    switch (data.data.permissionLevel) {
+      case 0:
+        $("#guest").attr("checked", true);
+        break;
+      case 1:
+        $("#vip").attr("checked", true);
+        break;
+      case 2:
+        $("#admin").attr("checked", true);
+        break;
+    }
+    //$("#userId").val(id);
+    $("#userName").val(data.data.userName);
+    $("#email").val(data.data.email);
+    $("#cellphone").val(data.data.phone);
+    $("#jurisdiction").val(data.data.permissionLevel);
+    $("#password").val(data.data.password);
+    $("#repassword").val(data.data.password);
+  }
+  //保存用户信息数据
+  $("#submit").on("click", function () {
+    var resChecked = verification();
+    if (resChecked == "1") {
+      return
+    }
+    var formName = $("#userInfoDetail").serializeArray();
+    var inputData = "";
+    if (id) {
+      $.each(formName, function (index, obj) {
+        if (obj.name != "user") {
+          //inputData[obj.name] = obj.value;
+          inputData = addURLParam(inputData, obj.name, obj.value);
+        }
+      });
+      $.ajax({
+        type: "get",
+        url: ipAddress + "admin/user/modify" + inputData,
+        dateType: "text",
+        success: function (data) {
+          if (data.status == "1") {
+            alert("保存成功");
+            //window.location.href = "userManagement.html";
+          } else {
+            alert("保存失败");
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    } else {
+      $.each(formName, function (index, obj) {
+        if (obj.name != "user") {
+          inputData = addPostParam(inputData, obj.name, obj.value);
+        }
+      });
+      $.ajax({
+        type: "post",
+        url: ipAddress + "admin/user/create",
+        dateType: "text",
+        data: inputData,
+        success: function (data) {
+          if (data.status == "1") {
+            alert("保存成功");
+            //window.location.href = "userManagement.html";
+          } else {
+            alert("保存失败");
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    }
+//    alert(JSON.stringify(inputData));
+  });
+  //  $("#userInfoDetail input[type='text']").on("blur",function(){
+  //    verification();
+  //  });
+  //验证输入是否合法
+  function verification() {
+    var checked = "";
+    $("#userInfoDetail input[type='text']").each(function () {
+      if ($(this).val().length < 1) {
+        $(this).addClass("validation");
+        $("#showError").text("数据不能为空");
+        $(this).focus();
+        checked = 1;
+        return false;
+      } else {
+        $(this).removeClass("validation");
+        $("#showError").text("");
+        checked = 0;
+      }
+      if ($(this).attr("name") == "email") {
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        var emailValue = $(this).val();
+        if (filter.test(emailValue)) {
+          $(this).removeClass("validation");
+          $("#showError").text("");
+          checked = 0;
+        } else {
+          $(this).addClass("validation");
+          $("#showError").text("邮箱格式不正确");
+          $(this).focus();
+          checked = 1;
+          return false;
+        }
+      }
+      if ($(this).attr("name") == "cellphone") {
+        var mobile = /^[1][3758][0-9]{9}$/;
+        var mobileValue = $(this).val();
+        if (mobile.test(mobileValue)) {
+          $(this).removeClass("validation");
+          $("#showError").text("");
+          checked = 0;
+        } else {
+          $(this).addClass("validation");
+          $("#showError").text("手机格式不正确");
+          $(this).focus();
+          checked = 1;
+          return false;
+        }
+      }
+    });
+    if(checked!=1) {
+      if($("#password").val().length >5){
+        $("#password").removeClass("validation");
+        $("#showError").text("");
+        checked = 0;
+      }else{
+        $("#password").addClass("validation");
+        $("#showError").text("密码不能少于六位！");
+        $(this).focus();
+        checked = 1;
+      }
+    }
+    if(checked!=1) {
+      if ($("#password").val() == $("#rePassword").val()) {
+        $("#rePassword").removeClass("validation");
+        $("#showError").text("");
+        checked = 0;
+      } else {
+        $("#rePassword").addClass("validation");
+        $("#showError").text("两次密码输入不一致，请重新输入！");
+        $(this).focus();
+        checked = 1;
+      }
+    }
+    return checked;
+  }
+
+
+</script>
+</body>
+
+</html>

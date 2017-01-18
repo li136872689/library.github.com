@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>通知公告</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+  <style>
+    .header {
+      width: 960px;
+      height: 128px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .headerLogo {
+      width: 272px;
+      height: 52px;
+      float: left;
+      margin-top: 40px;
+      background: url("img/qt_headerLogo_icon.png") no-repeat;
+    }
+
+    .headerUser {
+      height: 44px;
+      margin-top: 75px;
+      float: right;
+      overflow: hidden;
+    }
+
+    .headerUser b, .headerUser p, .headerUser a {
+      float: left;
+    }
+
+    .headerUser b {
+      width: 89px;
+      height: 44px;
+      background: url("img/qt_userLeft_icon.png") no-repeat;
+      margin-right: 10px;
+    }
+
+    .headerUser p, .headerUser a {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #505050;
+    }
+
+    .headerUser p {
+      margin-right: 20px;
+    }
+
+    .headerUser a {
+      margin-right: 15px;
+    }
+
+    .headerNavBar {
+      width: 100%;
+      height: 36px;
+      background: #921818;
+    }
+
+    .headerContain {
+      width: 960px;
+      margin: 0px auto;
+    }
+
+    #navContain {
+      overflow: hidden;
+    }
+
+    #navContain li {
+      width: 191px;
+      text-align: center;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+    }
+
+    #navContain li a {
+      text-decoration: none;
+      color: #fff;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: inherit;
+      height: inherit;
+    }
+
+    .qtzxsk {
+      background: url("img/qt_zxsk_huiziwen_icon.png") no-repeat;
+    }
+
+    .nav_click {
+      background: url("img/qt_headernav_click_icon.png") no-repeat;
+    }
+
+    .nav_clickA {
+      color: #e5ab1f;
+    }
+
+    .qttpxwContian {
+      width: 960px;
+      margin: 0px auto;
+      overflow: hidden;
+    }
+
+    .qttpxwMainleft {
+      float: left;
+      width: 228px;
+      margin-top: 12px;
+    }
+
+    .newsClass {
+      height: 485px;
+      margin-top: 12px;
+      background: url("img/tzxq_left_bg.png") no-repeat;
+      position: relative;
+    }
+
+    #newsUl {
+      position: absolute;
+      left: 40%;
+      top: 28%;
+    }
+
+    #newsUl li {
+      height: 35px;
+      cursor: default;
+    }
+
+    .qttpxwMainRight {
+      float: left;
+      width: 732px;
+    }
+
+    .picNewsTip {
+      width: 360px;
+      height: 27px;
+      margin-top: 63px;
+      background: url("img/picNewsTip_bg.png") no-repeat;
+      margin-bottom: 20px;
+    }
+
+    .picNewslist {
+      margin-top: 12px;
+      overflow: hidden;
+    }
+
+    .picNewslistleft {
+      float: left;
+      border: 2px solid #d2d2d2;
+      width: 168px;
+      height: 128px;
+      position: relative;
+    }
+
+    .picNewslistleft img {
+      position: absolute;
+      left: 14%;
+      top: 10%;
+    }
+
+    .picNewsDetail {
+      float: left;
+      width: 75%;
+      margin-left: 12px;
+      position: relative;
+    }
+
+    .picNewsDetail a {
+      display: block;
+      margin: 30px 0 20px 0;
+      font-size: 14px;
+      color: #921818;
+      text-decoration: none;
+    }
+
+    .picNewsDetail p {
+      width: 450px;
+      height: 40px;
+      overflow: hidden;
+    }
+
+    .picNewsDetail span {
+      position: absolute;
+      right: -75px;
+      bottom: 0;
+    }
+
+    .fontColorRed {
+      color: #921818;
+    }
+
+    .footer {
+      width: 100%;
+      margin-top: 600px;
+      border-top: 1px solid #921818;
+      background: #fff;
+    }
+
+    .footerMain {
+      margin: 0 auto;
+      width: 360px;
+      text-align: center;
+      font-size: 11px;
+      color: #818181;
+    }
+
+    .footerLink {
+      height: 13px;
+      margin-top: 18px;
+      overflow: hidden;
+      font-size: 11px;
+    }
+
+    .footerLink a {
+      margin-right: 24px;
+    }
+
+    .copy {
+      height: 11px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="headerLogo"></div>
+  <div class="headerUser">
+    <b></b>
+
+    <p><span id="userName">游客</span> 欢迎!</p>
+    <a href="javascript:;" id="logout"></a>
+  </div>
+</div>
+<div class="headerNavBar">
+  <div class="headerContain">
+    <ul id="navContain">
+      <li class="qtIndex nav_click" id="qtIndex"><a href="qt-index.html">首页</a></li>
+      <li class="qtgcdt" id="qtgcdt"><a style="color: #e5ab1f" href="qt-gcgl.html">馆藏概览</a></li>
+      <li class="qtzxsk" id="qtzxsk"><a href="qt-zxsk.html">在线书库</a></li>
+      <li class="qtdzzx" id="qtdzzx"><a href="qt-dzzx.html">读者中心</a></li>
+      <li class="qtgywm" id="qtgywm"><a href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+</div>
+<div class="qttpxwContian">
+  <div class="qttpxwMainleft">
+    <div>
+      <p>首页 > <span class="fontColorRed">图片新闻</span></p>
+    </div>
+    <div class="newsClass">
+      <ul id="newsUl">
+        <li><a href="qt-tzgg.html">通知公告</a></li>
+        <li><a class="fontColorRed" href="qt-tpxw.html">图片新闻</a></li>
+        <li>古籍文化</li>
+      </ul>
+    </div>
+  </div>
+  <div class="qttpxwMainRight">
+    <div class="picNewsTip"></div>
+    <div id="picNewsMain">
+      <div class="picNewslistBox">
+        <!--<div class="picNewslist">-->
+          <!--<a class="picNewslistleft" href="#"><img src="img/tpxw_news_bg.png" alt=""/></a>-->
+
+          <!--<div class="picNewsDetail">-->
+            <!--<a href="#">炫彩童年——中国百年童书展</a>-->
+
+            <!--<p>本次展览从百年来众多优秀的儿童读物中精选出百余册儿童书籍，按照时间顺序展出。-->
+              <!--这些优秀的儿童读物不仅是不同不同精神风貌的真实风的真实风的真实风貌的真实风貌貌仅是不同不同精神风貌的真实风的-->
+            <!--</p>-->
+            <!--<span>2016-05-12</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="picNewslist">-->
+          <!--<a class="picNewslistleft" href="#"><img src="img/tpxw_news_bg01.png" alt=""/></a>-->
+
+          <!--<div class="picNewsDetail">-->
+            <!--<a href="#">炫彩童年——中国百年童书展</a>-->
+
+            <!--<p>本次展览从百年来众多优秀的儿童读物中精选出百余册儿童书籍，按照时间顺序展出。-->
+              <!--这些优秀的儿童读物不仅是不同不同精神风貌的真实风的真实风的真实风貌的真实风貌貌仅是不同不同精神风貌的真实风的-->
+            <!--</p>-->
+            <!--<span>2016-05-12</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="picNewslist">-->
+          <!--<a class="picNewslistleft" href="#"><img src="img/tpxw_news_bg.png" alt=""/></a>-->
+
+          <!--<div class="picNewsDetail">-->
+            <!--<a href="#">炫彩童年——中国百年童书展</a>-->
+
+            <!--<p>本次展览从百年来众多优秀的儿童读物中精选出百余册儿童书籍，按照时间顺序展出。-->
+              <!--这些优秀的儿童读物不仅是不同不同精神风貌的真实风的真实风的真实风貌的真实风貌貌仅是不同不同精神风貌的真实风的-->
+            <!--</p>-->
+            <!--<span>2016-05-12</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="picNewslist">-->
+          <!--<a class="picNewslistleft" href="#"><img src="img/tpxw_news_bg01.png" alt=""/></a>-->
+
+          <!--<div class="picNewsDetail">-->
+            <!--<a href="#">炫彩童年——中国百年童书展</a>-->
+
+            <!--<p>本次展览从百年来众多优秀的儿童读物中精选出百余册儿童书籍，按照时间顺序展出。-->
+              <!--这些优秀的儿童读物不仅是不同不同精神风貌的真实风的真实风的真实风貌的真实风貌貌仅是不同不同精神风貌的真实风的-->
+            <!--</p>-->
+            <!--<span>2016-05-12</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="picNewslist">-->
+          <!--<a class="picNewslistleft" href="#"><img src="img/tpxw_news_bg.png" alt=""/></a>-->
+
+          <!--<div class="picNewsDetail">-->
+            <!--<a href="#">炫彩童年——中国百年童书展</a>-->
+
+            <!--<p>本次展览从百年来众多优秀的儿童读物中精选出百余册儿童书籍，按照时间顺序展出。-->
+              <!--这些优秀的儿童读物不仅是不同不同精神风貌的真实风的真实风的真实风貌的真实风貌貌仅是不同不同精神风貌的真实风的-->
+            <!--</p>-->
+            <!--<span>2016-05-12</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="picNewslist">-->
+          <!--<a class="picNewslistleft" href="#"><img src="img/tpxw_news_bg01.png" alt=""/></a>-->
+
+          <!--<div class="picNewsDetail">-->
+            <!--<a href="#">炫彩童年——中国百年童书展</a>-->
+
+            <!--<p>本次展览从百年来众多优秀的儿童读物中精选出百余册儿童书籍，按照时间顺序展出。-->
+              <!--这些优秀的儿童读物不仅是不同不同精神风貌的真实风的真实风的真实风貌的真实风貌貌仅是不同不同精神风貌的真实风的-->
+            <!--</p>-->
+            <!--<span>2016-05-12</span>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div style="margin: 70px auto">
+      <div style="margin-left: 225px;">
+        <div id="pageBar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footerMain">
+    <p class="footerLink"><a href="about.html">关于我们</a><a href="#">合作单位</a><a href="#">技术支持</a></p>
+
+    <p class="copy">版权所有：北京美斯齐文化科技有限公司 备案号京ICP备15044982号</p>
+  </div>
+</div>
+<br/>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/awacs.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/lunbo.js"></script>
+<script>
+  $(function () {
+//    var nowleng = $(".picNewsDetail p").text().length;
+//    if (nowleng > 80) {
+//      var newLeng = $(".picNewsDetail p").text().substring(0, 80) + '……';
+//      $(".picNewsDetail p").text(newLeng);
+//    }
+
+
+//  alert($(".picNewslistleft").width()+"**************"+$(".picNewslistleft img").height());
+  })
+  $(window).load(function () {
+    $(".picNewslistleft").each(function () {
+      var imgLeft = ($(this).width() - $(this).children().width()) / 2;
+      var imgHeight = ($(this).height() - $(this).children().height()) / 2;
+      $(this).children().css("left", imgLeft + "px");
+      $(this).children().css("top", imgHeight + "px");
+    });
+
+
+    //    默认显示
+    getnewsData();
+
+//		获取news列表数据
+    var localListInfo = "";
+
+    function getnewsData() {
+      $.ajax({
+        type: "get",
+        url: newsAddress + "ContentManagementService/content/*/4/1/0/",
+        dateType: "json",
+//        data: JSON.stringify(newsData),
+        success: function (data) {
+          localListInfo = data.data.contents;
+          loadDefaultData();
+        },
+        error: function () {
+          alert("网络错误！");
+          return;
+        },
+        async: true
+      });
+    }
+
+
+    function loadDefaultData() {
+      drawList("picNewsMain", localListInfo);
+      showPageIndex(localListInfo.length, "picNewsMain", "pageBar");
+    }
+
+    function drawList(notifyListMain, infoList) {
+      var notifyList;
+      var pageCount = 1;
+      var infoNum = infoList.length;
+      $("#" + notifyListMain + " .picNewslist").remove();
+
+
+      //循环画表
+      for (var i = 0; i < infoNum; i++) {
+        if (i % 6 == 0) {
+          notifyList = $("<div class='picNewslistBox' index = " + pageCount + " ></div>");
+          if (pageCount != 1) {
+            notifyList.css("display", "none");
+          }
+          $("#" + notifyListMain).append(notifyList);
+          pageCount++;
+        }
+        var imgSrc = JSON.parse(infoList[i].meta_info).imgPath;
+        var picDes = JSON.parse(infoList[i].meta_info).picDes ? JSON.parse(infoList[i].meta_info).picDes : '';
+        var notifyLi = $('<div class="picNewslist"><a class="picNewslistleft" href="qt-tzxq.html?id='+infoList[i].id+'&type=4"><img width="120px" height="100px" src="' + imgSrc + '" alt=""/></a> <div class="picNewsDetail"> <a href="qt-tzxq.html?id='+infoList[i].id+'&type=4">' + infoList[i].title + '</a> <p>' + picDes + '</p> <span>' + infoList[i].create_time + '</span></div></div>');
+        notifyList.append(notifyLi);
+      }
+      $(".picNewsDetail p").each(function(){
+         if($(this).text().length>80){
+           var newLeng = $(this).text().substring(0, 60) + '……';
+           $(this).text(newLeng);
+         }
+      })
+
+    }
+
+
+    function showPageIndex(tmpMaxPage, notifyListMain, pageBarName) {
+      var maxPage = Math.ceil(tmpMaxPage / 6);
+      var displayNum = maxPage;
+      if (maxPage > 5) {
+        displayNum = 5;
+      } else if (maxPage <= 0) {
+        displayNum = 1;
+        maxPage = 1;
+      }
+      //$("#" + pageBarName).children().remove();
+      $("#" + pageBarName).paginate({
+        count: maxPage,
+        start: 1,
+        display: displayNum,
+        border: true,
+        border_color: '#fff',
+        text_color: '#3a3a3a',
+        background_color: '#fff',
+        border_hover_color: '#fff',
+        text_hover_color: '#ea543f',
+        background_hover_color: '#fff',
+        images: false,
+        mouse: 'press',
+        onChange: function (page) {
+          $("#" + notifyListMain + " .picNewslistBox").css("display", "none");
+          $("#" + notifyListMain + " .picNewslistBox[index=" + page + "]").show();
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

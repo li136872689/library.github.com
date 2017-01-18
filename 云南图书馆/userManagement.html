@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>用户管理</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+</head>
+<style>
+  .outMain {
+    width: 920px;
+    margin: 75px auto 0;
+  }
+
+  .userCount {
+    width: 100%;
+    height: 68px;
+    overflow: hidden;
+  }
+
+  .innerBox {
+    float: left;
+    width: 227px;
+    height: 68px;
+    margin-left: 15px;
+    overflow: hidden;
+  }
+
+  .innerBox b {
+    float: left;
+    width: 68px;
+    height: 68px;
+    background: url("img/user_small_icon.png") no-repeat center center;
+  }
+
+  .innerBox p {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #818181;
+    height: 24px;
+    margin-top: 15px;
+  }
+
+  .innerBox span {
+    float: left;
+    font-size: 10px;
+    color: #818181;
+    margin-left: 41%;
+    margin-top: 5px;
+  }
+
+  .showOpt {
+    height: 25px;
+    margin-top: 63px;
+    line-height: 25px;
+    padding: 0 10px 0 10px;
+  }
+
+  .showOpt span {
+    float: left;
+    font-size: 14px;
+    color: #63615e;
+  }
+
+  .showOpt select {
+    float: left;
+    height: 25px;
+    width: 140px;
+    margin-left: 16px;
+    border: 1px solid #cecece;
+    font-size: 14px;
+    color: #eb7969;
+  }
+
+  .showOpt a {
+    float: right;
+    text-decoration: none;
+    font-size: 14px;
+    color: #746f6e;
+  }
+
+  .tableBox {
+    margin-top: 12px;
+  }
+
+  .amendRecord, .deleteRecord {
+    color: #557d8e;
+    font-size: 12px;
+  }
+
+  .deleteRecord {
+    margin-left: 12px;
+  }
+  .innerBoxLeft,.innerBoxRight{
+    float: left;
+  }
+  .innerBoxLeft{
+    background: #eb7969;
+  }
+  .innerBoxRight{
+    width: 128px;
+    height: 68px;
+    background: #fbf7f7;
+  }
+  .vip .innerBoxLeft{
+    background: #fff45c;
+  }
+  .vip b{
+    background: url("img/user_small_yellow_icon.png") no-repeat center center;
+  }
+  .vip span{
+    margin-left: 34%;
+  }
+  .admin .innerBoxLeft{
+    background: #84ccc9;
+  }
+  .admin span{
+    margin-left: 36%;
+  }
+  .admin b{
+    background: url("img/user_small_blue_icon.png") no-repeat center center;
+  }
+</style>
+
+<body>
+<div class="outMain" data-height = "600">
+  <div class="userCount">
+    <div class="innerBox normal">
+      <div class="innerBoxLeft">
+        <b></b>
+      </div>
+      <div class="innerBoxRight">
+        <p  id="normal"></p>
+        <span>用户</span>
+      </div>
+    </div>
+    <div class="innerBox vip">
+      <div class="innerBoxLeft">
+        <b></b>
+      </div>
+      <div class="innerBoxRight">
+        <p  id="vip"></p>
+        <span>vip用户</span>
+      </div>
+    </div>
+    <div class="innerBox admin">
+      <div class="innerBoxLeft">
+        <b></b>
+      </div>
+      <div class="innerBoxRight">
+        <p  id="admin"></p>
+        <span>管理员</span>
+      </div>
+    </div>
+  </div>
+  <div class="showTable">
+    <div class="showOpt">
+      <span>分类</span>
+      <select name="" id="userSelect">
+        <option value="">用户</option>
+        <option value="0">普通</option>
+        <option value="1">vip</option>
+        <option value="2">admin</option>
+      </select>
+      <a href="registration.html">+新建</a>
+    </div>
+    <div class="tableBox">
+      <table id="userTable" class="table table-responsive">
+        <tr class="userTableTr">
+          <th>序号</th>
+          <th>类型</th>
+          <th>ID</th>
+          <th>用户名</th>
+          <th>权限</th>
+          <th>邮箱</th>
+          <th>手机</th>
+          <th>操作</th>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      </table>
+    </div>
+    <div style="width: 920px;margin: 10px auto">
+      <div style="float:right">
+        <div id="pageBar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+  $(function () {
+
+    var localListInfo="";
+    getUserCount();
+    function getUserCount()
+    {
+      //用户数
+      $.ajax({
+        type: "post",
+        url: ipAddress + "admin/user/count",
+        dateType: "json",
+        data: "",
+        success: function (data) {
+          if (data.status == 1) {
+            $("#normal").text(data.data.normal==undefined ? 0 : data.data.normal);
+            $("#vip").text(data.data.vip==undefined ? 0 : data.data.vip);
+            $("#admin").text(data.data.admin==undefined ? 0: data.data.admin);
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    }
+
+//		用户列表
+    $("#userSelect").on("change", function () {
+      clickDelShowData();
+    });
+//    点击$删除共用函数
+    function clickDelShowData(){
+      var userSelectValue = $("#userSelect").val();
+      var defaultuserData = "";
+      if (userSelectValue == "") {
+//        defaultuserData = {"pageNum": 1, "pageSize": 5};
+        defaultuserData = "pageNum=1&"+ "pageSize=999";
+      } else {
+//        defaultuserData = {"type": userSelectValue, "pageNum": 1, "pageSize": 5}
+        defaultuserData = "pageNum=1&"+ "pageSize=999&" + "type="+userSelectValue;
+      }
+      getuserData(defaultuserData);
+      getUserCount();
+
+    }
+  var pageNumData = "pageSize=999&pageNum=1";
+//    默认显示
+    getuserData(pageNumData);
+
+//		获取用户列表数据
+    function getuserData(userData) {
+      $.ajax({
+        type: "get",
+        url: ipAddress + "admin/user/list?"+userData,
+        dateType: "text",
+        //data: userData,
+        success: function (data) {
+          localListInfo = data.data;
+          loadDefaultData();
+//          showTable(data.data);
+//          showPageIndex(data.page.totalCount,data.page.pageNum,"pageBar");
+        },
+        error: function () {
+          var data = {
+            "status": 0,
+            "data": [{
+              "order": 1,
+              "type": 0,
+              "id": "CC0001",
+              "userName": "李美美",
+              "authority": "浏览",
+              "email": "22222@qq.com",
+              "cellphone": "13525256565"
+            }],
+            "page": {"pageSize": 10, "pageNum": 2, "totalCount": 100}
+          };
+          //showTable(data.data);
+          //showPageIndex(data.page.totalCount,data.page.pageNum,"pageBar");
+          localListInfo = data.data;
+          loadDefaultData();
+        },
+        async: true
+      });
+    }
+    function loadDefaultData(){
+      var titleStr = $(".userTableTr:first").prop("outerHTML");
+      var tdNames = ["type","id","name","authority","email","phone"];
+      showTable("userTable",localListInfo,titleStr,tdNames,true,true,true);
+      showPageIndex(localListInfo.length,"userTable","pageBar");
+    }
+
+    //    删除数据
+    $("body").on("click",".deleteRecord",function(){
+      var id = "id="+$(this).attr("data-userid");
+      $.ajax({
+        type: "post",
+        url: ipAddress + "admin/user/delete",
+        dateType: "json",
+        data: id,
+        success: function (data) {
+          if(data.status=="1"){
+            alert("删除成功");
+            clickDelShowData();
+          }else{
+            alert("删除失败");
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    });
+//    显示表格
+    function showTable1(dataList){
+
+      $("#userTable tbody").remove();
+      var dataList = dataList;
+      var showTabletbody = $("<tbody></tbody>");
+      var tableIndex =0;
+      $.each(dataList,function(index,obj){
+        //<a id="amendRecord" href="javascript:;">修改</a><a id="deleteRecord" href="javascript:;">删除</a>
+        var showTableTr = ("<tr><td>"+(index+1)+
+                           "</td><td>"+userDescDict[obj.type]+
+                           "</td><td>"+obj.id+
+                           "</td><td>"+obj.name+
+                           "</td><td>"+obj.authority+
+                           "</td><td>"+obj.email+
+                           "</td><td>"+obj.phone+
+                           "</td><td>"+"<a class='amendRecord' href='registration.html?id="+obj.id+"'>详情</a>" +
+                                       "<a class='deleteRecord' data-userId="+obj.id+" href='javascript:;'>删除</a>"+
+                          "</td></tr>");
+        showTabletbody.append(showTableTr);
+      });
+      $("#userTable").append(showTabletbody);
+
+      //末页未满5项时添加空行
+      if (dataList.length<5) {
+        for (var j = 0; j < 5 - dataList.length; j++) {
+          var tmpListTr = $("<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>");
+          showTabletbody.append(tmpListTr);
+        }
+        $("#userTable").append(showTabletbody);
+      }
+
+    }
+
+
+    function showTable(tmpTable, infoList, tmpTitleStr, tmpTdNames, haveIndex,operation) {
+      //1.tmpTable表名  2.infoList数据列表  3.tmpTitleStr表头html  4.tmpTdNames字段名称  5.haveIndex是否有序号(true false)
+      var tmpTbody;
+      var pageCount = 1;
+      var infoNum = infoList.length;
+      var tdNum = tmpTdNames.length;
+      $("#" + tmpTable + " tbody").remove();
+
+      var emptyTdStr = "<tr>";
+      for (var m = 0; m < tdNum + (haveIndex ? 1 : 0) +(operation ? 1 : 0); m++) {
+        emptyTdStr += "<td>-</td>";
+      }
+      emptyTdStr += "</tr>";
+
+      //循环画表
+      for (var i = 0; i < infoNum; i++) {
+        if (i % 5 == 0) {
+          tmpTbody = $("<tbody index = " + pageCount + " ></tbody>");
+          tmpTbody.append(tmpTitleStr);
+          if (pageCount != 1) {
+            //tmpTbody.css("display", "block");
+            tmpTbody.css("width", $("#" + tmpTable).width());
+            tmpTbody.css("display", "none");
+          } else {
+            //tmpTbody.css("display", "table");
+            tmpTbody.css("width", $("#" + tmpTable).width());
+          }
+          $("#" + tmpTable).append("<tbody style='display:none;'></tbody>");
+          $("#" + tmpTable).append(tmpTbody);
+          pageCount++;
+        }
+        var tmpListTr = $("<tr isEmpty=\"0\"></tr>");
+
+
+        if (haveIndex) {
+          tmpListTr.append("<td>" + Math.abs(1 + i) + "</td>");
+        }
+        for (var k = 0; k < tdNum; k++) {
+          if(tmpTdNames[k]=="status"){
+            infoList[i][tmpTdNames[k]] = infoList[i][tmpTdNames[k]]==0?"未发布":"已发布";
+            tmpListTr.append("<td>" + infoList[i][tmpTdNames[k]] + "</td>");
+          }else if(tmpTdNames[k] == "type"){
+            tmpListTr.append("<td>" + userDescDict[infoList[i][tmpTdNames[k]]] + "</td>");
+          } else{
+            tmpListTr.append("<td>" + infoList[i][tmpTdNames[k]] + "</td>");
+          }
+        }
+        if(operation){
+
+            tmpListTr.append("<td><a class='amendRecord' href='registration.html?id="+infoList[i].id+"'>详情</a>" +
+              "<a class='deleteRecord' data-userId="+infoList[i].id+" href='javascript:;'>删除</a>" +
+              "</td>");
+        }
+        tmpTbody.append(tmpListTr);
+
+        //末页未满5项时添加空行
+        if (i + 1 >= infoNum && infoNum % 5 != 0) {
+          for (var j = 0; j < 5 - infoNum % 5; j++) {
+            var tmpListTr = $(emptyTdStr);
+            tmpTbody.append(tmpListTr);
+          }
+        }
+      }
+
+      //若没有条目要显示则将空表格画出
+      if (infoNum == 0) {
+        tmpTbody = $("<tbody index = " + pageCount + "></tbody>");
+        $("#" + tmpTable).append(tmpTbody);
+        tmpTbody.append(tmpTitleStr);
+        //tmpTbody.css("display", "table");
+        tmpTbody.css("width", $("#" + tmpTable).width());
+        for (var j = 0; j < 5; j++) {
+          var tmpListTr = emptyTdStr;
+          tmpTbody.append(tmpListTr);
+        }
+      }
+    }
+
+
+
+    function showPageIndex(tmpMaxPage, tableName, pageBarName) {
+      var maxPage = Math.ceil(tmpMaxPage / 5);
+      var displayNum = maxPage;
+      if (maxPage > 5) {
+        displayNum = 5;
+      } else if (maxPage <= 0) {
+        displayNum = 1;
+        maxPage = 1;
+      }
+      $("#" + pageBarName).children().remove();
+      $("#" + pageBarName).paginate({
+        count: maxPage,
+        start: 1,
+        display: displayNum,
+        border: true,
+        border_color: '#fff',
+        text_color: '#3a3a3a',
+        background_color: '#fff',
+        border_hover_color: '#fff',
+        text_hover_color: '#ea543f',
+        background_hover_color: '#fff',
+        images: false,
+        mouse: 'press',
+        onChange: function (page) {
+          $("#" + tableName + " tbody").css("display", "none");
+          $("#" + tableName + " tbody[index=" + page + "]").show();
+        }
+      });
+    }
+  })
+</script>
+</body>
+
+</html>

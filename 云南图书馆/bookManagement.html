@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>书籍管理</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+</head>
+<style>
+  .outMain {
+    width: 920px;
+    margin: 75px auto 0;
+  }
+
+  .booksCount {
+    width: 100%;
+    height: 68px;
+    overflow: hidden;
+  }
+
+  .innerBox {
+    float: left;
+    width: 227px;
+    height: 68px;
+    margin-left: 15px;
+    overflow: hidden;
+  }
+
+  .innerBox b {
+    float: left;
+    width: 68px;
+    height: 68px;
+    background: url("img/book_small_red_icon.png") no-repeat center center;
+  }
+
+  .innerBox p {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #818181;
+    height: 24px;
+    margin-top: 15px;
+  }
+
+  .innerBox span {
+    float: left;
+    font-size: 10px;
+    color: #818181;
+    margin-left: 41%;
+    margin-top: 5px;
+  }
+  .innerBoxLeft,.innerBoxRight{
+    float: left;
+  }
+  .innerBoxLeft{
+    background: #eb7969;
+  }
+  .innerBoxRight{
+    width: 128px;
+    height: 68px;
+    background: #fbf7f7;
+  }
+
+  .showOpt, .showOptSelect {
+    height: 78px;
+    width: 918px;
+    margin-top: 40px;
+    padding: 4px 0px 0 10px;
+    border: 1px solid #ebe9e9;
+    overflow: hidden;
+  }
+
+  .shujiluru, .fenlei {
+    overflow: hidden;
+  }
+
+  .shujiluru span, .fenlei span {
+    float: left;
+  }
+
+  .shujiluru span {
+    margin-left: 2px;
+  }
+
+  .shujiluru {
+    font-size: 14px;
+    color: #eb7969;
+    overflow: hidden;
+  }
+
+  .fenlei {
+    float: left;
+    height: 26px;
+    line-height: 26px;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #63615e;
+  }
+
+  .fenlei span, .fenlei select, .fenlei a {
+    float: left;
+  }
+
+  .fenlei span {
+    margin-left: 10px;
+  }
+  #singleEmtry{
+    width: 13px;
+    height: 14px;
+    margin-left: 35px;
+    margin-top: 5px;
+    background: url("img/singleEntry.png") no-repeat left center;
+  }
+  #batchEntry{
+    width: 14px;
+    height: 16px;
+    margin-top: 5px;
+    margin-left: 30px;
+    background: url("img/batchEntry.png") no-repeat;
+  }
+  .otherFenlei span {
+    margin-left: 20px;
+  }
+
+  #author {
+    width: 100px;
+  }
+
+  .showOptSelect select, .showOpt select, .showOptSelect input {
+    float: left;
+    height: 25px;
+    width: 130px;
+    margin-left: 16px;
+    padding-left: 5px;
+    border: 1px solid #cecece;
+    font-size: 14px;
+    color: #3a3a3a;
+  }
+
+  .showOptSelect input{
+    float: left;
+    height: 25px;
+    width: 80px;
+    margin-left: 16px;
+    padding-left: 5px;
+    border: 1px solid #cecece;
+    font-size: 14px;
+    color: #3a3a3a;
+  }
+  .showOptSelect .otherFenlei select {
+    margin-left: 5px;
+  }
+
+  #searchBtn {
+    float: right;
+    width: 60px;
+    height: 26px;
+    padding-top: 5px;
+    padding-left:16px;
+    margin-top: 18px;
+    font-size: 12px;
+    background: url("img/search_icon.png") no-repeat left center;
+  }
+
+  .bookList {
+    margin-top: 40px;
+  }
+
+  .bookList p {
+    margin: 0 0 0 14px;
+    font-size: 14px;
+    color: #777b7f;
+  }
+
+  .tableBox {
+    margin-top: 10px;
+  }
+
+  #amendRecord, .deleteRecord {
+    color: #557d8e;
+    font-size: 12px;
+  }
+
+  .deleteRecord {
+    margin-left: 12px;
+  }
+</style>
+
+<body>
+<div class="outMain" data-height="800">
+  <div class="booksCount">
+    <div class="innerBox">
+      <div class="innerBoxLeft">
+        <b></b>
+      </div>
+      <div class="innerBoxRight">
+        <p  id="bookCount">0</p>
+        <span>总数</span>
+      </div>
+    </div>
+    <!--<div class="innerBox">-->
+      <!--<b></b>-->
+
+      <!--<p>总数</p>-->
+      <!--<span id="bookCount">200201</span>-->
+    <!--</div>-->
+  </div>
+  <div class="showTable">
+    <div class="showOpt">
+      <div class="shujiluru"><span>书籍录入</span></div>
+      <div class="fenlei">
+        <span>分類</span>
+        <select name="" id="inputDataClass">
+          <option value="" bookclassid="">-请选择-</option>
+        </select>
+        <a id="singleEmtry" href="javascript:;" title="单本录入" target="_blank"></a>
+        <a id="batchEntry" href="javascript:;"  title="批量录入"></a>
+        <input id="fileupload" type="file" name="file[]" multiple style="display: none">
+      </div>
+    </div>
+    <form class="showOptSelect" id="showOptSelect">
+      <div class="shujiluru"><span>书籍查询</span></div>
+      <div class="fenlei">
+        <span>分類</span>
+        <select class="bookSelect" name="categoryId" id="queryClass">
+          <option value="">-请选择-</option>
+        </select>
+      </div>
+      <div class="fenlei otherFenlei">
+        <span>名錄號</span><input class="bookSelect" type="text" name="mingLuHao"/>
+      </div>
+      <div class="fenlei otherFenlei">
+        <span>索書號</span><input class="bookSelect" type="text" name="suoShuHao"/>
+      </div>
+      <div class="fenlei otherFenlei">
+        <span>主要責任者</span><input class="bookSelect" type="text" name="response"/>
+      </div>
+      <div class="fenlei otherFenlei" style="display: none">
+        <span>題名卷數</span><input class="bookSelect" type="text" name="name"/>
+      </div>
+      <a id="searchBtn" href="javascript:;">搜索</a>
+    </form>
+    <div class="bookList">
+      <p>书籍列表&nbsp;&nbsp;&nbsp;共<span id="bookListCount">0</span>条</p>
+    </div>
+    <div class="tableBox">
+      <table id="booksTable" class="table table-responsive">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>分類</th>
+          <th>名錄號</th>
+          <th>題名卷數</th>
+          <th>索書號</th>
+          <th>分類名稱</th>
+          <th>主要責任者</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="width: 920px;margin: 10px auto">
+      <div style="float:right">
+        <div id="pageBar"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/awacs.js"></script>
+
+
+<!--<script src="js/jquery-ui-widget.js"></script>-->
+<!--<script src="js/jquery.iframe-transport.js"></script>-->
+<!--<script src="js/jquery.fileupload.js"></script>-->
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="js/jquery.fileupload.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
+
+
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script>
+  $(function () {
+
+    function getBookCount(){
+
+      $("#batchEntry").click(function () {
+        $("#fileupload").click();
+      });
+
+      $('#fileupload').fileupload({
+        url: ipAddress +"admin/book/upload",
+        dataType: 'json',
+        done: function (e, data) {
+          $.each(data.result.files, function (index, file) {
+            //$('<p/>').text(file.name).appendTo(document.body);
+            alert(file.name);
+          });
+        },
+        success: function (data) {
+          if (data.status == 1) {
+            alert(JSON.stringify(data))
+          } else{
+            alert(JSON.stringify(data))
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        }
+      });
+
+//		书籍数
+      $.ajax({
+        type: "post",
+        url: ipAddress +"admin/book/query",
+        dateType: "text",
+        data: "pageNum=1&pageSize=5",
+        success: function (data) {
+          if (data.status == 1) {
+            $("#bookCount").text(data.page.totalCount);
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    }
+//		书籍分类列表列表
+    $.ajax({
+      type: "post",
+      url: ipAddress +"admin/category/list",
+      dateType: "json",
+      data: "pageNum=1&pageSize=1000",
+      success: function (data) {
+        if (data.status == 1) {
+          $("#inputDataClass option").not(":first").remove();
+          $("#queryClass option").not(":first").remove();
+          $.each(data.data,function(index,obj){
+            var clsddOption = $("<option value="+obj.id+">"+obj.name+"</option>");
+            $("#inputDataClass").append(clsddOption);
+            $("#queryClass").append(clsddOption.clone());
+          });
+        }
+      },
+      error: function () {
+        alert("网络错误");
+        return;
+      },
+      async: true
+    });
+
+    $("#searchBtn").on("click", function () {
+      clickDelShowData();
+    });
+//    点击&删除共用函数
+    function clickDelShowData(){
+      var defaultbookClassData = {};
+      $(".bookSelect").each(function(){
+        if($(this).val() != ""){
+          if($(this).attr("name")=="categoryId"){
+            var selectClassId = $(this).find(" option:selected").attr("value");
+            defaultbookClassData[$(this).attr("name")] = selectClassId;
+          }else{
+            if($(this).val()!=""){
+              defaultbookClassData[$(this).attr("name")] = $(this).val();
+            }
+          }
+        }
+      });
+      defaultbookClassData.pageSize=5;
+      defaultbookClassData.pageNum=1;
+      getbookClassData(defaultbookClassData);
+    }
+
+//    默认显示
+    getbookClassData({"pageSize":5, "pageNum":1});
+
+//		获取用表数据
+    function getbookClassData(bookClassData) {
+//      var request = $("#showOptSelect").serialize();
+//      if(bookClassData){
+//        request+="&pageNum=1&pageSize=5";
+//      }
+      $.ajax({
+        type: "post",
+        url: ipAddress +"admin/book/query",
+        dateType: "text",
+        data: bookClassData,
+        success: function (data) {
+          $("#bookListCount").html(data.page.totalCount);
+          showTable(data.data);
+          showPageIndex(data.page.totalCount,data.page.pageNum,"pageBar");
+        },
+        error: function () {
+          alert("网络错误!");
+          return ;
+        },
+        async: true
+      });
+
+      getBookCount();
+    }
+//    删除数据
+    $("body").on("click",".deleteRecord",function(){
+      var id = "id="+$(this).attr("data-delId");
+      $.ajax({
+        type: "post",
+        url: ipAddress + "admin/book/delete",
+        dateType: "json",
+        data: id,
+        success: function (data) {
+          if(data.status=="1"){
+            alert("删除成功");
+            clickDelShowData();
+          }else{
+            alert("删除失败");
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    });
+//    点击单本录入跳转到单本录入页面
+    $("#singleEmtry").click(function(){
+      var bookclassid = $("#inputDataClass option:selected").attr("value");
+      if(bookclassid==""){
+        return;
+      }
+      window.location.href="schoolBooks.html?class="+bookclassid;
+    });
+//    显示表格
+    function showTable(dataList){
+      $("#booksTable tbody").remove();
+      var dataList = dataList;
+      var showTabletbody = $("<tbody></tbody>");
+      $.each(dataList,function(index,obj){
+        var showTableTr = ("<tr><td>"+ obj.id+
+        "</td><td>"+obj.categoryId+
+        "</td><td>"+obj.mingLuHao+
+        "</td><td>"+obj.tiMingJuanShu+
+        "</td><td>"+obj.suoShuHao+
+        "</td><td>"+obj.categoryName+
+        "</td><td>"+obj.response+
+        "</td><td>"+"<a id='amendRecord'  href='schoolBooks.html?id="+obj.id+"'>详情</a>" +
+        "<a class='deleteRecord' data-delId="+obj.id+" href='javascript:;'>删除</a>"+
+        "</td></tr>");
+        showTabletbody.append(showTableTr);
+      });
+      $("#booksTable").append(showTabletbody);
+
+      //末页未满5项时添加空行
+      if (dataList.length<5) {
+        for (var j = 0; j < 5 - dataList.length; j++) {
+          var tmpListTr = $("<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>");
+          showTabletbody.append(tmpListTr);
+        }
+        $("#booksTable").append(showTabletbody);
+      }
+    }
+
+    function showPageIndex(tmpMaxPage, startPage, pageBarName) {
+      var maxPage = Math.ceil(tmpMaxPage / 5);
+      var displayNum = maxPage;
+      if (maxPage > 5) {
+        displayNum = 5;
+      } else if (maxPage <= 0) {
+        displayNum = 1;
+        maxPage = 1;
+      }
+      $("#" + pageBarName).children().remove();
+      $("#" + pageBarName).paginate({
+        count: maxPage,
+        start: startPage,
+        display: displayNum,
+        border: true,
+        border_color: '#fff',
+        text_color: '#3a3a3a',
+        background_color: '#fff',
+        border_hover_color: '#fff',
+        text_hover_color: '#ea543f',
+        background_hover_color: '#fff',
+        images: false,
+        mouse: 'press',
+        onChange: function (page) {
+          getbookClassData({"pageNum": page, "pageSize": 5});
+        }
+      });
+    }
+  })
+</script>
+</body>
+
+</html>

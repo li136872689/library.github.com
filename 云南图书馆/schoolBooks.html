@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>单本录入</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+</head>
+<style>
+  body {
+    background: #fff;
+  }
+
+  .fallback {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    background: #fdf1f0;
+  }
+
+  .fallback a {
+    margin-left: 17px;
+    padding-left: 18px;
+    font-size: 12px;
+    color: #8a8281;
+    text-decoration: none !important;
+    background: url("img/fallback.png") no-repeat left center;
+  }
+
+  .outMain {
+    width: 920px;
+    margin: 22px auto 0;
+  }
+
+  .bookInfoTip {
+    height: 20px;
+    overflow: hidden;
+  }
+
+  .bookInfoTip span {
+    float: left;
+    height: 18px;
+    margin: 0 1px 0 20px;
+    padding-left: 24px;
+    font-size: 14px;
+    color: #5d6062;
+    background: url("img/books_icon.png") no-repeat 0 2px;
+  }
+
+  input[type='radio'].radio {
+    opacity: 0;
+    display: inline-block;
+    height: 20px;
+  }
+
+  label.radio {
+    background: url(img/radio_check.png) no-repeat 0 2px;
+    height: 20px;
+    padding-left: 18px;
+  }
+
+  input[type='radio'].radio:checked + .radio {
+    background: url(img/radio_checked.png) no-repeat;
+  }
+
+  #bookInfoDetail {
+    position: relative;
+    background: #fbfbfb;
+    height: 450px;
+    overflow: auto;
+  }
+
+  #bookInfoDetail table {
+    margin-top: 5px;
+    margin-left: 16px;
+  }
+
+  #bookInfoDetail table td {
+    height: 30px;
+    text-align: right;
+  }
+
+  #bookInfoDetail table td input[type="text"] {
+    margin-left: 42px;
+    /*border: ridge;*/
+    width: 100%;
+    /*outline: 0;*/
+    height: 26px;
+    /*background: #fbfbfb;*/
+    padding-left: 2px;
+    /*outline: 0;*/
+  }
+
+  .td1 {
+    width: 84px;
+  }
+
+  .td2 {
+    width: 168px;
+  }
+
+  .radio1 {
+    margin-left: 8px;
+  }
+
+  .previewAndSubmit {
+    width: 105px;
+    margin: 0px auto;
+  }
+
+  #submit, #preview {
+    border: 0;
+    margin-top: 23px;
+    width: 140px;
+    height: 26px;
+    background: #eb7969;
+    border-radius: 0;
+    padding-top: 3px;
+  }
+
+  #preview {
+    margin-right: 25px;
+  }
+
+  #preview {
+    background: #f6b37f;
+  }
+</style>
+
+<body>
+<div class="fallback">
+  <a href="bookManagement.html" class="fallbackSpan">返回</a>
+</div>
+<div class="outMain" data-height="700">
+  <div class="bookInfoTip">
+    <span>古籍</span>
+  </div>
+  <form id="bookInfoDetail" action="" method="post" autocomplete="off">
+    <table id="bookInfoDetailTable">
+      <tr>
+        <td class="td1">主/从</td>
+        <td class="td2">
+          <input type="radio" name="bookType" id="knotBook" value="" class="radio"><label for="knotBook" class="radio">非丛书</label>
+          <input type="radio" name="bookType" id="NoknotBook" value="" class="radio"><label for="NoknotBook"
+                                                                                            class="radio radio1">丛书</label>
+        </td>
+      </tr>
+      <tr>
+        <td class="td1">主书ID</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">丛书序号</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">图片路径</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">权限(0,1,2)ID</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">加工記錄標識號</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">名錄號</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">普查編號</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">書目記錄標識號</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">索書號</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">分類</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">題名卷數</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">其他題名</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">其他責任者</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">存（缺）卷</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td class="td1">...</td>
+      </tr>
+    </table>
+  </form>
+  <div class="previewAndSubmit">
+    <!--<a id="preview" href="javascript:;" class="btn btn-danger btn-group-lg">预览</a>-->
+    <a id="submit" href="javascript:;" class="btn btn-danger btn-group-lg">保存</a>
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+
+  var id = getQueryString("id");
+  var classId = getQueryString("class");
+  //获取修改数据
+  if (id) {
+    $.ajax({
+      type: "post",
+      url: ipAddress + "admin/book/detail?id="+id,
+      dateType: "json",
+      data: "",
+      success: function (data) {
+        if (data.status == "1") {
+          showModifyTable(data.data);
+        }
+      },
+      error: function () {
+        var data = {
+          "status": 0,
+          "data": [
+            {
+              "attr": "isCluster",
+              "caption": "主/从",
+              "value": 1
+            },
+            {
+              "attr": "id",
+              "caption": "序号",
+              "value": "100撒旦发射点发阿萨德发顺丰阿萨德发生1"
+            },
+            {
+              "attr": "bookName",
+              "caption": "书名",
+              "value": "yijing"
+            },
+            {
+              "attr": "3412",
+              "caption": "丛书id",
+              "value": 1
+            },
+            {
+              "attr": "34123",
+              "caption": "丛书id",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            },
+            {
+              "attr": "name",
+              "caption": "易经经",
+              "value": 1
+            }
+          ]
+        };
+        showModifyTable(data.data);
+      },
+      async: true
+    });
+  }
+
+  if (classId) {
+    var id = "id="+classId;
+    $.ajax({
+      type: "post",
+      url: ipAddress + "admin/category/detail",
+      dateType: "text",
+      data: id,
+      success: function (data) {
+        if (data.status == "1") {
+          showEntryTable(data.data.attribute);
+        }
+      },
+      error: function () {
+        alert("网络错误!");
+        return ;
+        var data = {"status": 0,
+          "data": {
+            "id": 1,
+            "name": "古籍",
+            "description": "xxxxxxx",
+            "attribute": [{"id": 0, "name": "主/从"},{"id": 1, "name": "id"}, {"id": 2, "name": "名录号"}]
+          }
+        };
+        showEntryTable(data.data.attribute);
+      },
+      async: true
+    });
+  }
+
+
+  //  画出修改表格
+  function showModifyTable(dataList) {
+    $("#bookInfoDetailTable tbody").remove();
+    var dataList = dataList;
+    var showTabletbody = $("<tbody></tbody>");
+    var showTableTd = "";
+    $.each(dataList, function (index, obj) {
+      var isValue = obj.value ? obj.value : "";
+      var showTableTr = $("<tr>");
+
+      if (obj.attr == "isCluster") {
+        if (obj.value == "1") {
+          showTableTd = "<td class='td1'>" + obj.caption + "</td>" + "<td class='td2'><input type='radio' name='bookType' id='knotBook' value='' class='radio' checked='checked'>" +
+            "<label for='knotBook' class='radio'>非丛书</label> <input type='radio' name='bookType' id='NoknotBook' value='' class='radio'>" +
+            "<label for='NoknotBook'class='radio radio1'>丛书</label></td>";
+        } else {
+          showTableTd = "<td class='td1'>" + obj.caption + "</td>" + "<td class='td2'><input type='radio' name='bookType' id='knotBook' value='' class='radio'>" +
+            "<label for='knotBook' class='radio'>非丛书</label> <input type='radio' name='bookType' id='NoknotBook' value='' class='radio'  checked='checked'>" +
+            "<label for='NoknotBook'class='radio radio1'>丛书</label></td>";
+        }
+
+      } else {
+        showTableTd = "<td class='td1'>" + obj.caption + "</td>" +
+          "<td class='td2'><input type='text' data-targetId="+obj.attr+"  value=" + isValue + "></td>";
+      }
+      showTableTr.append(showTableTd);
+      showTabletbody.append(showTableTr);
+    });
+    $("#bookInfoDetailTable").append(showTabletbody);
+
+  }
+
+  //  画出录入表格
+  function showEntryTable(dataList) {
+    $("#bookInfoDetailTable tbody").remove();
+    var dataList = dataList;
+    var showTabletbody = $("<tbody></tbody>");
+    var showTableTd = "";
+    $.each(dataList, function (index, obj) {
+      var isValue = obj.value ? obj.value : "";
+      var showTableTr = $("<tr>");
+      if (obj.caption == "主从-") {
+        if (obj.value == "1") {
+          showTableTd = "<td class='td1'>" + obj.caption + "</td>" + "<td class='td2'><input type='radio' name='bookType' id='knotBook' value='' class='radio' checked='checked'>" +
+            "<label for='knotBook' class='radio'>非丛书</label> <input type='radio' name='bookType' id='NoknotBook' value='' class='radio'>" +
+            "<label for='NoknotBook'class='radio radio1'>丛书</label></td>";
+        } else {
+          showTableTd = "<td class='td1'>" + obj.caption + "</td>" + "<td class='td2'><input type='radio' name='bookType' id='knotBook' value='' class='radio'>" +
+            "<label for='knotBook' class='radio'>非丛书</label> <input type='radio' name='bookType' id='NoknotBook' value='' class='radio'>" +
+            "<label for='NoknotBook'class='radio radio1'>丛书</label></td>";
+        }
+      } else {
+        var addStr = "";
+        if(obj.id==24 || obj.caption=="馆藏分类"){
+          addStr = "readOnly";
+          isValue = classId;
+        }
+        showTableTd = "<td class='td1'>" + obj.caption + "</td>" +
+          "<td class='td2'><input type='text' "+addStr+"  isMain="+obj.isMain+"  data-targetId="+obj.id+" value=" + isValue + "></td>";
+      }
+      showTableTr.append(showTableTd);
+      showTabletbody.append(showTableTr);
+    });
+    $("#bookInfoDetailTable").append(showTabletbody);
+  }
+
+  function yanzheng(){
+    var kongNum = 0;
+    $("input[isMain=1]").each(function(){
+      if($(this).val()==""){
+        alert("请输入"+$(this).parent().prev().text()+"!");
+        kongNum = 1;
+        return false;
+      }
+    });
+    if(kongNum == 1){
+      return false;
+    }
+    return true;
+  }
+
+
+  $("#submit").on("click", function () {
+    if(!yanzheng()){
+      return ;
+    }
+    var inputData = {};
+    inputData.categoryId = classId;
+    inputData["attribute"] = [];
+    var isClusterObj = {};
+    $("#bookInfoDetailTable input[type='radio']").each(function(){
+      if($(this).prop("checked")==true){
+        var labelText = $(this).next().text();
+        if(labelText=="非丛书"){
+          isClusterObj["attributeId"]="isCluster";
+          isClusterObj["value"]=1;
+        }else{
+          isClusterObj["attributeId"]="isCluster";
+          isClusterObj["value"]=0;
+        }
+        inputData["attribute"].push(isClusterObj);
+      }
+    });
+    $("#bookInfoDetailTable input[type='text']").each(function(){
+      var attributeObj = {};
+      var attributeId = $(this).attr("data-targetid");
+      var attributeValue = $(this).val();
+      attributeObj["attributeId"] = attributeId;
+      attributeObj["attributeValue"] = attributeValue;
+      inputData["attribute"].push(attributeObj);
+    });
+    $.ajax({
+      type: "post",
+      url: ipAddress + "admin/book/create",
+      dateType: "json",
+      data: JSON.stringify(inputData),
+      headers:{
+        'Accept':"application/json",
+        'Content-Type':"application/json"
+      },
+      success: function (data) {
+        if (data.status == "1") {
+          alert("保存成功");
+          window.location.href="bookManagement.html";
+        } else {
+          alert("保存失败");
+        }
+      },
+      error: function () {
+        alert("网络错误");
+        return;
+      },
+      async: true
+    });
+  });
+
+
+</script>
+</body>
+</html>

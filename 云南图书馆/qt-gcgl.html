@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>馆藏概览</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+  <style>
+    .header {
+      width: 960px;
+      height: 128px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .headerLogo {
+      width: 272px;
+      height: 52px;
+      float: left;
+      margin-top: 40px;
+      background: url("img/qt_headerLogo_icon.png") no-repeat;
+    }
+
+    .headerUser {
+      height: 44px;
+      margin-top: 75px;
+      float: right;
+      overflow: hidden;
+    }
+
+    .headerUser b, .headerUser p, .headerUser a {
+      float: left;
+    }
+
+    .headerUser b {
+      width: 89px;
+      height: 44px;
+      background: url("img/qt_userLeft_icon.png") no-repeat;
+      margin-right: 10px;
+    }
+
+    .headerUser p, .headerUser a {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #505050;
+    }
+
+    .headerUser p {
+      margin-right: 20px;
+    }
+
+    .headerUser a {
+      margin-right: 15px;
+    }
+
+    .headerNavBar {
+      width: 100%;
+      height: 36px;
+      background: #921818;
+    }
+
+    .headerContain {
+      width: 960px;
+      margin: 0px auto;
+    }
+
+    #navContain {
+      overflow: hidden;
+    }
+
+    #navContain li {
+      width: 191px;
+      text-align: center;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+    }
+
+    #navContain li a {
+      text-decoration: none;
+      color: #fff;
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      width: inherit;
+      height: inherit;
+    }
+    .qtzxsk{
+      background: url("img/qt_zxsk_huiziwen_icon.png") no-repeat;
+    }
+    .nav_click{
+      background: url("img/qt_headernav_click_icon.png") no-repeat;
+    }
+    .nav_clickA{
+      color: #e5ab1f;
+    }
+    .qtgcglContian{
+      width: 960px;
+      margin: 0px auto;
+      overflow: hidden;
+    }
+    #classNavContain{
+      width: 960px;
+      height: 68px;
+      padding-top: 28px;
+      overflow: hidden;
+    }
+    #classNavContain span{
+      float: left;
+      height: 12px;
+      line-height: 12px;
+      border-right: 1px solid #818181;
+      font-size: 12px;
+      color: #818181;
+      padding-right: 12px;
+    }
+    #classNav{
+      float: left;
+      line-height: 12px;
+      margin-left: 18px;
+      overflow: auto;
+      width: 94%;
+    }
+    #classNav a{
+      float: left;
+      padding: 0 10px;
+      text-decoration: none;
+    }
+    #classNav a:hover{
+      color: #921818;
+      padding: 0 10px;
+      height: 14px;
+      border-bottom: 1px solid #921818;
+    }
+    #classNav .classNavAClick{
+      color: #921818;
+      padding: 0 10px;
+      height: 14px;
+      border-bottom: 1px solid #921818;
+    }
+    .gcglHeader{
+      height: 257px;
+      width: 960px;
+      background: url("img/gcgl_logo01.png") no-repeat right center;
+    }
+    .gcglHeaderMain{
+      width: 700px;
+      height: 257px;
+      padding: 12px 0 0 15px;
+      /*background: #ddd;*/
+      /*opacity: 0.6;*/
+      /*filter: Alpha(opacity=60);*/
+      background: url("img/gcgl-heaader-opacity.png") no-repeat;
+    }
+    #gcglHeaderImg{
+      float: left;
+      height: 228px;
+      width: 228px;
+      padding:44px 35px;
+      background: url("img/bigger_book_bg_icon.png") no-repeat;
+    }
+    #gcglHeaderDetail{
+      float: left;
+      margin-left: 27px;
+      width:393px;
+    }
+    #gcglHeaderDetail{
+      font-size: 12px;
+      color: #454040;
+    }
+    #gcglHeaderDetail h3{
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    #gcglHeaderDetail div div{
+      margin-top: 24px;
+      width:393px;
+      height: 170px;
+      /*white-space:nowrap;*/
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .gcglBooksMain{
+      width: 960px;
+      height: 800px;
+      margin-top: 30px;
+      padding-right: 18px;
+      overflow: hidden;
+      background: #f3f2f2;
+    }
+    .moveBarMain{
+      width: 56px;
+      height: 14px;
+      float: right;
+      margin-top: 18px;
+      overflow: hidden;
+    }
+    .moveBarLeft{
+      float: left;
+      height: 14px;
+      width: 25px;
+      border: 1px solid #d2d2d2;
+      text-align: center;
+      line-height: 14px;
+    }
+    .moveBarRight{
+      float: left;
+      height: 14px;
+      width: 23px;
+      border: 1px solid #d2d2d2;
+      border-left: none;
+      text-align: center;
+      line-height: 14px;
+    }
+    #gcglBooksDetail{
+      height: 754px;
+      width: 960px;
+      padding: 18px 0px 0 14px;
+    }
+    .qtGcglDetail {
+      float: left;
+      width: 120px;
+      height: 150px;
+      padding: 8px 10px;
+      margin-right: 40px;
+      background: url("img/mid_book_bg_icon.png") no-repeat;
+    }
+
+    .qtGcglDetailLast {
+      margin-right: 0px;
+    }
+
+    .qtGcglDetail dt {
+      margin-bottom: 5px;
+    }
+
+    .qtGcglDetail dd span {
+      font-size: 12px;
+      color: #454040;
+      display: block;
+    }
+    .gcglBooksDetailMain{
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .footer{
+      width: 100%;
+      margin-top: 70px;
+      border-top:1px solid #921818 ;
+      background: #fff;
+    }
+    .footerMain{
+      margin: 0 auto;
+      width: 360px;
+      text-align: center;
+      font-size: 11px;
+      color: #818181;
+    }
+    .footerLink{
+      height: 13px;
+      margin-top: 18px;
+      overflow: hidden;
+      font-size: 11px;
+    }
+    .footerLink a{
+      margin-right: 24px;
+    }
+    .copy{
+      height: 11px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="headerLogo"></div>
+  <div class="headerUser">
+    <b></b>
+    <p><span id="userName">游客</span> 欢迎!</p>
+    <a href="javascript:;" id="logout"></a>
+  </div>
+</div>
+<div class="headerNavBar">
+  <div class="headerContain">
+    <ul id="navContain">
+      <li class="qtIndex" id="qtIndex"><a href="qt-index.html">首页</a></li>
+      <li class="qtgcdt nav_click" id="qtgcdt"><a style="color: #e5ab1f" href="qt-gcgl.html">馆藏概览</a></li>
+      <li class="qtzxsk" id="qtzxsk"><a href="qt-zxsk.html">在线书库</a></li>
+      <li class="qtdzzx" id="qtdzzx"><a href="qt-dzzx.html">读者中心</a></li>
+      <li class="qtgywm" id="qtgywm"><a href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+</div>
+<div class="qtgcglContian">
+  <div id="classNavContain">
+    <span>分类</span>
+    <div id="classNav">
+      <!--<a class="classNavAClick" href="javascript:;">四库全书</a>-->
+      <!--<a href="javascript:;">甲骨拓片</a>-->
+      <!--<a href="javascript:;">宋词精选</a>-->
+      <!--<a href="javascript:;">敦煌遗珍</a>-->
+      <!--<a href="javascript:;">东汉孤本</a>-->
+      <!--<a href="javascript:;">明清大家</a>-->
+    </div>
+  </div>
+  <div id="booksCount">
+    <div class="booksClass">
+      <div class="gcglHeader">
+        <div class="gcglHeaderMain">
+          <div id="gcglHeaderImg">
+            <img src="img/qt-gcgl-book01.png" alt=""/>
+          </div>
+          <div id="gcglHeaderDetail">
+            <div>
+              <h3 id="bookDetailTitle"></h3>
+              <div id="bookDetailWork">
+                <!--《四库全书》[1]  是在乾隆皇帝的主持下，由纪昀等360多位高官、学者编-->
+                <!--撰，3800多人抄写，耗时十三年编成的丛书，分经、史、子、集四部，故名-->
+                <!--四库。<br/>-->
+                <!--共有3500多种书，7.9万卷，3.6万册，约8亿字，基本上囊括了中国古代所-->
+                <!--有图书，故称“全书”。当年，乾隆皇帝命人手抄了7部《四库全书》，下-->
+                <!--令分别藏于全国各地。先抄好的四部分贮于紫禁城文渊阁、辽宁沈阳文溯阁、-->
+                <!--圆明园文源阁、河北承德文津阁珍藏，这就是所谓的“北四阁”。后抄好的-->
+                <!--三部分贮扬州文汇阁、镇江文宗阁和杭州文澜阁珍藏，这就是所谓的“南三-->
+                <!--阁”。三部分贮扬州文汇阁、镇江文宗阁和杭州文澜阁珍藏，这就是所谓的“南三-->
+                <!--阁”。三部分贮扬州文汇阁、镇江文宗阁和杭州文澜阁珍藏，这就是所谓的“南三-->
+                <!--阁”。-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gcglBooksMain">
+        <div class="moveBarMain" id="bookPageBtn" currentPage=0>
+          <a class="moveBarLeft" href="javascript:;">&lt;</a>
+          <a class="moveBarRight" href="javascript:;">&gt;</a>
+        </div>
+        <div class="clearfix"></div>
+        <div id="gcglBooksDetail">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footerMain">
+    <p class="footerLink"><a href="about.html">关于我们</a><a href="#">合作单位</a><a href="#">技术支持</a></p>
+    <p class="copy">版权所有：北京美斯齐文化科技有限公司 备案号京ICP备15044982号</p>
+  </div>
+</div>
+<br />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/lunbo.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+  testAuto("bookDetailWork","440");
+  function testAuto(thisId,needLeng){
+    var ididid = $("#"+thisId);
+    var nowLeng = ididid.html().length;
+    if(nowLeng > needLeng){
+      var nowWord = ididid.html().substr(0,needLeng)+'...';
+      ididid.html(nowWord);
+    }
+  }
+
+  function drawBooks(classId, data){
+    //设置当前的页数
+    $("#bookPageBtn>a").attr("currentPage", data.page.pageNum);
+    //先解除原有的click事件
+    $("#bookPageBtn>a.moveBarRight").unbind("click");
+    $("#bookPageBtn>a.moveBarRight").click(function () {
+      var tmpPageNum = data.page.pageNum+1;
+      if (tmpPageNum > Math.floor(data.page.totalCount/data.page.pageSize)+1){
+        alert("超出翻页范围");
+        return ;
+      }
+      getClassBooks(classId, tmpPageNum);
+    });
+    $("#bookPageBtn>a.moveBarLeft").unbind("click");
+    $("#bookPageBtn>a.moveBarLeft").click(function () {
+      var tmpPageNum = data.page.pageNum-1;
+      if (tmpPageNum < Math.floor(data.page.totalCount/data.page.pageSize)+1){
+        alert("超出翻页范围");
+        return ;
+      }
+      getClassBooks(classId, tmpPageNum);
+    });
+    //清空当前页面中的所有书籍
+    $("#gcglBooksDetail").children().remove();
+    var tmpHang = "";
+    //循环画出书籍
+    for (var i=0; i<data.data.length; i++){
+      if (i%6 == 0){
+        tmpHang = $("<div class='gcglBooksDetailMain'></div>");
+        $("#gcglBooksDetail").append(tmpHang );
+      }
+
+      tmpHang.append($("<dl class='qtGcglDetail'>" +
+              "<dt><a href='qt-tsxq.html?id="+data.data[i].id +"'><img width='100px' height='100px' src=" +ipAddress+ data.data[i].pic + " alt=''/></a></dt>" +
+              //"<dt><a href='#'><img src='"+ data.data[i].pic +"' alt=''/></a></dt>" +
+              "<dd><span>" +data.data[i].bookName + "</span>" +
+              "<span>"+data.data[i].author+"</span>" +
+              "<span>共二十二片</span></dd></dl>"));
+    }
+  }
+
+  function getClassBooks(classId, pageNum){
+    //alert(classId);
+    $.ajax({
+      type: "get",
+      url: ipAddress +"portal/book/list?classId="+classId+"&pageNum="+pageNum+"&pageSize=24",
+      dateType: "json",
+      //data: "",
+      success: function (data) {
+        if (data.status == 1) {
+          drawBooks(classId, data);
+        }
+      },
+      error: function () {
+        alert("网络错误");
+        return;
+        var data = {"status":1,"data":[{"id":9,"bookName":"1","author":"1","pic":"1"}],
+          "page":{"pageSize":20,"pageNum":1,"totalCount":1}};
+
+      },
+      async: true
+    });
+  }
+
+
+  function getClassList(pageNum){
+    // 获取分类
+    $.ajax({
+      type: "get",
+      url: ipAddress +"admin/category/list?pageSize=10&pageNum="+pageNum,
+      dateType: "json",
+      //data: "",
+      success: function (data) {
+        if (data.status == 1) {
+          //alert(data.data.length + "            " + data.page.totalCount);
+          var classList = data.data.reverse();
+          drawClass(classList);
+          $("body").off("click","#nextBtn");
+          $("body").on("click","#nextBtn",function(){
+            getClassList((pageNum+1)>Math.floor(data.page.totalCount/data.page.pageSize)+1?1:pageNum+1);
+          });
+        }
+      },
+      error: function () {
+        alert("网络错误");
+        return;
+      },
+      async: true
+    });
+  }
+
+  getClassList(1);
+
+  //分类翻页下标
+  function drawClass(list){
+    $("#classNav").children().remove();
+    for (var i=0; i<list.length;i++){
+      if(i==0){
+        $("#bookDetailTitle").text(list[i].name);
+        $("#bookDetailWork").text(list[i].description);
+        var classNavA = $("<a href='javascript:;' class='classNavAClick' index="+list[i].id +" description="+JSON.stringify(list[i].description)+">"+list[i].name+"</a>");
+        //默认分类下的所有图书显示
+        getClassBooks(list[i].id, 1);
+      }else{
+        var classNavA = $("<a href='javascript:;' class='' index="+ list[i].id +" description="+JSON.stringify(list[i].description)+">"+list[i].name+"</a>");
+      }
+      $("#classNav").append(classNavA);
+    }
+
+    $("#classNav>a").click(function () {
+      if ($(this).hasClass("classNavAClick"))return;
+      $("#classNav>a").removeClass("classNavAClick");
+      $(this).addClass("classNavAClick");
+      $("#bookDetailTitle").text($(this).text());
+      $("#bookDetailWork").text($(this).attr("description"));
+      //获取点击分类所属的所有BOOK
+      getClassBooks($(this).attr("index"), 1);
+    });
+    $("#classNav").append($("<b id='nextBtn' style='float: right;width: 72px;cursor:pointer;' >下一页</b>"));
+  }
+
+
+</script>
+</body>
+</html>

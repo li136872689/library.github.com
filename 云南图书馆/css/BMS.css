@@ -1,0 +1,48 @@
+html{
+	height: 100%;
+}
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+body { background:#fcfcfc; color:#555; font-size:14px; font-family: "Microsoft YaHei" ,SimHei, Arial, Helvetica; }
+td,th,caption { font-size:12px; }
+h1, h2, h3, h4, h5, h6 { font-weight:normal; font-size:100%; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+a { color:#555; text-decoration:none; }
+a:hover { text-decoration:underline; }
+img { border:none; }
+ol,ul,li { list-style:none; }
+table { border-collapse:collapse; }
+/* css common */
+.clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+.clearfix { *zoom:1; }
+
+/*滚动条*/
+.tableParent {
+	width: 910px;
+	height: 208px;
+	overflow: auto;
+}
+.table{
+	margin-bottom: 0px !important;
+	table-layout: fixed;
+	border-bottom: 1px solid #ddd !important;
+}
+.table th{
+	text-align: center;
+	background: #eb7969 !important;
+	font-size: 12px !important;
+	color: #ffffff;
+	font-weight: bold !important;
+	height: 30px;
+	border-left: 1px solid #fff;
+}
+.table td{
+	text-align: center;
+	height: 30px;
+	padding: 0px !important;
+	font-size: 12px;
+	color: #544d4d;
+}
+#pageBar{
+	margin-right: 74px;
+}

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>通知公告</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+  <style>
+    .header {
+      width: 960px;
+      height: 128px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .headerLogo {
+      width: 272px;
+      height: 52px;
+      float: left;
+      margin-top: 40px;
+      background: url("img/qt_headerLogo_icon.png") no-repeat;
+    }
+
+    .headerUser {
+      height: 44px;
+      margin-top: 75px;
+      float: right;
+      overflow: hidden;
+    }
+
+    .headerUser b, .headerUser p, .headerUser a {
+      float: left;
+    }
+
+    .headerUser b {
+      width: 89px;
+      height: 44px;
+      background: url("img/qt_userLeft_icon.png") no-repeat;
+      margin-right: 10px;
+    }
+
+    .headerUser p, .headerUser a {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #505050;
+    }
+
+    .headerUser p {
+      margin-right: 20px;
+    }
+
+    .headerUser a {
+      margin-right: 15px;
+    }
+
+    .headerNavBar {
+      width: 100%;
+      height: 36px;
+      background: #921818;
+    }
+
+    .headerContain {
+      width: 960px;
+      margin: 0px auto;
+    }
+
+    #navContain {
+      overflow: hidden;
+    }
+
+    #navContain li {
+      width: 191px;
+      text-align: center;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+    }
+
+    #navContain li a {
+      text-decoration: none;
+      color: #fff;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: inherit;
+      height: inherit;
+    }
+
+    .qtzxsk {
+      background: url("img/qt_zxsk_huiziwen_icon.png") no-repeat;
+    }
+
+    .nav_click {
+      background: url("img/qt_headernav_click_icon.png") no-repeat;
+    }
+
+    .nav_clickA {
+      color: #e5ab1f;
+    }
+
+    .qttzxqContian {
+      width: 960px;
+      margin: 0px auto;
+      overflow: hidden;
+    }
+
+    .qttzxqMainleft {
+      float: left;
+      width: 228px;
+      margin-top: 12px;
+    }
+
+    .newsClass {
+      height: 485px;
+      margin-top: 12px;
+      background: url("img/tzxq_left_bg.png") no-repeat;
+      position: relative;
+    }
+
+    #newsUl {
+      position: absolute;
+      left: 40%;
+      top: 28%;
+    }
+
+    #newsUl li {
+      height: 35px;
+      cursor: default;
+    }
+    .qttzxqMainRight{
+      float: left;
+      width: 732px;
+    }
+    .notifyTip{
+      width: 360px;
+      height: 27px;
+      margin-top: 63px;
+      background: url("img/notifyTip_bg.png") no-repeat;
+    }
+    .notifyList{
+      margin-top: 10px;
+      height: 640px;
+    }
+    .notifyList li{
+      height: 32px;
+      overflow: hidden;
+      line-height: 32px;
+      border-bottom:1px dotted #996c33;;
+    }
+    .notifyList li a{
+      float: left;
+      color: #996c33;
+      text-decoration: none;
+    }
+    .notifyList li span{
+      float: right;
+    }
+    .notifyList li em{
+      float: left;
+      width: 0;
+      height: 0;
+      margin: 8px 8px 0 0;
+      border-top: 7px solid transparent;
+      border-left: 7px solid #921818;
+      border-bottom: 7px solid transparent;
+    }
+
+
+
+    .fontColorRed {
+      color: #921818;
+    }
+    .footer {
+      width: 100%;
+      margin-top: 600px;
+      border-top: 1px solid #921818;
+      background: #fff;
+    }
+
+    .footerMain {
+      margin: 0 auto;
+      width: 360px;
+      text-align: center;
+      font-size: 11px;
+      color: #818181;
+    }
+
+    .footerLink {
+      height: 13px;
+      margin-top: 18px;
+      overflow: hidden;
+      font-size: 11px;
+    }
+
+    .footerLink a {
+      margin-right: 24px;
+    }
+
+    .copy {
+      height: 11px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="headerLogo"></div>
+  <div class="headerUser">
+    <b></b>
+
+    <p><span id="userName">游客</span> 欢迎!</p>
+    <a href="javascript:;" id="logout"></a>
+  </div>
+</div>
+<div class="headerNavBar">
+  <div class="headerContain">
+    <ul id="navContain">
+      <li class="qtIndex nav_click" id="qtIndex"><a href="qt-index.html">首页</a></li>
+      <li class="qtgcdt" id="qtgcdt"><a style="color: #e5ab1f" href="qt-gcgl.html">馆藏概览</a></li>
+      <li class="qtzxsk" id="qtzxsk"><a href="qt-zxsk.html">在线书库</a></li>
+      <li class="qtdzzx" id="qtdzzx"><a href="qt-dzzx.html">读者中心</a></li>
+      <li class="qtgywm" id="qtgywm"><a href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+</div>
+<div class="qttzxqContian">
+  <div class="qttzxqMainleft">
+    <div>
+      <p>首页 > <span class="fontColorRed">通知公告</span></p>
+    </div>
+    <div class="newsClass">
+      <ul id="newsUl">
+        <li><a class="fontColorRed" href="qt-tzgg.html">通知公告</a></li>
+        <li><a href="qt-tpxw.html">图片新闻</a></li>
+        <li>古籍文化</li>
+      </ul>
+    </div>
+  </div>
+  <div class="qttzxqMainRight">
+    <div class="notifyTip"></div>
+    <div id="notifyListMain">
+      <ul class="notifyList">
+        <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>      <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+        <li><em></em><a href="#">册府千华——珍贵古籍雕版特展</a><span>2016-05-12</span></li>
+      </ul>
+    </div>
+    <div style="margin: 70px auto">
+      <div style="margin-left: 225px;">
+        <div id="pageBar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footerMain">
+    <p class="footerLink"><a href="about.html">关于我们</a><a href="#">合作单位</a><a href="#">技术支持</a></p>
+
+    <p class="copy">版权所有：北京美斯齐文化科技有限公司 备案号京ICP备15044982号</p>
+  </div>
+</div>
+<br/>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+  $(function(){
+    //    默认显示
+    getnewsData();
+
+//		获取news列表数据
+    var localListInfo="";
+    function getnewsData() {
+      $.ajax({
+        type: "get",
+        url: newsAddress + "ContentManagementService/content/*/3/1/0/",
+        dateType: "json",
+//        data: JSON.stringify(newsData),
+        success: function (data) {
+          localListInfo = data.data.contents;
+          loadDefaultData();
+
+        },
+        error: function () {
+          var data = {
+            "status": 0,
+            "data": [
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              },
+              {
+                "order": 1,
+                "id": 1,
+                "title": "册府千华——珍贵古籍雕版特展",
+                "time": "2012-12-15",
+                "status": "未发布"
+              }
+            ]
+          };
+          localListInfo = data.data;
+          loadDefaultData();
+        },
+        async: true
+      });
+    }
+    //    显示表格
+//    function showTable(dataList){
+//      $(".notifyList").children().remove();
+//      //<li><em></em><a href="#">不朽的长城——纪念中国人民抗日战争暨世界反法西斯战争胜利70周年馆藏文献展</a><span>2016-05-12</span></li>
+//      $.each(dataList,function(index,obj){
+//        var notifyLi = $('<li><em></em><a href="#">'+obj.title+'</a><span>'+obj.time+'</span>')
+//        $(".notifyList").append(notifyLi);
+//      });
+//
+//    }
+
+
+
+    function loadDefaultData(){
+      drawList("notifyListMain",localListInfo);
+      showPageIndex(localListInfo.length,"notifyListMain","pageBar");
+    }
+    function drawList(notifyListMain, infoList) {
+      //1.tmpTable表名  2.infoList数据列表  3.tmpTitleStr表头html  4.tmpTdNames字段名称  5.haveIndex是否有序号(true false)
+      var notifyList;
+      var pageCount = 1;
+      var infoNum = infoList.length;
+      $("#" + notifyListMain + " .notifyList").remove();
+
+      //循环画表
+      for (var i = 0; i < infoNum; i++) {
+        if (i % 20 == 0) {
+          notifyList = $("<ul class='notifyList' index = " + pageCount + " ></ul>");
+          if (pageCount != 1) {
+            notifyList.css("display", "none");
+          }
+          $("#" + notifyListMain).append(notifyList);
+          pageCount++;
+        }
+        var notifyLi = $('<li><em></em><a href="qt-tzxq.html?id='+infoList[i].id+'&type=3">'+infoList[i].title+'</a><span>'+infoList[i].create_time+'</span>');
+        notifyList.append(notifyLi);
+      }
+
+    }
+
+
+
+
+    function showPageIndex(tmpMaxPage, notifyListMain, pageBarName) {
+      var maxPage = Math.ceil(tmpMaxPage / 20);
+      var displayNum = maxPage;
+      if (maxPage > 5) {
+        displayNum = 5;
+      } else if (maxPage <= 0) {
+        displayNum = 1;
+        maxPage = 1;
+      }
+      $("#" + pageBarName).children().remove();
+      $("#" + pageBarName).paginate({
+        count: maxPage,
+        start: 1,
+        display: displayNum,
+        border: true,
+        border_color: '#fff',
+        text_color: '#3a3a3a',
+        background_color: '#fff',
+        border_hover_color: '#fff',
+        text_hover_color: '#ea543f',
+        background_hover_color: '#fff',
+        images: false,
+        mouse: 'press',
+        onChange: function (page) {
+          $("#" + notifyListMain + " .notifyList").css("display", "none");
+          $("#" + notifyListMain + " .notifyList[index=" + page + "]").show();
+        }
+      });
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>图书管理系统</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/template.css" type="text/css" rel="stylesheet" />
+  <link rel="shortcut icon" href="" type="image/x-icon">
+  <style></style>
+</head>
+
+<body>
+  <!--nav-->
+  <div class="header">
+    <div class="header-inner">
+      <span>图书馆数据管理平台</span>
+      <a href="javascript:;" id="outSystem">退出</a>
+    </div>
+  </div>
+  <!--main-->
+  <div>
+    <div class="sidebarNav">
+      <div class="sidebarHeader clearfix">
+        <b class="sidebarGlobe"></b>
+      </div>
+      <div id="sidebarNavMain">
+        <ul class="sidebarUl">
+          <li><a onclick="srcChangeHtml('userManagement')" href="javascript:;"><span>用户管理</span></a></li>
+          <li><a onclick="srcChangeHtml('booksClassificationHomepage')" href="javascript:;"><span>书籍分类</span></a></li>
+          <li><a onclick="srcChangeHtml('bookManagement')" href="javascript:;"><span>书籍管理</span></a></li>
+          <li><a onclick="srcChangeHtml('InformationManagement')" href="javascript:;"><span>资讯管理</span></a></li>
+          <li><a onclick="srcChangeHtml('systemMangement')" href="javascript:;"><span>系统管理</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+      <iframe id="changeHtml" src="userManagement.html" width="100%" height="700px" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+    </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.cookie.js"></script>
+  <script src="js/jquery.datetimepicker.js" charset="utf-8"></script>
+  <script src="js/awacs.js"></script>
+  <script>
+    $("#outSystem").click(function(){
+      var userId = "";
+      userId = addPostParam(userId, "userId", $.cookie("userId"));
+      //alert(userId);
+      $.ajax({
+        type: "post",
+        url: ipAddress + "portal/user/logout",
+        dateType: "text",
+        data: userId,
+        success: function (data) {
+          if (data.status == 1) {
+            $.cookie("username", null);
+            window.location.href = "login.html";
+          }
+        },
+        error: function () {
+          alert("网络通讯错误，操作失败！");
+          return;
+        },
+        async: true
+      });
+    });
+    function srcChangeHtml(src){
+      $("#changeHtml").attr("src",(src+".html"));
+    }
+    $(function(){
+      var oFrm = document.getElementById('changeHtml');
+      oFrm.onload = oFrm.onreadystatechange = function() {
+        if (this.readyState && this.readyState != 'complete') return;
+        else {
+
+          var height = Number($("#changeHtml").contents().find(".outMain").attr("data-height"))+"px";
+          $("#changeHtml").css("height",height);
+        }
+      };
+    })
+  </script>
+</body>
+
+</html>

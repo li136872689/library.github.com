@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>新建和详情</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+</head>
+<style>
+  .fallback {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    background: #fdf1f0;
+  }
+
+  .fallback a {
+    margin-left: 17px;
+    padding-left: 18px;
+    font-size: 12px;
+    color: #8a8281;
+    text-decoration: none !important;
+    background: url("img/fallback.png") no-repeat left center;
+  }
+
+  .outMain {
+    margin: 20px auto 0;
+    width: 920px;
+  }
+
+  .basicInfoMain {
+    height: 160px;
+    border-top: 1px solid #eeecec;
+    border-bottom: 1px solid #eeecec;
+  }
+
+  .basicInfo {
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+  }
+
+  .basicInfo span {
+    float: left;
+    height: 30px;
+    margin-left: 14px;
+    font-size: 14px;
+    color: #eb7969;
+  }
+
+  #flname {
+    width: 187px;
+    height: 26px;
+    margin-left: 14px;
+  }
+
+  #fldescribe {
+    width: 820px;
+    height: 68px;
+    margin-left: 14px;
+    padding: 5px 10px;
+  }
+
+  .fldescribeBox {
+    height: 68px;
+    margin-top: 8px;
+  }
+
+  .fldescribeBox label {
+    margin-top: 12px;
+  }
+
+  .flbasicInfo {
+    margin-top: 14px;
+    font-size: 12px;
+  }
+
+  .flbasicInfo label {
+    float: left;
+    width: 48px;
+    text-align: right;
+  }
+
+  .AttrInfoMain {
+    height: 498px;
+    margin-top: 50px;
+    border-top: 1px solid #eeecec;
+    border-bottom: 1px solid #eeecec;
+  }
+
+  .AttrInfoTip {
+    margin-top: 10px;
+    height: 14px;
+    color: #5aa8a2;
+  }
+
+  .AttrInfoTip span {
+    margin-left: 14px;
+  }
+
+  .AttrInfoDetail {
+    margin-top: 24px;
+    margin-left: 20px;
+  }
+
+  .selectAttr,.definedSelectAttr {
+    font-size: 12px;
+    color: #616060;
+  }
+
+  .selectAttrDetail,.definedSelectAttrDetail {
+    margin-top: 10px;
+    color: #3a3a3a;
+  }
+  .selectAttr,.seelctBtn,.createSelectAttr,.definedSelectAttr{
+    float: left;
+  }
+  .AttrInfoMain ul li {
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    border-color: blue;
+  }
+
+
+
+  .AttrInfoMain ul li input[type="checkbox"], .AttrInfoMain ul li span {
+    float: left;
+    margin-top: 8px;
+  }
+
+  .AttrInfoMain ul li span {
+    margin: 0px 0 0 15px;
+  }
+  .definedSelectAttrDetail{
+    height: 160px;
+    width: 227px;
+    border: 1px solid #a0a0a0;
+    margin-left: 6px;
+    padding:0px 0 0px 12px;
+  }
+  .definedSelectSpan{
+    margin-left: 6px;
+  }
+  .selectAttrDetail{
+    height: 400px;
+    width: 280px;
+    border: 1px solid #a0a0a0;
+    padding:0px 0 15px 17px;
+    overflow: auto;
+  }
+  .seelctBtn{
+    margin: 130px 10px 0 10px;
+  }
+  #seelctBtn {
+    border-radius: 0;
+    width: 64px;
+    height: 26px;
+    padding: 4px;
+    font-size: 12px;
+    background: #eb7969;
+  }
+  .selectAttrDetail b{
+    float: left;
+    width: 14px;
+  }
+  .selectAttrDetail .moveUp{
+    height: 12px;
+    background: url("img/moveUp.png") no-repeat;
+    margin-right: 10px;
+    margin-top:7px;
+    float: right;
+    display: none;
+    cursor: pointer;
+  }
+  .selectAttrDetail .moveDown{
+    height: 12px;
+    background: url("img/moveDown.png") no-repeat;
+    margin-right: 5px ;
+    margin-top:7px;
+    float: right;
+    display: none;
+    cursor: pointer;
+  }
+  .selectAttrDetail .deleteAttr{
+    height: 14px;
+    background: url("img/deleteAttr.png") no-repeat;
+    margin-top: 7px;
+    margin-right: 5px ;
+    float: right;
+    display: none;
+    cursor: pointer;
+  }
+  .definedSelectAttrDetail label{
+    width: 48px;
+    text-align: right;
+  }
+  .definedSelectAttr ul li{
+    height: 26px;
+    line-height: 26px;
+    margin-top: 6px;
+  }
+  .definedSelectAttrDetail input{
+    height: 26px;
+    width: 140px;
+    margin-left: 10px;
+  }
+  .definedSelectAttr ul .DSshowName{
+    margin-top: 20px;
+  }
+  #addDefinedAttr{
+    float: right;
+    width: 64px;
+    height: 26px;
+    margin-right: 15px;
+    border-radius: 0;
+    padding: 4px;
+    font-size: 12px;
+    background: #eb7969;
+  }
+  .definedSelectAttr ul .addDefinedAttr{
+    margin-top: 10px;
+  }
+  .siveAddExport{
+    width: 268px;
+    margin: 60px auto 0;
+
+  }
+  #sive,#Export{
+    width: 120px;
+    height: 26px;
+    font-size: 12px;
+    border-radius: 0;
+    color: #fff;
+  }
+  #sive{
+    background: #eb7969;
+    margin-right: 25px;
+  }
+  #Export{
+    background: #84ccc9;
+  }
+</style>
+
+<body>
+<div class="fallback">
+  <a href="booksClassificationHomepage.html" class="fallbackSpan">返回</a>
+</div>
+<div class="outMain"  data-height="950">
+  <div class="basicInfoMain">
+    <div class="basicInfo">
+      <span>基本信息</span>
+    </div>
+    <div class="flbasicInfo">
+      <div><lable for="flname">分类名称</lable><input id="flname" type="text"/></div>
+      <div class="fldescribeBox"><label for="fldescribe">描述</label><textarea id="fldescribe"></textarea></div>
+    </div>
+  </div>
+  <div class="AttrInfoMain">
+    <div class="AttrInfoTip">
+      <span>属性信息</span>
+    </div>
+    <div class="AttrInfoDetail">
+      <div class="selectAttr">
+        <div><span>选择分类属性</span></div>
+        <ul class="selectAttrDetail" id="waitSelectList"></ul>
+      </div>
+      <div class="seelctBtn">
+        <a id="seelctBtn" href="javascript:;" class="btn btn-danger">选择</a>
+      </div>
+      <div class="selectAttr">
+        <div><span>创建分类属性（打勾项可显示在单本古籍描述页面）</span></div>
+        <ul class="selectAttrDetail" id="selectedList"></ul>
+      </div>
+      <!--<div class="definedSelectAttr"></div>-->
+      <div class="definedSelectAttr">
+        <div><span class="definedSelectSpan">自定义属性</span></div>
+        <ul class="definedSelectAttrDetail">
+          <li><label>字段名</label><input id="ziduanming" type="text"/></li>
+          <li><label>字段长度</label><input id="ziduanchangdu" type="text"/></li>
+          <li class="DSshowName"><label>显示名</label><input id="xianshiming" type="text"/></li>
+          <li class="addDefinedAttr"><a id="addDefinedAttr" href="javascript:;" class="btn btn-danger">添加</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="siveAddExport"><a class="btn" id="sive" href="javascript:;">保存</a><a class="btn" id="Export" target="_blank" href="javascript:;">导出Excel模板</a></div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/awacs.js"></script>
+
+<script>
+  $(function(){
+
+    var selectedList = [];
+    var waitSelectList = [];
+
+    $("#seelctBtn").click(function(){
+      var tmpItem = {};
+      $(".waitSelectItem:checked").each(function () {
+        tmpItem = $.extend({}, waitSelectList[$(this).attr('index')]);
+        //默认分类的属性为可见
+        tmpItem["visible"] = 1;
+        tmpItem["isMain"] = 0;
+        selectedList.push(tmpItem);
+        waitSelectList[$(this).attr('index')].id = -1;
+      });
+      for(var i=0; i<waitSelectList.length;i++ ){
+        if (waitSelectList[i].id == -1){
+          waitSelectList.splice(i, 1);
+          i--;
+        }
+      }
+      loadCategoryList();
+      drawSelectedList();
+    });
+
+    $("#addDefinedAttr").click(function () {
+      if ($("#ziduanming").val() == ""){
+        alert("字段名不能为空!");
+        return;
+      }
+      if ($("#ziduanchangdu").val() == ""){
+        alert("字段长度不能为空!");
+        return;
+      }
+      if (isNaN($("#ziduanchangdu").val())){
+        alert("字段长度不能为非数字!");
+        return;
+      }
+      if ($("#xianshiming").val() == ""){
+        alert("显示名不能为空!");
+        return;
+      }
+      var tmpZiduanming = $("#ziduanming").val();
+      var tmpXianshiming = $("#xianshiming").val();
+      for (var i=0; i<selectedList.length;i++){
+        if (selectedList[i].name == tmpZiduanming){
+          alert("字段名重复!");
+          return ;
+        }
+        if ("caption" in selectedList[i] && selectedList[i].caption == tmpXianshiming){
+          alert("显示名重复!");
+          return;
+        }
+      }
+      selectedList.push(
+        {
+          "name":tmpZiduanming,
+          "length":$("#ziduanchangdu").val(),
+          "caption":$("#xianshiming").val(),
+          "necessary": 0,
+          "visible":1
+        }
+      );
+      drawSelectedList();
+    });
+
+    function loadCategoryList(){
+      $("#waitSelectList").children().remove();
+      for (var i=0;i<waitSelectList.length; i++){
+        $("#waitSelectList").append($("<li><input class=\"waitSelectItem\" index='"+i+"' type=\"checkbox\" /><span>"+waitSelectList[i].name +"</span></li>"));
+      }
+      $("li").click(function () {
+        $(this).children("input[type=checkbox]").is(":checked");
+        //$(this).children("input").attr('checked', !$(this).children("input").is(":checked") );
+//        if ($(this).children("input").attr("checked") == undefined || $(this).children("input").attr("checked") == false){
+//          $(this).children("input").attr("checked", "checked");
+//        } else{
+//          $(this).children("input").attr("checked", false);
+//        }
+      });
+    }
+
+    function drawSelectedList(){
+      $("#selectedList").children().remove();
+      for (var i=0;i<selectedList.length; i++){
+        //$("#selectAttrDetail").append($("<li><input index='"+data.data[i].id+"' type=\"checkbox\"/><span>"+data.data[i].name +"</span></li>"));
+        if(("necessary" in selectedList[i]) && selectedList[i]["necessary"] == 1){
+          $("#selectedList").append($("<li class=\"moveItem\" index='"+i+"'><input type=\"checkbox\" "
+                  + (selectedList[i].visible==0?"":"checked") +" disabled='disabled'/><span>"
+                  + ("caption" in selectedList[i] ? selectedList[i].caption:selectedList[i].name) +"</span>"
+                  + "<b class=\"moveUp\"></b><b class=\"moveDown\"></b></li>"));
+        } else {
+          $("#selectedList").append($("<li class=\"moveItem\" index='"+i+"'><input type=\"checkbox\" "
+                  + (selectedList[i].visible==0?"":"checked") +"/><span>"
+                  + ("caption" in selectedList[i] ? selectedList[i].caption:selectedList[i].name) +"</span>"
+                  + "<b class=\"moveUp\"></b><b class=\"moveDown\"></b><b class=\"deleteAttr\"></b></li>"));
+        }
+      }
+      $(".moveItem").mouseover(function(){
+        $(this).children('.deleteAttr').css('display','block');
+        $(this).css("border-style", "solid");
+        $(this).css("border-width", "thin");
+        $(this).css("border-bottom-color", "black");
+        $(this).css("border-left-color", "grey");
+        $(this).css("border-top-color", "grey");
+        $(this).css("border-right-color", "black");
+//        $(this).children('b').css('display','block');
+      });
+
+      $(".moveItem").mouseout(function(){
+        $(this).css("border-style", "none");
+        $(this).children('.deleteAttr').css('display','none');
+//        $(this).children('b').css('display','none');
+      });
+
+      $(".moveUp").click(function () {
+        var oldPos = $(this).parent().attr('index');
+        var tmpItme ;
+
+        //$(this).parent().insertBefore($(this).parent().prev());
+        tmpItme = selectedList.splice(oldPos, 1)[0];
+        selectedList.splice(oldPos-1, 0, tmpItme);
+
+
+        //移动动画
+        var parent　=  $(this).parent();
+        var parentTop = parent.offset().top;
+        var after = parent.prev();
+        var afterTop =after.offset().top;
+        parent.css("visibility", "hidden");
+        parent.children("b").remove();
+        after.children("b").remove();
+        parent.clone().insertAfter(parent).css({position:'absolute', visibility:'visible',
+          top:parentTop}).animate({top:afterTop},"nomal",function(){
+        });
+        after.css("visibility", "hidden");
+        after.clone().insertAfter(parent).css({position:'absolute', visibility:'visible',
+          top:afterTop}).animate({top:parentTop},"nomal",function(){
+          drawSelectedList();
+        });
+
+        //drawSelectedList();
+      });
+
+      $(".moveItem").children('input:checkbox').click(function () {
+        var tmpPos = $(this).parent().attr('index');
+        selectedList[tmpPos]['visible'] = $(this).prop("checked") == false?0:1;
+        //alert(JSON.stringify(selectedList));
+      });
+
+      $(".moveDown").click(function () {
+        var oldPos = $(this).parent().attr('index');
+        var tmpItme ;
+        tmpItme = selectedList.splice(oldPos, 1)[0];
+        selectedList.splice(oldPos-0+1, 0, tmpItme);
+
+        //移动动画
+        var parent　=  $(this).parent();
+        var parentTop = parent.offset().top;
+        var after = parent.next();
+        var afterTop =after.offset().top;
+        parent.css("visibility", "hidden");
+        parent.children("b").remove();
+        after.children("b").remove();
+        parent.clone().insertAfter(parent).css({position:'absolute', visibility:'visible',
+          top:parentTop}).animate({top:afterTop},"nomal",function(){
+        });
+        after.css("visibility", "hidden");
+        after.clone().insertAfter(parent).css({position:'absolute', visibility:'visible',
+          top:afterTop}).animate({top:parentTop},"nomal",function(){
+          drawSelectedList();
+        });
+
+      });
+      $(".deleteAttr").click(function () {
+        //$(this).parent().remove();
+        var tmpIndex = $(this).parent().attr('index');
+        var tmpItem = selectedList.splice(tmpIndex, 1)[0];
+        if ('id' in tmpItem){
+          waitSelectList.push(tmpItem);
+          loadCategoryList();
+        }
+        drawSelectedList();
+      });
+    }
+    $.ajax({
+      type:"get",
+      url:ipAddress+"admin/category/mainAttribute",
+      dataType:"json",
+      success:function(data) {
+        if(data.status==1){
+          data.data;
+          for (var i=0; i<data.data.length; i++){
+            if (data.data[i].necessary == 1){
+              selectedList.push(data.data[i]);
+            }else{
+              waitSelectList.push(data.data[i])
+            }
+
+          }
+          loadCategoryList();
+          drawSelectedList();
+        }else{
+          alert(JSON.stringify(data));
+        }
+      },
+      error:function(){
+            alert("网络通讯异常,登录请求失败！");
+            return;
+      },
+      async:true
+    });
+
+    var excelId = "";
+    $("#sive").click(function(){
+      var body={
+        "name":$("#flname").val(),
+        "description":$("#fldescribe").val(),
+        "fields":selectedList
+      };
+      if (body.name == ""){
+        alert("请填写分类名称！");
+        return ;
+      }
+
+      $.ajax({
+        type:"post",
+        url:ipAddress+"admin/category/create",
+        data:JSON.stringify(body),
+        dataType:"json",
+        contentType: "application/json",
+        success:function(data) {
+          if(data.status==1){
+            excelId = data.data;
+            alert("保存成功, 请谨记当前馆藏分类ID为:"+excelId +"  (用于批量录入书籍).");
+          }else{
+            excelId = "";
+            alert(JSON.stringify(data));
+          }
+        },
+        error:function(){
+          alert("网络通讯错误，操作失败！");
+          return ;
+        }
+      })
+    });
+
+    $("#Export").click(function(){
+      var id = "?id="+excelId;
+      if (excelId == ""){
+        return ;
+      }
+
+      window.open(ipAddress + "admin/category/attribute/export"+id,"_blank")
+      return;
+      $.ajax({
+        type:"get",
+        url:ipAddress+"/admin/category/attribute/export"+id,
+//        data:id,
+        dataType:"text",
+        success:function(data) {
+//            parent.window.location.href="http://123.57.227.101//admin/category/attribute/export?id="+id;
+            window.open(ipAddress + "admin/category/attribute/export"+id,"_blank")
+        },
+        error:function(){
+          alert("网络通讯错误，操作失败！");
+          return ;
+        }
+      })
+    });
+  })
+</script>
+
+
+</body>
+
+</html>

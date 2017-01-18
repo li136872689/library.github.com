@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>资讯管理</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+</head>
+<style>
+  .outMain {
+    width: 920px;
+    margin: 75px auto 0;
+  }
+
+  .informationCount {
+    width: 100%;
+    height: 68px;
+    overflow: hidden;
+  }
+
+  .innerBox {
+    float: left;
+    width: 227px;
+    height: 68px;
+    margin-left: 15px;
+    overflow: hidden;
+  }
+
+  .innerBox b {
+    float: left;
+    width: 68px;
+    height: 68px;
+    background: url("img/news_small_red_icon.png") no-repeat center center;
+  }
+
+  .innerBox p {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #818181;
+    height: 24px;
+    margin-top: 15px;
+  }
+
+  .innerBox span {
+    float: left;
+    font-size: 10px;
+    color: #818181;
+    margin-left: 41%;
+    margin-top: 5px;
+  }
+  .innerBoxLeft,.innerBoxRight{
+    float: left;
+  }
+  .innerBoxLeft{
+    background: #eb7969;
+  }
+  .innerBoxRight{
+    width: 128px;
+    height: 68px;
+    background: #fbf7f7;
+  }
+
+  .showOpt {
+    height: 25px;
+    margin-top: 63px;
+    line-height: 25px;
+    padding: 0 10px 0 10px;
+  }
+
+  .showOpt span {
+    float: left;
+    font-size: 14px;
+    color: #63615e;
+  }
+
+  .showOpt select {
+    float: left;
+    height: 25px;
+    width: 140px;
+    margin-left: 16px;
+    border: 1px solid #cecece;
+    font-size: 14px;
+    color: #eb7969;
+  }
+
+  .showOpt a {
+    float: right;
+    text-decoration: none;
+    font-size: 14px;
+    color: #746f6e;
+  }
+  .tableBox{
+    margin-top: 12px;
+  }
+  #amendRecord,#deleteRecord{
+    color: #557d8e;
+    font-size: 12px;
+  }
+  #deleteRecord{
+    margin-left: 12px;
+  }
+  .yifabu .innerBoxLeft{
+    background: #fff45c;
+  }
+  .yifabu b{
+    background: url("img/news_small_yellow_icon.png") no-repeat center center;
+  }
+  .yifabu span{
+    margin-left: 37%;
+  }
+  .weifabu .innerBoxLeft{
+    background: #bfbfbf;
+  }
+  .weifabu span{
+    margin-left: 36%;
+  }
+  .weifabu b{
+    background: url("img/news_small_grey_icon.png") no-repeat center center;
+  }
+</style>
+
+<body>
+<div class="outMain" data-height="700">
+  <div class="informationCount">
+    <div class="innerBox connt">
+      <div class="innerBoxLeft">
+        <b></b>
+      </div>
+      <div class="innerBoxRight">
+        <p  id="newsCount">0</p>
+        <span>总数</span>
+      </div>
+    </div>
+    <div class="innerBox yifabu">
+      <div class="innerBoxLeft">
+        <b></b>
+      </div>
+      <div class="innerBoxRight">
+        <p  id="yifabu">0</p>
+        <span>已发布</span>
+      </div>
+    </div>
+    <div class="innerBox weifabu">
+      <div class="innerBoxLeft">
+        <b></b>
+      </div>
+      <div class="innerBoxRight">
+        <p  id="weifabu">0</p>
+        <span>未发布</span>
+      </div>
+    </div>
+  </div>
+  <div class="showTable">
+    <div class="showOpt">
+      <span>显示</span>
+      <select name="" id="newsSelect">
+        <option value="*">全部</option>
+        <option value="0">通知公告</option>
+        <option value="1">图片新闻</option>
+        <option value="2">通知公告未发布</option>
+        <option value="3">通知公告已发布</option>
+        <option value="4">图片新闻未发布</option>
+        <option value="5">图片新闻已发布</option>
+      </select>
+      <a href="informationEditing.html">+新建</a>
+    </div>
+    <div class="tableBox">
+      <table id="informationTable" class="table table-responsive">
+        <tr class="informationTableTr">
+          <th width="5%">序号</th>
+          <th width="43%">题目</th>
+          <th width="20%">时间</th>
+          <th width="16%">状态</th>
+          <th width="16%">操作</th>
+        </tr>
+        <tr>
+          <td>001</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td><select name="" id="">
+            <option value="">发布</option>
+            <option value="">撤回</option>
+            <option value="">删除</option>
+          </select></td>
+          <!--<td><a id="amendRecord" href="javascript:;">修改</a><a id="deleteRecord" href="javascript:;">删除</a></td>-->
+        </tr>
+        <tr>
+          <td>002</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>003</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>004</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>005</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      </table>
+    </div>
+    <div style="width: 920px;margin: 10px auto">
+      <div style="float:right">
+        <div id="pageBar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+  $(function () {
+//		news列表
+    $("#newsSelect").on("change", function () {
+      clickDelShowData();
+    });
+//    选择&删除共用函数
+    function clickDelShowData(){
+      var newsSelectValue = $("#newsSelect").val();
+      var url = "";
+      switch (newsSelectValue){
+        case "*":
+          url = newsAddress +"ContentManagementService/content/*/*/*/0/";
+          break;
+        case "0":
+          url = newsAddress +"ContentManagementService/content/*/3/*/0/";
+          break;
+        case "1":
+          url = newsAddress +"ContentManagementService/content/*/4/*/0/";
+          break;
+        case "2":
+          url = newsAddress +"ContentManagementService/content/*/3/0/0/";
+          break;
+        case "3":
+          url = newsAddress +"ContentManagementService/content/*/3/1/0/";
+          break;
+        case "4":
+          url = newsAddress +"ContentManagementService/content/*/4/0/0/";
+          break;
+        case "5":
+          url = newsAddress +"ContentManagementService/content/*/4/1/0/";
+          break;
+      }
+      if(newsSelectValue==""){
+        url="*";
+      }
+      getnewsData(url);
+    }
+
+//    默认显示
+    getnewsData(newsAddress +"ContentManagementService/content/*/*/*/0/");
+  var localListInfo = "";
+//		获取news列表数据
+    function getnewsData(url) {
+      $.ajax({
+        type: "get",
+        url: url,
+        dateType: "json",
+        //data: JSON.stringify(newsData),
+        success: function (data) {
+          if(data.status=="200"){
+            localListInfo = data.data;
+            loadDefaultData();
+          }else if(data.status==-1){
+            var data = {"data": {"contents": []}};
+            localListInfo = data.data;
+            loadDefaultData();
+          }
+        },
+        error: function () {
+          var data = {
+            "status": 0,
+            "contents": [{
+              "order": 1,
+              "id": 1,
+              "title": "发扬读好书，多读书，好读书的精神",
+              "create_time": "2012-12-15",
+              "status": "0"
+            }]
+          };
+          localListInfo = data.data;
+          loadDefaultData()
+        },
+        async: true
+      });
+    }
+
+    //    删除数据
+    $("body").on("click",".deleteRecord",function(){
+      var deleteid = $(this).attr("data-newsId");
+      $.ajax({
+        type: "delete",
+        url: newsAddress + "ContentManagementService/content/"+deleteid+"/",
+        dateType: "json",
+        //data: id,
+        success: function (data) {
+          if(data.status=="200"){
+            alert("删除成功");
+            clickDelShowData();
+          }else{
+            alert("删除失败");
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    });
+//    撤回数据downloadClick
+    $("body").on("click",".downloadClick",function(){
+      var uploadId = $(this).attr("data-newsId");
+      var uploadIndex = $(this).attr("data-uploadindex");
+      var updata = localListInfo.contents[uploadIndex];
+//      updata.status=="未发布"?updata.status=0:updata.status=1;
+      updata.status=0;
+      delete updata.create_time;
+      delete updata.modify_time;
+      delete updata.id;
+      getcontent(uploadId,updata);
+    })
+//    更新数据
+    $("body").on("click",".uploadClick",function(){
+      var uploadId = $(this).attr("data-newsId");
+      var uploadIndex = $(this).attr("data-uploadindex");
+      var updata = localListInfo.contents[uploadIndex];
+//      updata.status=="未发布"?updata.status=0:updata.status=1;
+      updata.status=1;
+      delete updata.create_time;
+      delete updata.modify_time;
+      delete updata.id;
+      getcontent(uploadId,updata);
+    });
+
+    function getcontent(uploadId,updata){
+      $.ajax({
+        type: "get",
+        url: newsAddress + "ContentManagementService/content/"+uploadId+"/",
+        dateType: "json",
+        //data: id,
+        success: function (data) {
+          if(data.status=="200"){
+            updata.content = data.data.content;
+            updateOpt(uploadId,updata);
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    }
+    function updateOpt(uploadId,updata){
+      $.ajax({
+        type: "PUT",
+        url: newsAddress + "ContentManagementService/content/"+uploadId+"/",
+        dateType: "json",
+        "contentType":"application/json",
+        data: JSON.stringify(updata),
+        success: function (data) {
+          if(data.status=="200"){
+            alert("操作成功");
+            clickDelShowData();
+          }else{
+            alert("操作失败");
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    }
+//    显示表格
+
+    function loadDefaultData(){
+      $("#newsCount").text(localListInfo.size);
+      $("#yifabu").text(localListInfo.status1);
+      $("#weifabu").text(localListInfo.status0);
+      var titleStr = $(".informationTableTr:first").prop("outerHTML");
+      var tdNames = ["title","create_time","status"];
+      drawList("informationTable",localListInfo.contents,titleStr,tdNames,true,true,true);
+      showPageIndex(localListInfo.contents.length,"informationTable","pageBar");
+    }
+    function drawList(tmpTable, infoList, tmpTitleStr, tmpTdNames, haveIndex,operation) {
+      //1.tmpTable表名  2.infoList数据列表  3.tmpTitleStr表头html  4.tmpTdNames字段名称  5.haveIndex是否有序号(true false)
+      var tmpTbody;
+      var pageCount = 1;
+      var infoNum = infoList.length;
+      var tdNum = tmpTdNames.length;
+      $("#" + tmpTable + " tbody").remove();
+
+      var emptyTdStr = "<tr>";
+      for (var m = 0; m < tdNum + (haveIndex ? 1 : 0) +(operation ? 1 : 0); m++) {
+        emptyTdStr += "<td>-</td>";
+      }
+      emptyTdStr += "</tr>";
+
+      //循环画表
+      for (var i = 0; i < infoNum; i++) {
+        if (i % 5 == 0) {
+          tmpTbody = $("<tbody index = " + pageCount + " ></tbody>");
+          tmpTbody.append(tmpTitleStr);
+          if (pageCount != 1) {
+            //tmpTbody.css("display", "block");
+            tmpTbody.css("width", $("#" + tmpTable).width());
+            tmpTbody.css("display", "none");
+          } else {
+            //tmpTbody.css("display", "table");
+            tmpTbody.css("width", $("#" + tmpTable).width());
+          }
+          $("#" + tmpTable).append("<tbody style='display:none;'></tbody>");
+          $("#" + tmpTable).append(tmpTbody);
+          pageCount++;
+        }
+        var tmpListTr = $("<tr isEmpty=\"0\"></tr>");
+
+
+        if (haveIndex) {
+          tmpListTr.append("<td>" + Math.abs(1 + i) + "</td>");
+        }
+        for (var k = 0; k < tdNum; k++) {
+          if(tmpTdNames[k]=="status"){
+            infoList[i][tmpTdNames[k]] = infoList[i][tmpTdNames[k]]==0?"未发布":"已发布";
+            tmpListTr.append("<td>" + infoList[i][tmpTdNames[k]] + "</td>");
+          }else{
+            tmpListTr.append("<td>" + infoList[i][tmpTdNames[k]] + "</td>");
+          }
+        }
+        if(operation){
+          if(infoList[i].status=="未发布"){
+
+
+
+            tmpListTr.append("<td>" +
+              "<a id='amendRecord' href='informationEditing.html?id="+infoList[i].id+"'>详情</a>" +
+              " <a class='uploadClick' data-uploadIndex="+ i +" data-newsId="+infoList[i].id+" href='javascript:;'>更新</a>" +
+              " <a class='deleteRecord' data-newsId="+infoList[i].id+" href='javascript:;'>删除</a>"+
+              "</td>");
+
+
+
+          }else if(infoList[i].status=="已发布"){
+            tmpListTr.append("<td><a id='amendRecord' href='informationEditing.html?id="+infoList[i].id+"'>详情</a>" +
+              " <a class='downloadClick' data-uploadIndex="+ i +" data-newsId="+infoList[i].id+" href='javascript:;'>撤回</a>" +
+                              " <a class='deleteRecord' data-newsId="+infoList[i].id+" href='javascript:;'>删除</a>" +
+                             "</td>");
+          }
+        }
+        tmpTbody.append(tmpListTr);
+
+        //末页未满5项时添加空行
+        if (i + 1 >= infoNum && infoNum % 5 != 0) {
+          for (var j = 0; j < 5 - infoNum % 5; j++) {
+            var tmpListTr = $(emptyTdStr);
+            tmpTbody.append(tmpListTr);
+          }
+        }
+      }
+
+      //若没有条目要显示则将空表格画出
+      if (infoNum == 0) {
+        tmpTbody = $("<tbody index = " + pageCount + "></tbody>");
+        $("#" + tmpTable).append(tmpTbody);
+        tmpTbody.append(tmpTitleStr);
+        //tmpTbody.css("display", "table");
+        tmpTbody.css("width", $("#" + tmpTable).width());
+        for (var j = 0; j < 5; j++) {
+          var tmpListTr = emptyTdStr;
+          tmpTbody.append(tmpListTr);
+        }
+      }
+    }
+
+
+
+
+    function showPageIndex(tmpMaxPage, tableName, pageBarName) {
+      var maxPage = Math.ceil(tmpMaxPage / 5);
+      var displayNum = maxPage;
+      if (maxPage > 5) {
+        displayNum = 5;
+      } else if (maxPage <= 0) {
+        displayNum = 1;
+        maxPage = 1;
+      }
+      $("#" + pageBarName).children().remove();
+      $("#" + pageBarName).paginate({
+        count: maxPage,
+        start: 1,
+        display: displayNum,
+        border: true,
+        border_color: '#fff',
+        text_color: '#3a3a3a',
+        background_color: '#fff',
+        border_hover_color: '#fff',
+        text_hover_color: '#ea543f',
+        background_hover_color: '#fff',
+        images: false,
+        mouse: 'press',
+        onChange: function (page) {
+          $("#" + tableName + " tbody").css("display", "none");
+          $("#" + tableName + " tbody[index=" + page + "]").show();
+        }
+      });
+    }
+  })
+</script>
+</body>
+
+</html>

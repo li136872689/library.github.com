@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>在线书库</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FzdySWkjjP0XkBpKl0cPdyopUoVuSa0O"></script>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      background: url("img/y_bgImgBig.png") no-repeat fixed;
+      background-size: 100% 100%;
+    }
+
+    .header {
+      width: 100%;
+      height: 400px;
+      background: url("img/y_header_bgImg.png") no-repeat;
+      /*background-size: 100%;*/
+      filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+      -moz-background-size: 100% 100%;
+      background-size: 100% 100%;
+      position: relative;
+    }
+
+    .headerContain {
+      width: 100%;
+      height: 49px;
+      /*background: url("img/y_headerContain_bg.png");*/
+      position: absolute;
+      bottom: 0;
+      /*background-size:100%;*/
+    }
+
+    .headermengBan {
+      width: 100%;
+      height: 49px;
+      /*background: url("img/y_headerContain_bg.png");*/
+      position: absolute;
+      bottom: 0;
+      background: #000;
+      opacity: 0.4;
+      filter: alpha(opacity:40);
+    }
+
+    .headerUser {
+      position: absolute;
+      bottom: 10px;
+      right: 12%;
+    }
+
+    .headerUser b, .headerUser p, .headerUser a {
+      float: left;
+    }
+
+    .headerUser p, .headerUser a {
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .headerUser p {
+      color: #b28850;
+    }
+
+    .headerUser p {
+      margin-right: 50px;
+      height: 20px;
+    }
+
+    .headerUser p b {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: 18px;
+      height: 20px;
+      background: url("img/y_headerUser_user_icon.png") no-repeat left top;
+      margin-top: -4px;
+      margin-right: 8px;
+    }
+
+    .headerUser a {
+      margin-right: 15px;
+    }
+
+    #logout {
+      text-decoration: none;
+    }
+
+    #navContain {
+      overflow: hidden;
+      width: 43%;
+      margin: 0px auto;
+    }
+
+    #navContain li {
+      width: 24%;
+      text-align: center;
+      float: left;
+      height: 49px;
+      padding-top: 15px;
+    }
+
+    #navContain li a {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: 100%;
+      height: 14px;
+      text-decoration: none;
+      color: #fff;
+      border-right: 1px solid #FFF;
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    .lastNavLiA {
+      border-right: none !important;
+    }
+
+    .nav_click {
+      background: url("img/y_nav_click_bgImg.png") no-repeat bottom center;
+    }
+
+    .nav_click a {
+      color: #e5ab1f !important;
+    }
+
+    .loginContent {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      position: relative;
+    }
+
+    .loginMain {
+      position: absolute;
+      width: 256px;
+      height: 320px;
+      background: url("img/y_loginMain_bgImg.png") no-repeat right center;
+      right: -10px;
+      top: 45px;
+    }
+
+    .loginMain b {
+      position: absolute;
+      width: 20px;
+      height: 17px;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      background: url("img/y_loginMain_b_bgImg.png") no-repeat;
+      right: 28px;
+      top: -17px;
+    }
+
+    .loginMainMengban {
+      position: absolute;
+      width: 256px;
+      height: 320px;
+      background: #1b1b1b;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      right: -10px;
+      top: 45px;
+
+    }
+
+    .loginForm {
+      width: 200px;
+      margin: 0 auto;
+    }
+
+    .loginForm input {
+      width: 200px;
+      height: 28px;
+      margin-bottom: 10px;
+      outline: 0;
+      border: 1px solid #eee;
+      padding-left: 5px;
+      font-size: 12px;
+    }
+
+    .loginForm input:focus {
+      border: 1px solid #00a0e9;
+    }
+
+    .loginMain p {
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      margin: 30px 0;
+    }
+
+    #loginBtn {
+      width: 200px;
+      height: 32px;
+      background: #448aca;
+      border-radius: 4px;
+      margin-top: 6px;
+      font-size: 10px;
+    }
+
+    .forgetPwd {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+      margin-top: 10px !important;
+      /*-webkit-transform-origin-x: 0;*/
+      -webkit-transform: scale(0.8);
+      margin-bottom: 30px;
+    }
+
+    .fenggexian {
+      background: url("img/y_fenggexian_bgImg.png") no-repeat;
+      width: 200px;
+      height: 8px;
+    }
+
+    .loginFormDetail {
+      height: 253px;
+    }
+
+    #registration {
+      width: 200px;
+      height: 32px;
+      margin-top: 12px;
+      /*background: #8f8f8c;*/
+      border: 1px solid #fff;
+      /*background: url("img/y_registration_bgImg.png") no-repeat;*/
+    }
+
+    #registration:hover {
+      color: #fff;
+    }
+
+
+    .qtzxskContian {
+      width: 1080px;
+      margin: 0px auto;
+      overflow: hidden;
+    }
+
+    .leftContian, .rightContian {
+      float: left;
+    }
+
+    .leftContian {
+      width: 200px;
+      margin-right: 50px;
+    }
+
+    .rightContian {
+      width: 830px;
+    }
+
+    .qtRmgj {
+      margin-top: 30px;
+      padding-left: 24px;
+      margin-bottom: 17px;
+      color: #333333;
+      font-size: 18px;
+      height: 20px;
+      line-height: 22px;
+      background: url("img/qt_rmgj_icon.png") no-repeat left center;
+    }
+
+    #qtrmgjMain {
+      background: #fdfdfb;
+      padding: 30px;
+      padding-bottom: 1px;
+    }
+
+    .qtLeftBookDetail {
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .qtLeftBookDetail dt, .qtLeftBookDetail dd {
+      float: left;
+    }
+
+    .qtLeftBookDetail dt {
+      height: 100px;
+      width: 100%;
+      position: relative;
+    }
+
+    .qtLeftBookDetail dt img {
+      position: absolute;
+      left: 15%;
+    }
+
+    .qtLeftBookDetail dd {
+      margin-top: 15px;
+    }
+
+    .qtLeftBookDetail dd span {
+      display: block;
+      font-size: 10px;
+      color: #7e6b5a;
+    }
+
+    .searchMain {
+      height: 32px;
+      margin-top: 20px;
+      line-height: 32px;
+    }
+
+    .searchMain span, .searchMain input, .searchMain a {
+      float: left;
+    }
+
+    .searchMain span {
+      height: 32px;
+      padding-left: 30px;
+      background: url("img/y_searchMain_span_bgImg.png") no-repeat left 2px;
+      font-size: 18px;
+      color: #333;
+      margin-right: 80px;
+    }
+
+    .searchMain input {
+      width: 518px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.5) url("img/searchInput_icon.png") no-repeat 20px center;
+      padding-left: 45px;
+      border: 1px solid #73726c;
+      outline: 0;
+      font-size: 12px;
+      /*opacity: 0.8;*/
+      /*filter: alpha(opacity:80);*/
+    }
+
+    #searchBtn {
+      width: 128px;
+      height: 33px;
+      border-radius: 0;
+      font-size: 12px;
+      padding-top: 8px;
+      background: #b28850;
+      color: #fff;
+      margin-top: -1px;
+    }
+
+    .classification {
+      margin-top: 6px;
+      font-size: 12px;
+      border-top: 1px solid #d2d2d2;
+    }
+
+    .gcClass span, .gcClass a, .containClass span, .containClass a {
+      float: left;
+    }
+
+    .containClass {
+      margin-top: 5px;
+      line-height: 30px;
+      border-bottom: 1px solid #d2d2d2;
+      /*display: none;*/
+    }
+
+    .gcClass span, .containClass span {
+      color: #3a3a3a;
+      display: inline-block;
+      width: 100px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      background: #eee;
+    }
+
+    .gcClass {
+      /*height: 30px;*/
+      line-height: 30px;
+      border-bottom: 1px solid #d2d2d2;
+    }
+
+    .containClass a, .gcClass a {
+      float: left;
+      /* margin-left: 30px; */
+      color: #333333;
+      text-decoration: none;
+      min-width: 60px;
+      margin-right: 5px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    /*TODO：点击分类的时候添加背景颜色*/
+    .containClassAClick {
+      background: #b28850;
+      border-radius: 5px;
+      color: #fff;
+    }
+
+    .showSelectClass {
+      height: 26px;
+      margin-top: 24px;
+      line-height: 26px;
+    }
+
+    .showSelectClass span, .showSelectClass a {
+      float: left;
+    }
+
+    .deleteGcflClass, .deleteClass {
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      right: 0px;
+      background: url("img/y_delete_Gcfl_Class.png") no-repeat;
+    }
+
+    .showContainClass, .showGcClass {
+      position: relative;
+      margin: 5px 5px 0 7px;
+      min-width: 80px;
+      height: 18px;
+      line-height: 18px;
+      /* border: 1px solid #921818; */
+      padding-left: 9px;
+      text-decoration: none !important;
+      color: #b28850;
+      background: #e5e5e5;
+    }
+
+    .showContainClass:hover {
+      color: #b28850;
+    }
+
+    .showGcClass:hover {
+      color: #b28850;
+    }
+
+    .yearsOrArea {
+      margin-top: 5px;
+      height: 32px;
+      overflow: hidden;
+    }
+
+    .yearsOrArea a {
+      float: left;
+      width: 128px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      font-size: 12px;
+      color: #333;
+      background: #faf9f6;
+      text-decoration: none;
+    }
+
+    .yearsOrArea .yearsOrAreaClick {
+      background: url("img/y_yearsOrAreaClick_a_bg.png") no-repeat;
+      color: #fff;
+    }
+
+    /*历史进程begin*/
+    .historyProcess {
+      position: relative;
+      width: 100%;
+      height: 88px;
+      display: block;
+    }
+
+    .historyProcessMB {
+      position: absolute;
+      background: #1b1b1b;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      width: 100%;;
+      height: 88px;
+      z-index: -1;
+    }
+
+    #processor {
+      position: absolute;
+      width: 96%;
+      height: 4px;
+      background: #9d9d9d;
+      border-radius: 3px;
+      top: 49%;
+      left: 2%;
+    }
+
+    #processorBox {
+      position: absolute;
+      height: 50px;
+      width: 96%;
+      top: 25%;
+      left: 2%;
+    }
+
+    .current {
+      float: left;
+      width: 44px;
+      height: 50px;
+    }
+
+    .step_inner {
+      width: 48px;
+      height: 50px;
+    }
+
+    .step_inner a {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      background: #9d9d9d;
+      border-radius: 50%;
+      color: #fff;
+      line-height: 32px;
+      margin: 5px 0 0 8px;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .step_inner a span {
+      font-size: 10px;
+      display: inline-block;
+      -webkit-transform: scale(0.8);
+    }
+
+    .step_inner h4 {
+      color: #fff;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .historyAclick a {
+      background: #b28850;
+      border: 1px solid #fff;
+    }
+
+    .historyAclick h4 {
+      color: #b28850;
+    }
+
+    /*历史进程end*/
+    /*地图begin*/
+    .areaMap {
+      height: 300px;
+      width: 100%;
+      background: url("img/y_areaMap_bgImg.png") no-repeat left center;
+      position: relative;
+      overflow: hidden;
+      display: none;
+    }
+
+    .areaMapMB {
+      position: absolute;
+      height: 300px;
+      width: 100%;
+      background: #1b1b1b;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      z-index: 1;
+    }
+
+    #allmap {
+      position: absolute;
+      width: 550px;
+      height: 280px;
+      margin-left: 10px;
+      margin-top: 10px;
+      z-index: 2;
+    }
+
+    .anchorBL {
+      display: none
+    }
+
+    /*地图end*/
+
+    #showSelectResult {
+      margin-top: 10px;
+      background: #fdfdfb;
+      padding: 15px 0 0 32px;
+    }
+
+    .showResultLast {
+      margin-right: 0 !important;
+    }
+
+    .showResult {
+      width: 180px;
+      height: 260px;
+      float: left;
+      margin-right: 23px;
+    }
+
+    .showResult:hover {
+      background: url("img/big_book_bg_icon.png") no-repeat;
+    }
+
+    .showResult dt {
+      padding: 20px 0 0 7px;
+    }
+
+    .showResult dd span {
+      display: block;
+      margin-left: 6px;
+      font-size: 11px;
+      color: #7e6b5a;
+    }
+
+    .showResultTop {
+      overflow: hidden;
+      margin-bottom: 18px;
+      height: 200px;
+
+    }
+
+    .pagebarMain {
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .xsgjTip span {
+      float: left;
+      width: 84px;
+      color: #921818;
+      padding-left: 22px;
+      margin-left: 6px;
+      background: url("img/qt_xsgj_icon.png") no-repeat left center;
+    }
+
+    .xsgjTip a {
+      float: right;
+      width: 56px;
+      margin-right: 10px;
+      color: #818181;
+      padding-left: 20px;
+      background: url("img/huanyipi_icon.png") no-repeat left center;
+      text-decoration: none;
+    }
+
+    .qtxsgjDetail dt {
+      height: 64px;
+      width: 64px;
+      padding: 4px 0 0 4px;
+      background: url("img/small_book_bg_icon.png") no-repeat;
+    }
+
+    .qtxsgjDetail dd span {
+      display: block;
+      font-size: 10px;
+      color: #7e6b5a;
+    }
+
+    /*.showResultTop dl:hover{*/
+    /*box-shadow: 0px 7px 5px #c68a8a;*/
+    /*}*/
+    .classificationBox {
+      overflow: hidden;
+      width: 730px;
+      padding-top: 5px;
+      padding-left: 5px;
+      background: #fff;
+    }
+
+    /******************/
+    .footer {
+      width: 100%;
+      margin-top: 43px;
+      height: 97px;
+      position: relative;
+    }
+
+    .footerMain {
+      margin: 0 auto;
+      width: 360px;
+      text-align: center;
+      font-size: 11px;
+      color: #818181;
+    }
+
+    .footerLink {
+      height: 13px;
+      font-size: 11px;
+      padding-top: 26px;
+    }
+
+    .footerLink a {
+      margin-right: 24px;
+      color: #fff;
+    }
+
+    .copy {
+      height: 11px;
+      margin-top: 25px;
+      color: #fff;
+    }
+
+    .footerMengban {
+      position: absolute;
+      width: 100%;
+      height: 97px;
+      background: #1d1d1d;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="headermengBan"></div>
+  <div class="headerContain">
+    <ul id="navContain">
+      <li class="qtIndex nav_click" id="qtIndex"><a href="qt-index.html">首页</a></li>
+      <!--<li class="qtgcdt" id="qtgcdt"><a href="qt-gcgl.html">馆藏概览</a></li>-->
+      <li class="qtzxsk" id="qtzxsk"><a href="qt-zxsk.html">在线书库</a></li>
+      <li class="qtdzzx" id="qtdzzx"><a href="qt-dzzx.html">读者中心</a></li>
+      <li class="qtgywm" id="qtgywm"><a class="lastNavLiA" href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+  <div class="headerUser">
+
+    <p><b></b><span id="userName">游客</span></p>
+
+    <div class="loginContent">
+      <a href="javascript:;" id="logout"></a>
+
+      <div style="display: none">
+        <div class="loginMainMengban"></div>
+        <div class="loginMain">
+          <b></b>
+
+          <p>快速登录</p>
+
+          <div class="loginForm">
+            <div class="loginFormDetail">
+              <input type="text" placeholder="邮箱"/>
+              <input type="password" placeholder="密码"/>
+              <a href="javascript:;" class="btn btn-primary" id="loginBtn">登录</a>
+              <a href="qt-dzzx.html" class="forgetPwd">忘记密码</a>
+            </div>
+
+            <div class="fenggexian"></div>
+
+            <a href="qt-login.html" class="btn" id="registration">注册</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="qtzxskContian">
+  <div class="leftContian">
+    <p class="qtRmgj">热书推荐</p>
+
+    <div id="qtrmgjMain">
+      <dl class="qtLeftBookDetail">
+        <dt>
+          <a href="#"><img src="img/img_pic/qtRmgj01.png" alt="昆明卷"/></a>
+        </dt>
+        <dd>
+          <span>---</span>
+          <span>--</span>
+          <span>----</span>
+        </dd>
+      </dl>
+      <dl class="qtLeftBookDetail">
+        <dt>
+          <a href="#"><img src="img/img_pic/qtRmgj01.png" alt="昆明卷"/></a>
+        </dt>
+        <dd>
+          <span>---</span>
+          <span>--</span>
+          <span>---</span>
+        </dd>
+      </dl>
+      <dl class="qtLeftBookDetail">
+        <dt>
+          <a href="#"><img src="img/img_pic/qtRmgj01.png" alt="昆明卷"/></a>
+        </dt>
+        <dd>
+          <span>---</span>
+          <span>--</span>
+          <span>----</span>
+        </dd>
+      </dl>
+      <dl class="qtLeftBookDetail">
+        <dt>
+          <a href="#"><img src="img/img_pic/qtRmgj01.png" alt="昆明卷"/></a>
+        </dt>
+        <dd>
+          <span>---</span>
+          <span>--</span>
+          <span>----</span>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="rightContian">
+    <div class="searchMain">
+      <span>在线搜索</span>
+      <input id="searchInput" type="text" placeholder="输入条件搜索"/>
+      <a class="btn" id="searchBtn" href="javascript:;">搜索</a>
+    </div>
+    <div class="classification">
+      <div class="gcClass">
+        <span>馆藏分类</span>
+
+        <div class="classificationBox" id="classBox">
+        </div>
+
+      </div>
+      <div class="containClass">
+        <span style="display: none;">内容分类</span>
+
+        <div class="classificationBox" id="classificationBox">
+        </div>
+      </div>
+
+      <div class="yearsOrArea">
+        <a href="javascript:;" class="yearsOrAreaClick">年代分布</a>
+        <a href="javascript:;">地域分布</a>
+      </div>
+      <div class="yAContant">
+        <div class="historyProcess">
+          <div class="historyProcessMB"></div>
+          <div id="processor"></div>
+          <ul id="processorBox">
+            <li class="current">
+              <div class="step_inner historyAclick">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>全部</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner historyAclick">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>远古</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>夏商</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>西周</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>春秋战国</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>秦</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>汉</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>三国</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>晋</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>南北朝</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>隋唐</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>五代十国</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>宋</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>元</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>明</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>清</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>民国</h4>
+              </div>
+            </li>
+            <li class="current">
+              <div class="step_inner">
+                <a href="javascript:;"><span class="icon_step">00</span></a>
+                <h4>现代</h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="areaMap">
+          <div class="areaMapMB"></div>
+          <div id="allmap"></div>
+        </div>
+      </div>
+      <div class="showSelectClass">
+        <span>搜索结果 &gt;</span>
+        <a class="showGcClass" href="javascript:;" id="classTip" style="display: none"><b
+          class="deleteGcflClass"></b></a>
+        <a class="showContainClass" href="javascript:;" id="contentTip" style="display: none"><b
+          class="deleteClass"></b></a> <span id="searchStrTip"></span>
+      </div>
+    </div>
+    <div id="showSelectResult">
+    </div>
+    <div class="pagebarMain">
+      <div style="float:right">
+        <div id="pageBar"></div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="footer">
+  <div class="footerMengban"></div>
+  <div class="footerMain">
+    <p class="footerLink"><a href="about.html">关于我们</a><a href="#">版权声明</a><a href="#">商务合作</a><a href="#">技术支持</a></p>
+
+    <p class="copy">&copy;版权所有：云南省图书馆</p>
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/lunbo.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+  function hideThis() {
+  }
+  $(function () {
+    var globalClassList = "";
+    hideThis = function (that) {
+      $(that).parent().css("display", "none");
+      if ($(that).parent().hasClass("showGcClass")) {
+        $(that).parent().next().css("display", "none");
+        $(".classificationAClick").removeClass("classificationAClick");
+        //清空选中馆藏分类时,需要关闭内容分类
+        $("#classificationBox").children().remove();
+        $("#classificationBox").prev().hide();
+      }
+      searchBooks();
+    };
+    function showContentBox(list) {
+      //首先关闭内容分类
+      $("#classificationBox").children().remove();
+      $("#classificationBox").prev().hide();
+      //若当前无分类,则不显示内容分类框
+      if (list == null) {
+        return;
+      }
+      //显示内容分类按钮
+      for (var j = 0; j < list.length; j++) {
+        $("#classificationBox").append($("<a href='javascript:;'>" + list[j] + "</a>"));
+      }
+      //若有内容显示则展示"内容分类"提示
+      if (list.length > 0) {
+        $("#classificationBox").prev().show();
+      }
+
+      //contentTip
+      $("#classificationBox>a").click(function () {
+        $("#classificationBox>a").removeClass("classificationAClick");
+        $(this).addClass("classificationAClick");
+        $("#contentTip").html($(this).text() + "<b class='deleteClass' onclick='hideThis(this)' )'></b>");
+        $("#contentTip").show();
+//          var tmpIndex = $(this).attr("index");
+//          console.log(globalClassList);
+//          showContentBox(globalClassList[tmpIndex].contentList);
+        searchBooks();
+      });
+    }
+
+    function loadCategoryInfo(list) {
+      $("#classBox").children().remove();
+      if (!list)return;
+      var classList = list;//.reverse();
+      globalClassList = classList.slice(0);
+      for (var i = 0; i < classList.length; i++) {
+        $("#classBox").append($("<a href='javascript:;' index='" + i + "' classId='" + classList[i].id + "'>" + classList[i].name + "</a>"));
+      }
+
+      $("#classBox>a").click(function () {
+        $("#classBox>a").removeClass("classificationAClick");
+        $(this).addClass("classificationAClick");
+
+        //切换馆藏分类,先隐藏内容分类
+        $("#contentTip").hide();
+
+        $("#classTip").html($(this).text() + "<b class='deleteGcflClass' onclick='hideThis(this)' )'></b>");
+        $("#classTip").show();
+        $("#classTip").attr("classId", $(this).attr("classId"));
+        var tmpIndex = $(this).attr("index");
+        showContentBox(globalClassList[tmpIndex].contentList);
+        searchBooks();
+      });
+    }
+
+
+    function drawBooks(data) {
+      //设置当前的页数
+//        $("#bookPageBtn>a").attr("currentPage", data.page.pageNum);
+//        //先解除原有的click事件
+//        $("#bookPageBtn>a.moveBarRight").unbind("click");
+//        $("#bookPageBtn>a.moveBarRight").click(function () {
+//          var tmpPageNum = data.page.pageNum+1;
+//          if (tmpPageNum > Math.floor(data.page.totalCount/data.page.pageSize)+1){
+//            alert("超出翻页范围");
+//            return ;
+//          }
+//          searchBooks();
+//        });
+//        $("#bookPageBtn>a.moveBarLeft").unbind("click");
+//        $("#bookPageBtn>a.moveBarLeft").click(function () {
+//          var tmpPageNum = data.page.pageNum-1;
+//          if (tmpPageNum < Math.floor(data.page.totalCount/data.page.pageSize)+1){
+//            alert("超出翻页范围");
+//            return ;
+//          }
+//          searchBooks();
+//        });
+      //清空当前页面中的所有书籍
+      $("#showSelectResult").children().remove();
+      var tmpHang = "";
+      //循环画出书籍
+      for (var i = 0; i < data.data.length; i++) {
+        if (i % 4 == 0) {
+          tmpHang = $("<div class='showResultTop'></div>");
+          $("#showSelectResult").append(tmpHang);
+        }
+        tmpHang.append($("<dl class='showResult " + ((i + 1) % 4 == 0 ? "showResultLast" : "") + "' > " +
+          "<dt><a href='qt-tsxq.html?id=" + data.data[i].id + "'><img width='138px' height='112px' src=" + ipAddress + data.data[i].pic + " alt=''/></a></dt>" +
+            //"<dt><a href='#'><img src='"+ data.data[i].pic +"' alt=''/></a></dt>" +
+          "<dd><span>" + data.data[i].bookName + "</span>" +
+          "<span>" + data.data[i].author + "</span>" +
+          "</dd></dl>"));
+      }
+    }
+
+    function searchBooks() {
+      var reqUrl = "";
+      $("#searchStrTip").html(" &gt;" + $("#searchInput").val());
+      var searchStr = $("#searchInput").val();
+//        if(searchStr == ""){
+//          alert("请输入搜索条件!");
+//          return ;
+//        }
+      reqUrl = addURLParam(reqUrl, "str", searchStr);
+
+      if (!$("#classTip").is(":hidden")) {
+        reqUrl = addURLParam(reqUrl, "bookCategory", Number($("#classTip").attr("classId")));
+      }
+      if (!$("#contentTip").is(":hidden")) {
+        reqUrl = addURLParam(reqUrl, "bookContent", $("#contentTip").text());
+      }
+      $.ajax({
+        type: "get",
+        url: ipAddress + "portal/book/search" + reqUrl,
+        dateType: "json",
+        //data: "",
+        success: function (data) {
+          if (data.status == 1) {
+            //alert(JSON.stringify(data));
+            drawBooks(data);
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    }
+
+    $("#searchBtn").click(function () {
+      searchBooks();
+    });
+
+//    获取分类
+    $.ajax({
+      type: "get",
+      url: ipAddress + "portal/category/list",
+      dateType: "json",
+      //data: "",
+      success: function (data) {
+        if (data.status == 1) {
+          loadCategoryInfo(data.data);
+        }
+      },
+      error: function () {
+        alert("网络错误");
+        return;
+        var data = {
+          "status": 1,
+          "data": [{"id": 1, "name": "古籍", "contentList": ["1"]}, {
+            "id": 2,
+            "name": "名著",
+            "contentList": ["1"]
+          }, {"id": 3, "name": "名称", "contentList": null}, {"id": 4, "name": "新建分类", "contentList": null}, {
+            "id": 5,
+            "name": "新建分类2",
+            "contentList": null
+          }, {"id": 6, "name": "基本信息", "contentList": null}, {"id": 7, "name": "12312", "contentList": null}, {
+            "id": 8,
+            "name": "1231232",
+            "contentList": null
+          }, {"id": 9, "name": "新分类1", "contentList": null}, {"id": 10, "name": "1234", "contentList": null}, {
+            "id": 11,
+            "name": "新分类",
+            "contentList": null
+          }]
+        };
+        loadCategoryInfo(data.data);
+      },
+      async: true
+    });
+    searchBooks();
+    $.ajax({
+      type: "get",
+      url: ipAddress + "portal/recommend/recommend?type=main",
+      dateType: "json",
+      //data: "",
+      success: function (data) {
+        if (data.status == 1) {
+          showBookslist("qtxsgjMain", "qtxsgjDetail", data.data, 9);
+          showBookslist("qtrmgjMain", "qtLeftBookDetail", data.data, 3);
+          showBookslist("qtLsllMain", "qtLeftBookDetail", data.data, 1);
+          //showBookslist("qtgjwhMain",data.data, 4);
+        }
+      },
+      error: function () {
+        alert("网络通讯失败，请求失败！");
+        return;
+      },
+      async: true
+    });
+
+    function showBookslist(weizhi, dlstr, listLen, endBookcount) {
+      $("#" + weizhi).children().remove();
+      $.each(listLen, function (index, obj) {
+        var qtRstjdl = $("<dl class='" + dlstr + "'></dl>");
+        //alert(obj.bookName+"**************"+obj.author+"********"+obj.pic);
+        var qtRstjdt = $("<dt><a href='qt-tsxq.html?id=" + obj.id + "'><img width='100px' height='100px' src=" + ipAddress + obj.pic + " alt=''/></a></dt>");
+        //var qtRstjdd = $("<dd><span>" + obj.bookName + "</span><span>" + obj.author + "</span><span>共二十二片</span></a></dd>");
+        var qtRstjdd = $("<dd><span>" + obj.bookName + "</span><span>" + obj.author + "</span></a></dd>");
+        qtRstjdl.append(qtRstjdt);
+        qtRstjdl.append(qtRstjdd);
+        $("#" + weizhi).append(qtRstjdl);
+        if (index == endBookcount) {
+          return false;
+        }
+      });
+    }
+
+    $("body").keydown(function (event) {
+      if (event.keyCode == "13") {//keyCode=13是回车键
+        searchBooks();
+      }
+    });
+
+
+    showBMap("邯郸", 50);
+    function showBMap(area, count) {
+      var map = new BMap.Map("allmap");    // 创建Map实例
+
+      var point = new BMap.Point(114.53, 40.48);
+
+      map.centerAndZoom("中国", 5);  // 初始化地图,设置中心点坐标和地图级别
+
+//      map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+
+//      map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+      map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+//        var areaList = areaList
+//        for(var i = 0; i < areaList.length;i++) {
+//          drawOverlay(bArr[i]);
+//        }
+//        function drawOverlay(area){}
+
+      function ComplexCustomOverlay(point, text, mouseoverText) {
+        this._point = point;
+        this._text = text;
+        this._overText = mouseoverText;
+      }
+
+//      获取坐标
+      var myGeo = new BMap.Geocoder();
+      myGeo.getPoint(area, function (point) {
+
+//        创建自定义标注
+        ComplexCustomOverlay.prototype = new BMap.Overlay();
+        ComplexCustomOverlay.prototype.initialize = function (map) {
+          this._map = map;
+          var div = this._div = document.createElement("div");
+          div.style.position = "absolute";
+          div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+          div.style.background = "url(img/y_cityClick_bgImg.png)";
+          div.style.color = "white";
+          div.style.height = "22px";
+//              div.style.padding = "2px";
+          div.style.lineHeight = "22px";
+          div.style.whiteSpace = "nowrap";
+          div.style.MozUserSelect = "none";
+          div.style.fontSize = "10px"
+          var span = this._span = document.createElement("span");
+          div.appendChild(span);
+          span.appendChild(document.createTextNode(this._text));
+          var that = this;
+
+          var arrow = this._arrow = document.createElement("div");
+//              arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+          arrow.style.position = "absolute";
+          arrow.style.width = "11px";
+          arrow.style.height = "10px";
+          arrow.style.top = "22px";
+          arrow.style.left = "10px";
+          arrow.style.overflow = "hidden";
+          div.appendChild(arrow);
+
+          div.onmouseover = function () {
+//                this.style.backgroundColor = "#6BADCA";
+//                this.style.borderColor = "#0000ff";
+            this.getElementsByTagName("span")[0].innerHTML = that._overText;
+            arrow.style.backgroundPosition = "0px -20px";
+          }
+
+          div.onmouseout = function () {
+//                this.style.backgroundColor = "#EE5D5B";
+//                this.style.borderColor = "#BC3B3A";
+            this.getElementsByTagName("span")[0].innerHTML = that._text;
+            arrow.style.backgroundPosition = "0px 0px";
+          }
+
+          div.onclick = attribute;
+
+          map.getPanes().labelPane.appendChild(div);
+
+          return div;
+        }
+        ComplexCustomOverlay.prototype.draw = function () {
+          var map = this._map;
+          var pixel = map.pointToOverlayPixel(this._point);
+          this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+          this._div.style.top = pixel.y - 30 + "px";
+        }
+
+        var txt = area, mouseoverTxt = count + "套";
+        var myCompOverlay = new ComplexCustomOverlay(point, area, mouseoverTxt);
+
+        //myCompOverlay.addEventListener("click",attribute);
+        map.addOverlay(myCompOverlay);
+
+        function attribute() {
+          window.open("http://www.baidu.com", "_blank");
+        }
+
+      });
+
+
+    }
+
+    $(".yearsOrArea>a").click(function () {
+      $(".yAContant>div").css("display", "none");
+      $(this).addClass(("yearsOrAreaClick")).siblings().removeClass("yearsOrAreaClick");
+      $(".yAContant>div").eq($(this).index()).slideDown();
+    })
+  })
+</script>
+</body>
+</html>

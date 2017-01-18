@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>通知详情</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      background: url("img/y_bgImgBig.png") no-repeat fixed;
+      background-size: 100% 100%;
+    }
+
+    .header {
+      width: 100%;
+      height: 400px;
+      background: url("img/y_header_bgImg.png") no-repeat;
+      /*background-size: 100%;*/
+      filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+      -moz-background-size: 100% 100%;
+      background-size: 100% 100%;
+      position: relative;
+    }
+
+    .headerContain {
+      width: 100%;
+      height: 49px;
+      /*background: url("img/y_headerContain_bg.png");*/
+      position: absolute;
+      bottom: 0;
+      /*background-size:100%;*/
+    }
+
+    .headermengBan {
+      width: 100%;
+      height: 49px;
+      /*background: url("img/y_headerContain_bg.png");*/
+      position: absolute;
+      bottom: 0;
+      background: #000;
+      opacity: 0.4;
+      filter: alpha(opacity:40);
+    }
+
+    .headerUser {
+      position: absolute;
+      bottom: 10px;
+      right: 12%;
+    }
+
+    .headerUser b, .headerUser p, .headerUser a {
+      float: left;
+    }
+
+    .headerUser p, .headerUser a {
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .headerUser p {
+      color: #b28850;
+    }
+
+    .headerUser p {
+      margin-right: 50px;
+      height: 20px;
+    }
+
+    .headerUser p b {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: 18px;
+      height: 20px;
+      background: url("img/y_headerUser_user_icon.png") no-repeat left top;
+      margin-top: -4px;
+      margin-right: 8px;
+    }
+
+    .headerUser a {
+      margin-right: 15px;
+    }
+
+    #logout {
+      text-decoration: none;
+    }
+
+    #navContain {
+      overflow: hidden;
+      width: 43%;
+      margin: 0px auto;
+    }
+
+    #navContain li {
+      width: 24%;
+      text-align: center;
+      float: left;
+      height: 49px;
+      padding-top: 15px;
+    }
+
+    #navContain li a {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: 100%;
+      height: 14px;
+      text-decoration: none;
+      color: #fff;
+      border-right: 1px solid #FFF;
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    .lastNavLiA {
+      border-right: none !important;
+    }
+
+    .nav_click {
+      background: url("img/y_nav_click_bgImg.png") no-repeat bottom center;
+    }
+
+    .nav_click a {
+      color: #e5ab1f !important;
+    }
+
+    .loginContent {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      position: relative;
+    }
+
+    .loginMain {
+      position: absolute;
+      width: 256px;
+      height: 320px;
+      background: url("img/y_loginMain_bgImg.png") no-repeat right center;
+      right: -10px;
+      top: 45px;
+    }
+
+    .loginMain b {
+      position: absolute;
+      width: 20px;
+      height: 17px;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      background: url("img/y_loginMain_b_bgImg.png") no-repeat;
+      right: 28px;
+      top: -17px;
+    }
+
+    .loginMainMengban {
+      position: absolute;
+      width: 256px;
+      height: 320px;
+      background: #1b1b1b;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      right: -10px;
+      top: 45px;
+
+    }
+
+    .loginForm {
+      width: 200px;
+      margin: 0 auto;
+    }
+
+    .loginForm input {
+      width: 200px;
+      height: 28px;
+      margin-bottom: 10px;
+      outline: 0;
+      border: 1px solid #eee;
+      padding-left: 5px;
+      font-size: 12px;
+    }
+
+    .loginForm input:focus {
+      border: 1px solid #00a0e9;
+    }
+
+    .loginMain p {
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      margin: 30px 0;
+    }
+
+    #loginBtn {
+      width: 200px;
+      height: 32px;
+      background: #448aca;
+      border-radius: 4px;
+      margin-top: 6px;
+      font-size: 10px;
+    }
+
+    .forgetPwd {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+      margin-top: 10px !important;
+      /*-webkit-transform-origin-x: 0;*/
+      -webkit-transform: scale(0.8);
+      margin-bottom: 30px;
+    }
+
+    .fenggexian {
+      background: url("img/y_fenggexian_bgImg.png") no-repeat;
+      width: 200px;
+      height: 8px;
+    }
+
+    .loginFormDetail {
+      height: 253px;
+    }
+
+    #registration {
+      width: 200px;
+      height: 32px;
+      margin-top: 12px;
+      /*background: #8f8f8c;*/
+      border: 1px solid #fff;
+      /*background: url("img/y_registration_bgImg.png") no-repeat;*/
+    }
+
+    #registration:hover {
+      color: #fff;
+    }
+
+    .qttzxqContian {
+      width: 1080px;
+      margin: 0px auto;
+      overflow: hidden;
+    }
+
+    .qttzxqMainleft {
+      margin-top: 20px;
+    }
+    .qttzxqMainleft p{
+      height: 32px;
+      line-height: 32px;
+      font-size: 12px;
+      background: #fbfbf6;
+      width: 670px;
+      padding-left: 35px;
+    }
+    #author{
+      display: inline-block;
+      -webkit-transform: scale(0.8);
+    }
+    #newsData{
+      margin-left: -6px;
+      display: inline-block;
+      -webkit-transform: scale(0.8);
+    }
+    .newsClass {
+      height: 485px;
+      margin-top: 12px;
+      background: url("img/tzxq_left_bg.png") no-repeat;
+      position: relative;
+    }
+
+    #newsUl {
+      position: absolute;
+      left: 40%;
+      top: 28%;
+    }
+
+    #newsUl li {
+      height: 35px;
+      cursor: default;
+    }
+    .qttzxqMainArticle{
+      float: left;
+      width: 700px;
+    }
+    .qttzxqMainCenter {
+      margin-top: 10px;
+      margin-right: 30px;
+      background: #fff;
+      padding: 35px;
+    }
+
+    #newsTitle {
+      font-size: 24px;
+      color: #3a3a3a;
+      font-weight: bold;
+      word-break: keep-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #newsNumber {
+      float: right;
+      margin-right: 20px;
+    }
+
+    #uploadMessage {
+      margin-top: 16px;
+    }
+
+    .pageMain {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    #uploadMessage span {
+      color: #818181;
+    }
+
+    .qttzxqMainCenter hr {
+      width: 100%;
+      border-color: #cecdcd !important;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+
+    #newsContainer {
+      /*padding-top: 20px;*/
+      /*min-height: 370px;*/
+      min-height: 500px;
+    }
+
+    #prevNews {
+      margin-right: 34px;
+    }
+
+    .fontColorRed {
+      height: 17px;
+      width: 470px;
+      color: #b28850;
+      word-break: keep-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: top;
+    }
+
+    .messageTip {
+      margin-top: 30px;
+      float: left;
+      width: 354px;
+    }
+
+    .messageTip p {
+      font-size: 12px;
+      color: #333;
+      border-left: 2px solid #b28850;
+      padding-left: 13px;
+      line-height: 12px;
+    }
+
+    #messageList {
+      border-top: 1px solid #d2d2d2;
+      padding: 5px 15px 0 0px;
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+
+    #messageList li {
+      height: 30px;
+      line-height: 30px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #messageList li a{
+      float: left;
+      max-width: 325px;
+      font-size: 12px;
+      color: #3a3a3a;
+      background: url("img/y_qtPicNewsList_li_bgImg.png") no-repeat left center;
+      padding-left: 20px;
+      margin-right: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    #messageList li span{
+      float: left;
+      font-size: 12px;
+      color: #ec6941;
+    }
+    .footer {
+      width: 100%;
+      margin-top: 43px;
+      height: 97px;
+      position: relative;
+    }
+
+    .footerMain {
+      margin: 0 auto;
+      width: 360px;
+      text-align: center;
+      font-size: 11px;
+      color: #818181;
+    }
+
+    .footerLink {
+      height: 13px;
+      font-size: 11px;
+      padding-top: 26px;
+    }
+
+    .footerLink a {
+      margin-right: 24px;
+      color: #fff;
+    }
+
+    .copy {
+      height: 11px;
+      margin-top: 25px;
+      color: #fff;
+    }
+
+    .footerMengban {
+      position: absolute;
+      width: 100%;
+      height: 97px;
+      background: #1d1d1d;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="headermengBan"></div>
+  <div class="headerContain">
+    <ul id="navContain">
+      <li class="qtIndex nav_click" id="qtIndex"><a href="qt-index.html">首页</a></li>
+      <!--<li class="qtgcdt" id="qtgcdt"><a href="qt-gcgl.html">馆藏概览</a></li>-->
+      <li class="qtzxsk" id="qtzxsk"><a href="qt-zxsk.html">在线书库</a></li>
+      <li class="qtdzzx" id="qtdzzx"><a href="qt-dzzx.html">读者中心</a></li>
+      <li class="qtgywm" id="qtgywm"><a class="lastNavLiA" href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+  <div class="headerUser">
+
+    <p><b></b><span id="userName">游客</span></p>
+
+    <div class="loginContent">
+      <a href="javascript:;" id="logout"></a>
+
+      <div style="display: none">
+        <div class="loginMainMengban"></div>
+        <div class="loginMain">
+          <b></b>
+
+          <p>快速登录</p>
+
+          <div class="loginForm">
+            <div class="loginFormDetail">
+              <input type="text" placeholder="邮箱"/>
+              <input type="password" placeholder="密码"/>
+              <a href="javascript:;" class="btn btn-primary" id="loginBtn">登录</a>
+              <a href="qt-dzzx.html" class="forgetPwd">忘记密码</a>
+            </div>
+
+            <div class="fenggexian"></div>
+
+            <a href="qt-login.html" class="btn" id="registration">注册</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="qttzxqContian">
+  <div class="qttzxqMainArticle">
+    <div class="qttzxqMainleft">
+      <p>首页 > <a id="imgOrartcle">新闻通知</a> > <span id="fontColorRed" class="fontColorRed">saf</span></p>
+    </div>
+    <div class="qttzxqMainCenter">
+      <div id="newsTitle">日前，河北邯郸市烟草专卖局（公司）“雁巢”图书馆正式向公众开放</div>
+      <div id="uploadMessage">
+        <span id="newsData">2016-08-07</span>  <span id="author">海天科技</span><!--<span id="newsNumber">O-O 0</span> -->
+      </div>
+      <hr/>
+      <!--这是放新闻主体部分div-->
+      <div id="newsContainer">
+        <p style="text-indent: 2em;color: #3a3a3a">
+          日前，河北邯郸市烟草专卖局（公司）“雁巢”图书馆正式向公众开放。图书馆“三创新三
+          突出”的运行模式获得了广大市民的一致好评。
+        </p>
+
+        <p style="text-indent: 2em;color: #3a3a3a">
+          一是理念创新，突出公益。“雁巢”源于“雁行”，“雁行”是邯郸烟草精心打造的服务品
+          牌，“雁巢”图书馆是邯郸市唯一一家由国有企业出资建设、面向全市免费开放的公益性图书馆，
+          以“自营体验店+公益图书馆”的新模式，为广大市民提供看得见、摸得着、感受到的阅读服务，
+          带动地方公益活动氛围，树立了“责任烟草”良好形象。
+        </p>
+
+        <p style="text-indent: 2em;color: #3a3a3a">
+          二是设计创新，突出实用。图书馆占地面积300余平方米，馆内分为图书阅读区、文化沙龙、
+          卷烟茶饮售卖区等多个实体功能区。图书借阅和报刊阅览全部实行开架阅读，为读者提供图书借、
+          免费茶水等服务，并不定期组织各类文化沙龙活动，旨在为广大市民提供一个休憩的落脚点、充
+          电的补给站、提高素养的营养库。
+        </p>
+
+        <p style="text-indent: 2em;color: #3a3a3a">
+          三是服务创新，突出舒适。提供图书借阅、查询、老花镜、手机充电器、针线包、打气筒等
+          便民措施，为读者阅读提供便利；开通“雁巢”图书馆读者二维码，举办“好书推荐”等活动，
+          进一步拓展图书馆的公益效应；采取低书架、圆桌角、软包凳的环境设计，兼顾儿童阅读安全；
+          设置读者留言台，实时收集反馈意见，不断改进服务措施。
+        </p>
+
+      </div>
+      <div class="pageMain">
+        <a href="javascript:;" class="getprevNext" id="prevNews">上一篇</a><a class="getprevNext" id="nextNews"
+                                                                           href="javascript:;">下一篇</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="messageTip">
+    <p>新闻通知</p>
+    <ul id="messageList">
+      <li><a href="#">不朽的长城——纪念中国人民...</a><span></span></li>
+      <li><a href="#">不朽的长城——纪念中国人民...</a><span></span></li>
+      <li><a href="#">册府千华——珍贵古籍府千华——珍贵古籍府千华——珍贵古籍府千华——珍贵古籍雕版特展</a><span></span></li>
+      <li><a href="#">不朽的长城——纪念中国人民...</a><span></span></li>
+      <li><a href="#">册府千华——珍贵古籍雕版特展</a><span></span></li>
+      <li><a href="#">不朽的长城——纪念中国人民...</a><span></span></li>
+      <li><a href="#">册府千华——珍贵古籍雕版特展</a><span></span></li>
+      <li><a href="#">不朽的长城——纪念中国人民...</a><span></span></li>
+    </ul>
+  </div>
+</div>
+<div class="footer">
+  <div class="footerMengban"></div>
+  <div class="footerMain">
+    <p class="footerLink"><a href="about.html">关于我们</a><a href="#">版权声明</a><a href="#">商务合作</a><a href="#">技术支持</a></p>
+
+    <p class="copy">&copy;版权所有：云南省图书馆</p>
+  </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+  var atrcleId = getQueryString("id");
+  var type = getQueryString("type");
+  if (atrcleId != null) {
+    $.ajax({
+      type: "get",
+      url: newsAddress + "ContentManagementService/content/" + atrcleId + "/",
+      dateType: "json",
+      //data: JSON.stringify({"id":atrcleId}),
+      success: function (data) {
+        if (data.status == "200") {
+          getmodefiyData(data.data);
+        }
+      },
+      error: function () {
+        //alert("网络错误");
+        //return;
+        var data = {
+          "title": "sdfgsdfg",
+          "content": "\n      \n\n    <div><div class=\"newsContentPart\"><p>214123423ZDfs</p></div><b class=\"deleteText\"></b></div>",
+          "type": "0",
+          "status": "0",
+          "author": ""
+        }
+        getmodefiyData(data);
+      },
+      async: true
+    });
+  }
+
+  function getmodefiyData(data) {
+    var trueContent = "";
+    $(data.content).find(".newsContentPart").each(function () {
+      trueContent += $(this).html();
+    });
+    var author = JSON.parse(data.meta_info).author;
+    $("#newsTitle").html(data.title);
+    $("#newsContainer").html(trueContent);
+    $("#author").html(author);
+    $("#newsData").html(data.create_time);
+    $("#fontColorRed").html(data.title);
+  }
+
+  //  获取推荐文章
+  var articleType = "";
+  if (type == 3) {
+    $("#imgOrartcle").html("通知公告");
+    $("#imgOrartcle").attr("href", "qt-tzgg.html");
+    RecommendArticles(3);
+    $("#tongzhigonggaoTip").siblings().removeClass("fontColorRed");
+    $("#tongzhigonggaoTip").addClass("fontColorRed");
+  } else {
+    $("#imgOrartcle").html("图片新闻");
+    $("#imgOrartcle").attr("href", "qt-tpxw.html");
+    RecommendArticles(4);
+    $("#tupianxinwenTip").siblings().removeClass("fontColorRed");
+    $("#tupianxinwenTip").addClass("fontColorRed");
+  }
+  function RecommendArticles(type) {
+    $.ajax({
+      type: "get",
+      url: newsAddress + "ContentManagementService/content/rec/" + atrcleId + "/" + type + "/1/12/",
+      dateType: "json",
+      //data: JSON.stringify({"id":atrcleId}),
+      success: function (data) {
+        if (data.status == "200") {
+          $("#messageList").children().remove();
+          $.each(data.data, function (index, obj) {
+            var qtNoticeLi = $("<li><a href='qt-tzxq.html?id=" + obj.id + "&type=" + type + "'>" + obj.title + "</a></li>");
+            $("#messageList").append(qtNoticeLi);
+          });
+        }
+      },
+      error: function () {
+        alert("网络错误");
+        return;
+      },
+      async: true
+    });
+  }
+
+  $(".getprevNext").click(function () {
+    var thisId = $(this).attr("id");
+    var switchStatus = "";
+    if (thisId == "prevNews") {
+      switchStatus = "prev";
+    } else if (thisId == "nextNews") {
+      switchStatus = "next";
+    }
+    $.ajax({
+      type: "get",
+      url: newsAddress + "ContentManagementService/content/" + switchStatus + "/" + atrcleId + "/" + type + "/1/",
+      dateType: "json",
+      //data: JSON.stringify({"id":atrcleId}),
+      success: function (data) {
+        if (data.status == "200") {
+          //{"data":{"id":"41","meta_info":null,"title":null,"content":null,"type":null,"status":null,"create_time":null,"modify_time":null},"status":200,"info":"success"}
+          window.location.href = "qt-tzxq.html?id=" + data.data.id + "&type=" + type;
+        } else {
+          if (switchStatus == "prev") {
+            alert("这已经是第一篇了！")
+          } else {
+            alert("这已经是最后一篇了！")
+          }
+
+        }
+      },
+      error: function () {
+        alert("网络错误");
+        return;
+
+      }
+    });
+  });
+
+
+  function showOtherArticle() {
+
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css"/>
+
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FzdySWkjjP0XkBpKl0cPdyopUoVuSa0O"></script>
+  <style>
+    .anchorBL{display:none}
+  </style>
+</head>
+<body>
+  <div class="container w960 mt20">
+    <div id="processor" >
+      <ol class="processorBox oh">
+        <li class="current">
+          <div class="step_inner fl">
+            <span class="icon_step">1000</span>
+            <h4>遠古</h4>
+          </div>
+        </li>
+        <li>
+          <div class="step_inner">
+            <span class="icon_step">200</span>
+            <h4>夏商</h4>
+          </div>
+        </li>
+        <li>
+          <div class="step_inner fr">
+            <span class="icon_step">30</span>
+            <h4>西周</h4>
+          </div>
+        </li>
+        <li>
+          <div class="step_inner fr">
+            <span class="icon_step">400</span>
+            <h4>春秋戰國</h4>
+          </div>
+        </li>
+        <li>
+          <div class="step_inner fr">
+            <span class="icon_step">200</span>
+            <h4>秦</h4>
+          </div>
+        </li>
+      </ol>
+      <div class="step_line"></div>
+    </div>
+    <div class="content">
+      <div id="step1" class="step block">
+        <div id="allmap" style="width: 800px; height: 500px;"></div>
+      </div>
+      <div id="step2" class="step hide">
+        222222222222
+      </div>
+      <div id="step3" class="step hide">
+        333333333
+      </div>
+      <div id="step4" class="step hide">
+        444444444
+      </div>
+      <div id="step5" class="step hide">
+        5555555
+      </div>
+    </div>
+  </div>
+
+<script src="js/jquery.min.js"></script>
+<script>
+
+  showBMap();
+  function showBMap(){
+// 百度地图API功能
+    var map = new BMap.Map("allmap");    // 创建Map实例
+
+//    var point = new BMap.Point(114.53, 40.48);
+
+    map.centerAndZoom("中国", 4);  // 初始化地图,设置中心点坐标和地图级别
+
+    //map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+//  map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+
+//    var local = new BMap.LocalSearch(map, {
+//      renderOptions:{map: map}
+//    });
+    var myGeo = new BMap.Geocoder();
+
+    function ComplexCustomOverlay(point, text, mouseoverText){
+      this._point = point;
+      this._text = text;
+      this._overText = mouseoverText;
+    }
+    myGeo.getPoint("邯郸", function(point){
+      console.log(point);
+//      var marker = new BMap.Marker(point);  // 创建标注
+//      map.addOverlay(marker);               // 将标注添加到地图中
+      ComplexCustomOverlay.prototype = new BMap.Overlay();
+      ComplexCustomOverlay.prototype.initialize = function(map){
+        this._map = map;
+        var div = this._div = document.createElement("div");
+        div.style.position = "absolute";
+        div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+        div.style.backgroundColor = "#EE5D5B";
+        div.style.border = "1px solid #BC3B3A";
+        div.style.color = "white";
+        div.style.height = "18px";
+        div.style.padding = "2px";
+        div.style.lineHeight = "18px";
+        div.style.whiteSpace = "nowrap";
+        div.style.MozUserSelect = "none";
+        div.style.fontSize = "12px"
+        var span = this._span = document.createElement("span");
+        div.appendChild(span);
+        span.appendChild(document.createTextNode(this._text));
+        var that = this;
+
+        var arrow = this._arrow = document.createElement("div");
+        arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+        arrow.style.position = "absolute";
+        arrow.style.width = "11px";
+        arrow.style.height = "10px";
+        arrow.style.top = "22px";
+        arrow.style.left = "10px";
+        arrow.style.overflow = "hidden";
+        div.appendChild(arrow);
+
+        div.onmouseover = function(){
+          this.style.backgroundColor = "#6BADCA";
+          this.style.borderColor = "#0000ff";
+          this.getElementsByTagName("span")[0].innerHTML = that._overText;
+          arrow.style.backgroundPosition = "0px -20px";
+        }
+
+        div.onmouseout = function(){
+          this.style.backgroundColor = "#EE5D5B";
+          this.style.borderColor = "#BC3B3A";
+          this.getElementsByTagName("span")[0].innerHTML = that._text;
+          arrow.style.backgroundPosition = "0px 0px";
+        }
+
+        div.onclick = attribute;
+
+        map.getPanes().labelPane.appendChild(div);
+
+        return div;
+      }
+      ComplexCustomOverlay.prototype.draw = function(){
+        var map = this._map;
+        var pixel = map.pointToOverlayPixel(this._point);
+        this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+        this._div.style.top  = pixel.y - 30 + "px";
+      }
+      var txt = "银湖海岸城", mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;
+
+      var myCompOverlay = new ComplexCustomOverlay(point, "12314",mouseoverTxt);
+
+      //myCompOverlay.addEventListener("click",attribute);
+      map.addOverlay(myCompOverlay);
+
+      function attribute(){
+        window.open("http://www.baidu.com","_blank");
+      }
+
+
+
+
+
+
+
+
+
+
+
+//      marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+//
+//      var infoWindow = new BMap.InfoWindow("地址：北京市东城区王府井大街88号乐天银泰百货八层", opts);  // 创建信息窗口对象
+//      marker.addEventListener("click", function(){
+//        map.openInfoWindow(infoWindow,point); //开启信息窗口
+//      });
+    });
+
+
+  }
+
+
+//  local.search("邯郸");
+//  var local = new BMap.LocalSearch(map, {
+//    renderOptions:{map: map}
+//  });
+//  local.search("张家口");
+
+  $(function(){
+    //切换步骤（目前只用来演示）
+    $('.processorBox li').click(function(){
+      var i = $(this).index();
+      $('.processorBox li').removeClass('current').eq(i).addClass('current');
+      $('.step').fadeOut(300).eq(i).fadeIn(500);
+    });
+  });
+</script>
+</body>
+</html>

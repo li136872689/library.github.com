@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>首页</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <style>
+    body{
+      background: url("img/y_bgImgBig.png") no-repeat fixed;
+      background-size: 100%;
+    }
+    .header {
+      width: 100%;
+      height: 400px;
+      background: url("img/y_header_bgImg.png") no-repeat;
+      /*background-size: 100%;*/
+      filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+      -moz-background-size:100% 100%;
+      background-size:100% 100%;
+      position: relative;
+    }
+    .headerContain {
+      width: 100%;
+      height: 49px;
+      /*background: url("img/y_headerContain_bg.png");*/
+      position: absolute;
+      bottom: 0;
+      /*background-size:100%;*/
+    }
+    .headermengBan{
+      width: 100%;
+      height: 49px;
+      /*background: url("img/y_headerContain_bg.png");*/
+      position: absolute;
+      bottom: 0;
+      background: #000;
+      opacity: 0.4;
+      filter: alpha(opacity:40);
+    }
+
+    .headerUser {
+      position: absolute;
+      bottom: 10px;
+      right: 12%;
+    }
+
+    .headerUser b, .headerUser p, .headerUser a {
+      float: left;
+    }
+
+    .headerUser p, .headerUser a {
+      font-size: 14px;
+      color: #fff;
+    }
+    .headerUser p{
+      color: #b28850;
+    }
+
+    .headerUser p {
+      margin-right: 50px;
+      height: 20px;
+    }
+    .headerUser p b{
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      width: 18px;
+      height: 20px;
+      background: url("img/y_headerUser_user_icon.png") no-repeat left top;
+      margin-top: -4px;
+      margin-right: 8px;
+    }
+    .headerUser a {
+      margin-right: 15px;
+    }
+
+    #logout{
+      text-decoration: none;
+    }
+
+    #navContain {
+      overflow: hidden;
+      width: 43%;
+      margin: 0px auto;
+    }
+
+    #navContain li {
+      width: 24%;
+      text-align: center;
+      float: left;
+      height: 49px;
+      padding-top: 15px;
+    }
+
+    #navContain li a {
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      width: 100%;
+      height: 14px;
+      text-decoration: none;
+      color: #fff;
+      border-right: 1px solid #FFF;
+      font-size: 14px;
+      line-height: 14px;
+    }
+    .lastNavLiA{
+      border-right:none !important;
+    }
+
+
+    .nav_click {
+      background: url("img/y_nav_click_bgImg.png") no-repeat bottom center;
+    }
+
+    .nav_click a{
+      color: #e5ab1f !important;
+    }
+    .loginContent{
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      position: relative;
+    }
+    .loginMain{
+      position: absolute;
+      width: 256px;
+      height: 320px;
+      background: url("img/y_loginMain_bgImg.png") no-repeat right center;
+      right: -10px;
+      top: 45px;
+    }
+    .loginMain b{
+      position: absolute;
+      width: 20px;
+      height: 17px;
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      background: url("img/y_loginMain_b_bgImg.png") no-repeat;
+      right: 28px;
+      top: -17px;
+    }
+    .loginMainMengban{
+      position: absolute;
+      width: 256px;
+      height: 320px;
+      background:#1b1b1b;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      right: -10px;
+      top: 45px;
+
+    }
+    .loginForm{
+      width: 200px;
+      margin: 0 auto;
+    }
+    .loginForm input{
+      width: 200px;
+      height: 28px;
+      margin-bottom: 10px;
+      outline: 0;
+      border: 1px solid #eee;
+      padding-left: 5px;
+      font-size: 12px;
+    }
+    .loginForm input:focus{
+      border: 1px solid #00a0e9;
+    }
+    .loginMain p{
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      margin: 30px 0;
+    }
+    #loginBtn{
+      width: 200px;
+      height: 32px;
+      background: #448aca;
+      border-radius: 4px;
+      margin-top: 6px;
+      font-size: 10px;
+    }
+    .forgetPwd{
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+      margin-top: 10px !important;
+      /*-webkit-transform-origin-x: 0;*/
+      -webkit-transform: scale(0.8);
+      margin-bottom: 30px;
+    }
+    .fenggexian{
+      background: url("img/y_fenggexian_bgImg.png") no-repeat;
+      width: 200px;
+      height: 8px;
+    }
+    .loginFormDetail{
+      height: 253px;
+    }
+    #registration{
+      width: 200px;
+      height: 32px;
+      margin-top: 12px;
+      /*background: #8f8f8c;*/
+      border: 1px solid #fff;
+      /*background: url("img/y_registration_bgImg.png") no-repeat;*/
+    }
+    #registration:hover{
+      color: #fff;
+    }
+
+
+
+
+
+    .qtIndexMain {
+      width: 1080px;
+      margin: 30px auto 0;
+    }
+
+    .indexMainDetail {
+      margin-top: 26px;
+      overflow: hidden;
+    }
+
+    .MainDetailLeft {
+      float: left;
+      width: 643px;
+      height: 482px;
+      margin-right: 44px;
+    }
+    .hotBook{
+      margin-top: 30px;
+      color: #aaaaaa;
+    }
+    .hotBook,.newsTip,.mapTip{
+      height: 30px;
+      font-size: 12px;
+    }
+    .hotBook span,.newsTip span,.mapTip span{
+      position: relative;
+      display: inline-block;
+      *display:inline;
+      *zoom:1;
+      margin:0 12px 25px 25px;
+      width: 104px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      background: #b28850;
+    }
+    .newsTip span{
+      width: 72px;
+      background: #b28850;
+    }
+    .hotBook span{
+      width: 72px;
+    }
+    .hotBook b,.newsTip b,.mapTip b{
+      display: inline-block;
+      *display: inline;
+      *zoom:1;
+      position: absolute;
+      bottom: -6px;
+      left: 49%;
+      width: 6px;
+      height: 6px;
+      background:url("img/y_mapTip_b_bg.png") no-repeat;
+    }
+    /*.newsTip b{*/
+      /*background:url("img/y_newsTip_b_bg.png") no-repeat;*/
+    /*}*/
+    .PartMapMain{
+      width: 643px;
+      height: 482px;
+      position: relative;
+      margin-top: 20px;
+    }
+    .PartMapMengBan{
+      width: 643px;
+      height: 482px;
+      border-radius: 5px;
+      background: #fff;
+      opacity: 0.5;
+      position: absolute;
+      z-index: -1;
+      padding-top: 10px;
+    }
+    #showPartMap{
+      width: 413px;
+      height: 428px;
+      background:url("img/y_showPartMap_bgImg.png") no-repeat;
+      margin-left: 52px;
+      float: left;
+      margin-top: 25px;
+      position: relative;
+    }
+
+    #showPartMap a{
+      display: block;
+      position: absolute;
+      width: 22px;
+      height: 25px;
+      background: url("img/y_showPartMapA_bgImg.png") no-repeat;
+      color: #fff;
+      font-size: 8px;
+      text-align: center;
+      text-decoration: none;
+      padding-top: 3px;
+    }
+    #showPartMap .cityClick{
+      width: 24px;
+      height: 25px;
+      background: url("img/y_cityClick_bgImg.png") no-repeat;
+      padding-left: 2px;
+      margin-left: -2px;
+    }
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      #showPartMap a{
+        padding: 0px 0 0 4px;
+      }
+      #showPartMap a span{
+        display: inline-block;
+        font-size: 10px;
+        -webkit-transform-origin-x: 0;
+        -webkit-transform: scale(0.7);
+      }
+      #showPartMap .cityClick{
+        padding-left: 5px;
+      }
+    }
+/*lijiang dali baoshan lincang puer yuxi kunming qujing*/
+    #showPartMap .lijiang{
+      left: 119px;
+      top: 100px;
+    }
+    #showPartMap .dali{
+      left: 119px;
+      top: 165px;
+    }
+    #showPartMap .baoshan{
+      left: 70px;
+      top: 190px;
+    }
+    #showPartMap .lincang{
+      left: 112px;
+      top: 253px;
+    }
+    #showPartMap .puer{
+      left: 152px;
+      top: 305px;
+    }
+    #showPartMap .yuxi{
+      left: 226px;
+      top: 229px;
+    }
+    #showPartMap .kunming{
+      left: 240px;
+      top: 202px;
+    }
+    #showPartMap .qujing{
+      left: 285px;
+      top: 171px;
+    }
+    .MainDetailRight {
+      float: left;
+      width: 393px;
+    }
+    #qtNotice {
+      float: left;
+      width: 390px;
+      height: 260px;
+      margin-top: 35px;
+    }
+    #qtNoticeList {
+      overflow: hidden;
+    }
+
+    #qtNoticeList li {
+      height: 30px;
+      line-height: 30px;
+      overflow: hidden;
+    }
+
+    #qtPicNewsList li a, #qtNoticeList li a {
+      float: left;
+      max-width: 325px;
+      font-size: 12px;
+      color: #3a3a3a;
+      background: url("img/y_qtPicNewsList_li_bgImg.png") no-repeat left center;
+      padding-left: 20px;
+      margin-right: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      /*text-decoration: none;*/
+    }
+
+    #qtPicNewsList li span, #qtNoticeList li span {
+      float: left;
+      font-size: 12px;
+      color: #ec6941;
+    }
+
+    .qtRstj {
+      height: 320px;
+      padding: 13px 18px;
+      margin-top: 40px;
+      background: #45443f;
+      width: 100%;
+    }
+    .moreHotBookMain{
+      width: 1080px;
+      margin: 0px auto;
+    }
+    .moreHotBook{
+      float: right;
+      margin-right: 30px;
+    }
+    .moreHotBook ul,.moreHotBook ul li,.moreHotBook div{
+      float: left;
+    }
+    .moreHotBook ul li{
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: #aaaaaa;
+      margin-right: 12px;
+    }
+    .moreHotBook div .moreEng{
+      font-size: 8px;
+      text-align: right;
+    }
+    .moreHotBook div .moreCh{
+      font-size: 10px;
+      text-align: right;
+    }
+    .moreEngAndmoreCh{
+      margin-top: -10px;
+      border-right: 1px solid #aaaaaa;
+      padding-right: 5px;
+    }
+    #qtRstjMain {
+      margin: 35px 0 0 20px;
+      height: 150px;
+    }
+
+    .qtRstjDetail {
+      float: left;
+      margin-right: 50px;
+    }
+
+    .qtRstjDetailLast {
+      margin-right: 0px;
+    }
+
+    .qtRstjDetail dt {
+      width: 163px;
+      height: 121px;
+      border: 3px solid #aaaaaa;
+      margin-bottom: 5px;
+    }
+
+    .qtRstjDetail dd span {
+      font-size: 12px;
+      color: #ffffff;
+      display: block;
+      padding-left: 10px;
+    }
+
+
+
+    .friendlyLink {
+      width: 1080px;
+      height: 110px;
+      margin: 20px auto 0;
+    }
+    .friendlyLinkMain{
+      margin-top: 25px;
+      width: 336px;
+      border-left: 1px solid #666;
+      overflow: hidden;
+      margin-left: 25px;
+      padding-left: 5px;
+    }
+    .friendlyLinkMain p {
+      width: 85px;
+      float: left;
+      margin-right: 25px;
+    }
+
+    .friendlyLink p a {
+      font-size: 10px;
+      color: #666666;
+    }
+
+    .footer {
+      width: 100%;
+      margin-top: 43px;
+      height: 97px;
+      position: relative;
+    }
+
+    .footerMain {
+      margin: 0 auto;
+      width: 360px;
+      text-align: center;
+      font-size: 11px;
+      color: #818181;
+    }
+
+    .footerLink {
+      height: 13px;
+      font-size: 11px;
+      padding-top: 26px;
+    }
+
+    .footerLink a {
+      margin-right: 24px;
+      color: #fff;
+    }
+
+    .copy {
+      height: 11px;
+      margin-top: 25px;
+      color: #fff;
+    }
+    .footerMengban{
+      position: absolute;
+      width: 100%;
+      height: 97px;
+      background: #1d1d1d;
+      opacity: 0.6;
+      filter: alpha(opacity:60);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="headermengBan"></div>
+  <div class="headerContain">
+    <ul id="navContain">
+      <li class="qtIndex nav_click" id="qtIndex"><a href="qt-index.html">首页</a></li>
+      <!--<li class="qtgcdt" id="qtgcdt"><a href="qt-gcgl.html">馆藏概览</a></li>-->
+      <li class="qtzxsk" id="qtzxsk"><a href="qt-zxsk.html">在线书库</a></li>
+      <li class="qtdzzx" id="qtdzzx"><a href="qt-dzzx.html">读者中心</a></li>
+      <li class="qtgywm" id="qtgywm"><a class="lastNavLiA" href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+  <div class="headerUser">
+
+    <p><b></b><span id="userName">游客</span></p>
+    <div class="loginContent">
+      <a href="javascript:;" id="logout"></a>
+      <div class="loginMainMengban"></div>
+      <div class="loginMain">
+        <b></b>
+        <p>快速登录</p>
+        <div class="loginForm">
+          <div class="loginFormDetail">
+            <input type="text" placeholder="邮箱"/>
+            <input type="password" placeholder="密码"/>
+            <a href="javascript:;" class="btn btn-primary" id="loginBtn">登录</a>
+            <a href="qt-dzzx.html" class="forgetPwd">忘记密码</a>
+          </div>
+
+          <div class="fenggexian"></div>
+
+          <a href="qt-login.html" class="btn" id="registration">注册</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="qtIndexMain">
+  <div class="indexMainDetail">
+    <div class="MainDetailLeft">
+        <div class="mapTip">
+          <span><b></b>云南古籍分布图</span>DISTRIBUTION
+        </div>
+        <div class="PartMapMain">
+          <div class="PartMapMengBan"></div>
+          <div id="showPartMap">
+            <a class="city lijiang cityClick" href="#"><span>100</span></a>
+            <a class="city dali" href="#"><span>200</span></a>
+            <a class="city baoshan" href="#"><span>300</span></a>
+            <a class="city lincang" href="#"><span>400</span></a>
+            <a class="city puer" href="#"><span>20</span></a>
+            <a class="city yuxi" href="#"><span>5</span></a>
+            <a class="city kunming" href="#"><span>122</span></a>
+            <a class="city qujing" href="#"><span>158</span></a>
+          </div>
+        </div>
+    </div>
+    <div class="MainDetailRight">
+      <div class="newsTip">
+        <span><b></b>新闻通知</span>NEWS
+      </div>
+      <div id="qtNotice">
+        <ul id="qtNoticeList">
+          <li><a href="">捐书万里，不辞辛劳捐书万里，不辞辛劳捐书万里，不辞辛劳捐书万里，不辞辛劳捐书万里，不辞辛劳</a><span>(01-20)</span></li>
+          <li><a href="">网上公益活动如期开展网上公益活</a><span>(01-20)</span></li>
+          <li><a href="">保护古籍，人人有责保护古籍，人人有责保护古籍，人人有责保护古籍，人人有责</a><span>(01-20)</span></li>
+          <li><a href="">网上公益活动如期开展</a><span>(01-20)</span></li>
+          <li><a href="">捐书万里，不辞辛劳</a><span>(01-20)</span></li>
+          <li><a href="">保护古籍，人人有责阿道夫</a><span>(01-20)</span></li>
+          <li><a href="">捐书万里，不辞辛劳</a><span>(01-20)</span></li>
+          <li><a href="">网上公益活动如期开展网上公益活</a><span>(01-20)</span></li>
+          <li><a href="">保护古籍，人人有责</a><span>(01-20)</span></li>
+          <li><a href="">网上公益活动如期开展</a><span>(01-20)</span></li>
+          <li><a href="">捐书万里，不辞辛劳</a><span>(01-20)</span></li>
+          <li><a href="">保护古籍，人人有责阿道夫</a><span>(01-20)</span></li>
+          <li><a href="">捐书万里，不辞辛劳</a><span>(01-20)</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="qtRstj">
+    <div class="moreHotBookMain">
+      <div class="hotBook">
+        <span><b></b>热书推荐</span>HOT
+        <div class="moreHotBook">
+          <ul>
+            <li style="background: #b28850"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <div class="moreEngAndmoreCh">
+            <p class="moreEng">MORE</p>
+            <p class="moreCh">查看更多</p>
+          </div>
+        </div>
+      </div>
+      <div id="qtRstjMain">
+        <dl class="qtRstjDetail">
+          <dt><a href="#"><img src="img/img_pic/index-rstj01.png" alt=""/></a></dt>
+          <dd>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+          </dd>
+        </dl>
+        <dl class="qtRstjDetail">
+          <dt><a href="#"><img src="img/img_pic/index-rstj02.png" alt=""/></a></dt>
+          <dd>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+          </dd>
+        </dl>
+        <dl class="qtRstjDetail">
+          <dt><a href="#"><img src="img/img_pic/index-rstj03.png" alt=""/></a></dt>
+          <dd>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+          </dd>
+        </dl>
+        <dl class="qtRstjDetail">
+          <dt><a href="#"><img src="img/img_pic/index-rstj03.png" alt=""/></a></dt>
+          <dd>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+          </dd>
+        </dl>
+        <dl class="qtRstjDetail qtRstjDetailLast">
+          <dt><a href="#"><img src="img/img_pic/index-rstj01.png" alt=""/></a></dt>
+          <dd>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="friendlyLink">
+  <div class="newsTip">
+    <span><b></b>友情链接</span>LINK
+  </div>
+  <div class="friendlyLinkMain">
+    <p><a href="http://www.nlc.gov.cn" target="_blank">中国国家图书馆</a></p>
+    <p><a href="http://www.chnmuseum.cn" target="_blank">中国国家博物院</a></p>
+    <p><a href="http://www.dpm.org.cn/index1024768.html" target="_blank">故宫博物馆</a></p>
+    <p><a href="http://www.nlc.gov.cn/pcab" target="_blank">中国古籍保护网</a></p>
+    <p><a href="http://www.namoc.org" target="_blank">中国美术馆</a></p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footerMengban"></div>
+  <div class="footerMain">
+    <p class="footerLink"><a href="about.html">关于我们</a><a href="#">版权声明</a><a href="#">商务合作</a><a href="#">技术支持</a></p>
+
+    <p class="copy">&copy;版权所有：云南省图书馆</p>
+  </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+  $(function () {
+//    nav鼠标移入
+//    $("#navContain li").mouseover(function(){
+//      $(this).addClass("nav_click").siblings().removeClass("nav_click");
+//    });
+//    $("#navContain li").mouseout(function(){
+//      $(this).removeClass("nav_click");
+//    });
+    $(".city").mouseover(function(){
+      $(this).addClass("cityClick").siblings().removeClass("cityClick");
+    });
+    var tuiJianList = [
+      {
+        "req": "main",
+        "table": "qtRstjMain"
+      }, {
+        "req": "main",
+        "table": "qtRstjMain"
+      }];
+    //TODO:要循环tuiJianList去填充页面上其他的推荐内容
+//    获得热书推荐
+    $.ajax({
+      type: "get",
+      url: ipAddress + "portal/recommend/recommend?type=main",
+      dateType: "json",
+      //data: "",
+      success: function (data) {
+        if (data.status == 1) {
+          showBookslist("qtRstjMain",data.data, 4);
+          showBookslist("qtgjwhMain",data.data, 4);
+        }
+      },
+      error: function () {
+        alert("网络通讯失败，请求失败！");
+        return;
+      },
+      async: true
+    });
+
+    function showBookslist(weizhi, listLen, endBookcount) {
+      $("#"+weizhi).children().remove();
+      $.each(listLen, function (index, obj) {
+        if ((index + 1) % 5 == 0) {
+          var qtRstjdl = $("<dl class='qtRstjDetail qtRstjDetailLast'></dl>");
+        } else {
+          var qtRstjdl = $("<dl class='qtRstjDetail'></dl>");
+        }
+        //alert(obj.bookName+"**************"+obj.author+"********"+obj.pic);
+        var qtRstjdt = $("<dt><a href='qt-tsxq.html?id="+obj.id+"'><img width='157px' height='115px' src=" +ipAddress+ obj.pic + " alt=''/></a></dt>");
+        //var qtRstjdd = $("<dd><span>" + obj.bookName + "</span><span>" + obj.author + "</span><span>共二十二片</span></a></dd>");
+        var qtRstjdd = $("<dd><span>" + obj.bookName + "</span><span>" + obj.author + "</span></a></dd>");
+        qtRstjdl.append(qtRstjdt);
+        qtRstjdl.append(qtRstjdd);
+        $("#"+weizhi).append(qtRstjdl);
+        if (index == endBookcount) {
+          return false;
+        }
+      });
+    }
+  });
+
+  qtNoticeList();
+
+  function qtNoticeList() {
+    var data;
+    $.ajax({
+      type: "get",
+      url: newsAddress + "ContentManagementService/content/*/*/1/13/",
+      //dateType: "json",
+      success: function (data) {
+        if (data.status == 200) {
+          showqtNoticeList(data.data.contents);
+        }
+      },
+      error: function () {
+        //alert("网络错误！");
+        return ;
+      },
+      async: true
+    });
+
+    function showqtNoticeList(data) {
+      $("#qtNoticeList").children().remove();
+      //var frag = document.createDocumentFragment();
+      $.each(data, function (index, obj) {
+        var qtNoticeLi = $("<li><a href='qt-tzxq.html?id="+obj.id+"&type=3'>" + obj.title + "</a><span>(" + obj.create_time + ")</span></li>");
+        $("#qtNoticeList").append(qtNoticeLi);
+      });
+    }
+  }
+</script>
+</body>
+</html>

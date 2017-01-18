@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>图书管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 6]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/BMS.css"/>
+    <style>
+        body{
+            background: url("img/loginbgimg.png") no-repeat;
+            background-size:100%;
+            /*background: -webkit-radial-gradient(#fdfcfd 5%, #7faac7 97%); /!* Safari 5.1 - 6.0 *!/*/
+            /*background: -o-radial-gradient(circle,#fdfcfd 5%, #7faac7 97%); /!* Opera 11.6 - 12.0 *!/*/
+            /*background: -moz-radial-gradient(circle,#fdfcfd 5%, #7faac7 97%); /!* Firefox 3.6 - 15 *!/*/
+            /*background: radial-gradient(circle,#fdfcfd 2%, #7faac7 97%); /!* 标准的语法 *!/*/
+        }
+        #mianBox{
+            position: absolute;
+            right: 40%;
+            top: 20%;
+        }
+        #loginMain {
+            position: absolute;
+            width: 460px;
+            height: 260px;
+            margin-top: 50px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #loginMainopacity{
+            margin-top: 50px;
+            position: absolute;
+            width: 460px;
+            height: 260px;
+            background: url("img/mengbanImg.png") no-repeat;
+            overflow: hidden;
+            /*background: #fff;*/
+            /*opacity: 0.2;*/
+            /*filter:alpha(opacity=20)*/
+        }
+        #awacsLoginTitle{
+            font-family: "STZhongsong";
+            position: absolute;
+            width: 370px;
+            height: 38px;
+            line-height: 38px;
+            margin-left: 20px;
+            padding-left: 53px;
+            background: url("img/awacsLoginTitle.png") no-repeat 50px center;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        #awacsLoginTitle span{
+            font-size: 24px;
+            color: #5d5d5d;
+        }
+
+        #loginForm {
+            margin:0px auto;
+            float: left;
+            margin-left: 25%;
+            margin-top: 50px;
+            cursor: default;
+        }
+        .inputContent label{
+            width: 3em;
+            text-align: right;
+            margin-right: 5px;
+            margin-left: -3.5em;
+            font-size: 14px;
+            color: #3a3a3a;
+        }
+        #userText,#userPwd{
+            width: 240px;
+            height: 32px;
+            padding: 0px 2px 0 10px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-family: "微软雅黑";
+            line-height: 1.42857143;
+            color: #666666;
+            border: 1px solid #d9dbde;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            outline: 0;
+        }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color: #d9dbde;
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #d9dbde;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #d9dbde;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: #d9dbde;
+        }
+        #clickLogin {
+            width: 240px;
+            height: 32px;
+            padding: 5px 0px;
+            margin-top: 25px;
+            border-radius: 0px;
+            background: #ea543f;
+            color: #fff;
+        }
+
+        #forgetPwd{
+            float: right;
+            margin-right: 2px;
+            margin-top: 14px;
+            font-size: 12px;
+            color: #666666;
+        }
+        .aContent{
+            margin-top: 8px;
+        }
+
+        #checkError{
+            width: 100%;
+            display: none;
+            margin-top: 10px;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div id="mianBox">
+    <div id="awacsLoginTitle">
+        <span>图书馆数据管理平台</span>
+    </div>
+    <div id="loginContent">
+        <div id="loginMainopacity"></div>
+
+        <div id="loginMain">
+            <div id="loginForm">
+                <div class="inputContent">
+                    <label for="userText">用户名</label><input type="text" id="userText" autocomplete="off" placeholder="请输入用户名" /><br/>
+                    <label for="userPwd">密码</label><input type="password" id="userPwd" autocomplete="off" placeholder="密码" />
+                </div>
+                <div class="aContent">
+                    <a class="btn" href="javascript:;"id="clickLogin">登录</a>
+                </div>
+                <p id="checkError">请检查邮箱或密码是否输入正确！</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.datetimepicker.js" charset="utf-8"></script>
+<script src="js/awacs.js"></script>
+<script>
+    $(function () {
+        $("#userText").focus();
+        $("input").change(function () {
+            $("#checkError").text("");
+            $("#checkError").hide();
+        });
+        $("#clickLogin").click(function(){
+            $("#checkError").text("");
+            $("#checkError").hide();
+            var timer = null;
+            clearTimeout(timer);
+            var data ="" ;
+            data = addURLParam(data, "userName", $("#userText").val());
+            data = addURLParam(data, "password", $("#userPwd").val());
+            setTimeout(function(){
+                $.ajax({
+                    type:"post",
+                    url:ipAddress + "admin/user/login"+data,
+                    dataType:"json",
+                    async:true,
+                    success:function(data) {
+                        if(data.status == 1) {
+//                            if(data.data.permissionLevel==2){
+                                $.cookie('userId', data.data.userId);
+                                $.cookie('username', data.data.userName);
+                                $.cookie('permissionLevel', data.data.permissionLevel);
+                                location.href = "template.html";
+//                            }else{
+//                                $("#checkError").show();
+//                                $("#checkError").html("此账户没有登录权限，请用管理员账号登录！");
+//                            }
+                        } else {
+                            $("#checkError").text(data["errorMessage"] + " ["+data["errorCode"]+"]");
+                            $("#checkError").show();
+                        }
+                    },
+                    error:function(){
+                        alert("网络通讯异常,登录请求失败！");
+                        return;
+                    }
+                });
+            },400);
+        });
+        $("body").keydown(function(event) {
+            if (event.keyCode == "13") {//keyCode=13是回车键
+                $("#clickLogin").click();
+            }
+        });
+    })
+</script>
+</body>
+
+</html>

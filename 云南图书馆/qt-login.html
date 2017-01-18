@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>在线书库</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+  <style>
+    .header {
+      width: 960px;
+      height: 128px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .headerLogo {
+      width: 272px;
+      height: 52px;
+      float: left;
+      margin-top: 40px;
+      background: url("img/qt_headerLogo_icon.png") no-repeat;
+    }
+
+    .headerUser {
+      height: 44px;
+      margin-top: 75px;
+      float: right;
+      overflow: hidden;
+    }
+
+    .headerUser b, .headerUser p, .headerUser a {
+      float: left;
+    }
+
+    .headerUser b {
+      width: 89px;
+      height: 44px;
+      background: url("img/qt_userLeft_icon.png") no-repeat;
+      margin-right: 10px;
+    }
+
+    .headerUser p, .headerUser a {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #505050;
+    }
+
+    .headerUser p {
+      margin-right: 20px;
+    }
+
+    .headerUser a {
+      margin-right: 15px;
+    }
+
+    .headerNavBar {
+      width: 100%;
+      height: 36px;
+      background: #921818;
+    }
+
+    .headerContain {
+      width: 960px;
+      margin: 0px auto;
+    }
+
+    #navContain {
+      overflow: hidden;
+    }
+
+    #navContain li {
+      width: 191px;
+      text-align: center;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+    }
+
+    #navContain li a {
+      text-decoration: none;
+      color: #fff;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: inherit;
+      height: inherit;
+    }
+
+    .qtzxsk {
+      background: url("img/qt_zxsk_huiziwen_icon.png") no-repeat;
+    }
+
+    .nav_click {
+      background: url("img/qt_headernav_click_icon.png") no-repeat;
+    }
+
+    .nav_clickA {
+      color: #e5ab1f;
+    }
+
+    .qtLoginMain {
+      margin: 102px auto 0;
+      height: 357px;
+      width: 621px;
+      background: url("img/login_background.png") no-repeat;
+    }
+
+    .registerLogin a {
+      margin-top: 22px;
+      float: left;
+      font-size: 14px;
+      color: #818181;
+      text-decoration: none;
+    }
+
+    .registerLogin {
+      overflow: hidden;
+      width: 92px;
+      margin: 0 auto;
+    }
+
+    .register {
+      margin-right: 30px;
+    }
+
+    .registerLogin .registerLoginClick {
+      font-size: 14px;
+      color: #921818;
+      padding-bottom: 1px;
+      border-bottom: 2px solid #921818;
+    }
+
+    #registerForm, #loginForm {
+      width: 330px;
+      margin: 35px auto 0;
+    }
+
+    .qtLoginMain label {
+      width: 56px;
+      font-size: 14px;
+      color: #921818;
+      margin-right: 15px;
+      text-align: right;
+    }
+
+    .qtLoginMain input {
+      width: 240px;
+      height: 32px;
+      padding-left: 5px;
+      font-size: 14px;
+      border: 1px solid #d2d2d2;
+    }
+
+    .passwordMain {
+      margin-top: 7px;
+    }
+
+    #registerBtn, #loginBtn {
+      width: 240px;
+      height: 32px;
+      background: #921818;
+      border-radius: 0;
+      color: #fff;
+      padding-top: 5px;
+      margin-left: 72px;
+    }
+
+    #registerBtn {
+      margin-left: 71px;
+    }
+
+    #registerBtn {
+      margin-top: 32px;
+    }
+
+    .loginAndregist {
+      display: none;
+    }
+
+    .footer {
+      width: 100%;
+      margin-top: 760px;
+      border-top: 1px solid #921818;
+      background: #fff;
+    }
+
+    .footerMain {
+      margin: 0 auto;
+      width: 360px;
+      text-align: center;
+      font-size: 11px;
+      color: #818181;
+    }
+
+    .footerLink {
+
+      height: 13px;
+      margin-top: 18px;
+      overflow: hidden;
+      font-size: 11px;
+    }
+
+    .loginBtn {
+      margin-top: 48px;
+    }
+
+    .footerLink a {
+      margin-right: 24px;
+    }
+
+    .copy {
+      height: 11px;
+      margin-top: 12px;
+    }
+    .validation{
+      border: 1px solid #eb7969 !important;
+      padding-left: 2px;
+    }
+    #showError{
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #eb7969;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="headerLogo"></div>
+  <div class="headerUser">
+    <b></b>
+
+    <p><span id="userName">游客</span> 欢迎!</p>
+    <a href="javascript:;" id="logout"></a>
+  </div>
+</div>
+<div class="headerNavBar">
+  <div class="headerContain">
+    <ul id="navContain">
+      <li class="qtIndex nav_click" id="qtIndex"><a style="color: #e5ab1f" href="qt-index.html">首页</a></li>
+      <li class="qtgcdt" id="qtgcdt"><a href="qt-gcgl.html">馆藏概览</a></li>
+      <li class="qtzxsk" id="qtzxsk"><a href="qt-zxsk.html">在线书库</a></li>
+      <li class="qtdzzx" id="qtdzzx"><a href="qt-dzzx.html">读者中心</a></li>
+      <li class="qtgywm" id="qtgywm"><a href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+</div>
+<div class="qtLoginMain">
+  <div class="registerLogin">
+    <a style="outline:none" class="register" href="javascript:;">登录</a>
+    <a style="outline:none" class="login registerLoginClick" href="javascript:;">注册</a>
+  </div>
+  <div id="loginAndregist">
+    <div class="loginAndregist" id="loginForm" action="" method="post">
+      <div>
+        <label for="email">用户名</label><input id="email" type="text" name="email"/>
+      </div>
+      <div class="passwordMain">
+        <label for="password">密码</label><input id="password" type="password"/>
+      </div>
+      <div class="loginBtn"><a class="btn" id="loginBtn" href="javascript:;">登录</a></div>
+    </div>
+    <form class="loginAndregist" style="display: block" id="registerForm" action="" method="post">
+      <div>
+        <label for="reemail">邮箱</label><input id="reemail" type="text" name="email"/>
+      </div>
+      <div class="passwordMain">
+        <label for="password">用户名</label><input id="reuserName" type="text" name="userName"/>
+      </div>
+      <div class="passwordMain">
+        <label for="password">密码</label><input id="repassword" type="password"/>
+      </div>
+      <div class="passwordMain">
+        <label for="password">确认密码</label><input id="reSure" type="password" name="password"/>
+      </div>
+      <div class="registerBtn"><a class="btn" id="registerBtn" href="javascript:;">注册</a></div>
+    </form>
+    <p id="showError"></p>
+  </div>
+</div>
+<div class="footer">
+  <div class="footerMain">
+    <p class="footerLink"><a href="about.html">关于我们</a><a href="#">合作单位</a><a href="#">技术支持</a></p>
+
+    <p class="copy">版权所有：北京美斯齐文化科技有限公司 备案号京ICP备15044982号</p>
+  </div>
+</div>
+<br/>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/lunbo.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+  $(function () {
+    $(".registerLogin").on("click", "a", function () {
+      $("#showError").hide();
+      $(this).addClass("registerLoginClick").siblings().removeClass("registerLoginClick")
+      $(".loginAndregist").css("display", "none");
+      //alert($(this).index());
+      $(".loginAndregist").eq($(this).index()).css("display", "block");
+    });
+
+    var reqStr = getQueryString("req");
+    if (reqStr == "login"){
+      $(".registerLoginClick").removeClass("registerLoginClick").siblings().addClass("registerLoginClick");
+      $(".loginAndregist").css("display", "none");
+      //alert($(this).index());
+      $("#loginForm").css("display", "block");
+    }
+
+
+    function loginFunc(data){
+      $.cookie('userId', data.data.userId);
+      $.cookie('username', data.data.userName);
+      $.cookie('permissionLevel', data.data.permissionLevel);
+      $("#userLogin").css("display", "none");
+      $("#userLogined").css("display", "block");
+      $("#loginName").text(data.data.username);
+      window.location.href="qt-index.html";
+    }
+
+//    点击登录
+    $("#loginBtn").click(function () {
+      var timer = null;
+      clearTimeout(timer);
+      var data ="" ;
+      data = addURLParam(data, "userName", $("#email").val());
+      //alert($("#email").val());
+      data = addURLParam(data, "password", $("#password").val());
+      setTimeout(function () {
+        $.ajax({
+          type: "get",
+          url: ipAddress + "portal/user/login"+data,
+          //data: data,
+          dataType: "json",
+          success: function (data) {
+            if (data.status == 1) {
+              loginFunc(data);
+            } else {
+              $("#showError").text(data.errorMessage+ "["+data.errorCode+"]");
+              $("#showError").show();
+            }
+          },
+          error: function () {
+           alert("网络通讯异常,登录请求失败！");
+           return;
+          },
+          async: true
+        });
+      }, 400);
+    });
+
+//    点击注册
+    $("#registerBtn").click(function(){
+      var resChecked = verification();
+      if(resChecked=="1"){
+        return
+      }
+      var registerList = $("#registerForm").serializeArray();
+      var registerData = "";
+      $.each(registerList,function(index,obj){
+//        registerData[obj.name] = obj.value;
+        registerData = addPostParam(registerData, obj.name, obj.value);
+      });
+      $.ajax({
+        type: "post",
+        url: ipAddress + "portal/user/register",
+        dateType: "text",
+        data: registerData+"&cellphone=18410021558",
+        success: function (data) {
+          if (data.status == 1){
+            alert("注册成功");
+            window.location.href="qt-index.html";
+            return ;
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    });
+
+    $("#registerForm input").on("blur",function(){
+      verification();
+    });
+
+    //验证输入是否合法
+    function verification(){
+      var checked ="";
+      $("#registerForm input").each(function(){
+        if($(this).val().length<1){
+          $(this).addClass("validation");
+          $("#showError").text($(this).prev().text()+"不能为空");
+          $("#showError").show();
+          //$(this).focus();
+          checked = 1;
+          return false;
+        }else{
+          $(this).removeClass("validation");
+          $("#showError").hide();
+          checked = 0;
+        }
+        if($(this).attr("name") == "email"){
+          var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+          var emailValue = $(this).val();
+          if(filter.test(emailValue)){
+            $(this).removeClass("validation");
+            $("#showError").hide();
+            checked = 0;
+          }else{
+            $(this).addClass("validation");
+            $("#showError").text("邮箱格式不正确");
+            $("#showError").show();
+            //$(this).focus();
+            checked = 1;
+            return false;
+          }
+        }
+        //alert($("#reSure").val()!= $("#repassword").val());
+        if($(this).attr("id") == "reSure"){
+
+          var pwdValue = $(this).val();
+          if(pwdValue==$("#repassword").val()){
+            $(this).removeClass("validation");
+            $("#showError").hide();
+            checked = 0;
+          }else{
+            $(this).addClass("validation");
+            $("#showError").text("两次密码输入不一致，请重新输入!");
+            $("#showError").show();
+            checked = 1;
+            return false;
+          }
+        }
+      });
+      return checked;
+    }
+
+    $("body").keydown(function(event) {
+      if (event.keyCode == "13") {//keyCode=13是回车键
+        if (!$("#loginForm").is(":hidden")){
+          $("#loginBtn").click();
+        }else{
+          $("#registerBtn").click();
+        }
+      }
+    });
+
+  })
+</script>
+</body>
+</html>

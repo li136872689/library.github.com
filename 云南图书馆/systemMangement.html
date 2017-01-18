@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>系统管理</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+  <style>
+    .outMain {
+      width: 920px;
+      margin: 60px auto 0;
+    }
+    .newPage{
+      height: 26px;
+      overflow: hidden;
+    }
+    #addNewBook{
+      float: right;
+      margin: 13px 38px 0 0;
+    }
+    .newPageLogn{
+      float: left;
+      width: 76px;
+      height: 26px;
+      background: url("img/booksClassificationHomepage.png") no-repeat;
+    }
+    .tableBox{
+      margin-top: 10px;
+    }
+    #systemTable{
+      width: 920px;
+    }
+    #systemTable th{
+      background: #b0adad !important;
+    }
+    #systemTable td{
+      color:#544d4d;
+    }
+    #systemTable .description{
+      text-align: left;
+      padding:0 18px !important;
+    }
+    #amendRecord,#deleteRecord{
+      color: #557d8e;
+      font-size: 12px;
+    }
+    #deleteRecord{
+      margin-left: 12px;
+    }
+    .clearAll{
+      width: 100%;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #clearAll{
+      width: 140px;
+      height: 26px;
+      border-radius: 0;
+      padding-top: 2px;
+      background: #cfa972;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+<div class="outMain" data-height="600">
+  <div class="newPage">
+    <span class="newPageLogn"></span>
+  </div>
+  <div class="tableBox">
+    <table id="systemTable" class="table table-responsive">
+      <thead>
+      <tr>
+        <th width="12%">序号</th>
+        <th width="18%">时间</th>
+        <th width="70%">日志内容</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>001</td>
+        <td>2016-01-20 09：25</td>
+        <td class="description">近日，在位于辽宁省图书馆内的辽宁省古籍保护中心，记者看到三四名修复技师正对一页页残破不全的古籍进行精心
+          修复，经他们手的每一页纸张都至少有百年以上的历史。</td>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td>2016-01-20 09：25</td>
+        <td class="description">近日，在位于辽宁省图书馆内的辽宁省古籍保护中心，记者看到三四名修复技师正对一页页残破不全的古籍进行精心
+          修复，经他们手的每一页纸张都至少有百年以上的历史。</td>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td>2016-01-20 09：25</td>
+        <td class="description">近日，在位于辽宁省图书馆内的辽宁省古籍保护中心，记者看到三四名修复技师正对一页页残破不全的古籍进行精心
+          修复，经他们手的每一页纸张都至少有百年以上的历史。</td>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td>2016-01-20 09：25</td>
+        <td class="description">近日，在位于辽宁省图书馆内的辽宁省古籍保护中心，记者看到三四名修复技师正对一页页残破不全的古籍进行精心
+          修复，经他们手的每一页纸张都至少有百年以上的历史。</td>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td>2016-01-20 09：25</td>
+        <td class="description">近日，在位于辽宁省图书馆内的辽宁省古籍保护中心，记者看到三四名修复技师正对一页页残破不全的古籍进行精心
+          修复，经他们手的每一页纸张都至少有百年以上的历史。</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="width: 920px;margin: 10px auto">
+    <div style="float:right">
+      <div id="pageBar"></div>
+    </div>
+  </div>
+  <div class="clearAll">
+    <a class="btn" href="javascript:;" id="clearAll">清空</a>
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script src="js/awacs.js"></script>
+<script>
+  $(function () {
+
+//    默认显示
+    var pageDataMes = "pageNum=1&pageSize=5";
+    getuserData(pageDataMes);
+
+//		获取系统日志列表数据
+    function getuserData(userData) {
+      $.ajax({
+        type: "post",
+        url: ipAddress + "admin/sysManage/log/list",
+        dateType: "text",
+        data: userData,
+        success: function (data) {
+          showTable(data.data);
+        },
+        error: function () {
+          var data = {
+            "status": 0,
+            "data": [
+              {
+                "id": 1,
+                "time": "2016-01-20 09:25",
+                "content": "XXXXX"
+              }
+            ],
+            "page": {
+              "pageSize": 10,
+              "pageNum": 1,
+              "totalCount": 2
+            }
+          };
+          showTable(data.data);
+          showPageIndex(data.page.totalCount,data.page.pageNum,"pageBar");
+        },
+        async: true
+      });
+    }
+
+    //    删除日志数据
+    $("#clearAll").on("click",function(){
+      var id = $(this).attr("data-delId");
+      $.ajax({
+        type: "post",
+        url: ipAddress + "admin/sysManage/log/clear",
+        dateType: "json",
+        data: id,
+        success: function (data) {
+          if(data.status=="1"){
+            alert("删除成功");
+            getuserData();
+          }else{
+            alert("删除失败");
+          }
+        },
+        error: function () {
+          alert("网络错误");
+          return;
+        },
+        async: true
+      });
+    });
+
+//    显示表格
+    function showTable(dataList){
+      $("#systemTable tbody").remove();
+      var dataList = dataList;
+      var showTabletbody = $("<tbody></tbody>")
+      $.each(dataList,function(index,obj){
+        //<a id="amendRecord" href="javascript:;">修改</a><a id="deleteRecord" href="javascript:;">删除</a>
+        var showTableTr = ("<tr><td>"+ obj.id+
+        "</td><td>"+obj.time+
+        "</td><td>"+obj.content);
+        showTabletbody.append(showTableTr);
+      });
+      $("#systemTable").append(showTabletbody);
+
+      //末页未满5项时添加空行
+      if (dataList.length<5) {
+        for (var j = 0; j < 5 - dataList.length; j++) {
+          var tmpListTr = $("<tr><td>-</td><td>-</td><td>-</td></tr>");
+          showTabletbody.append(tmpListTr);
+        }
+        $("#systemTable").append(showTabletbody);
+      }
+
+    }
+    function showPageIndex(tmpMaxPage, startPage, pageBarName) {
+      var maxPage = Math.ceil(tmpMaxPage / 5);
+      var displayNum = maxPage;
+      if (maxPage > 5) {
+        displayNum = 5;
+      } else if (maxPage <= 0) {
+        displayNum = 1;
+        maxPage = 1;
+      }
+      $("#" + pageBarName).children().remove();
+      $("#" + pageBarName).paginate({
+        count: maxPage,
+        start: startPage,
+        display: displayNum,
+        border: true,
+        border_color: '#fff',
+        text_color: '#3a3a3a',
+        background_color: '#fff',
+        border_hover_color: '#fff',
+        text_hover_color: '#ea543f',
+        background_hover_color: '#fff',
+        images: false,
+        mouse: 'press',
+        onChange: function (page) {
+          var newPageDataMes = "pageNum="+page+"&pageSize=5";
+          getuserData(newPageDataMes);
+        }
+      });
+    }
+  })
+</script>
+</body>
+</html>

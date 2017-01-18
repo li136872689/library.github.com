@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8"/>
+  <title>关于我们</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 6]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/BMS.css"/>
+  <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+  <style>
+    body{
+      background: #fcfcfc;
+    }
+    .header {
+      width: 960px;
+      height: 128px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .headerLogo {
+      width: 272px;
+      height: 52px;
+      float: left;
+      margin-top: 40px;
+      background: url("img/qt_headerLogo_icon.png") no-repeat;
+    }
+
+    .headerUser {
+      height: 44px;
+      margin-top: 75px;
+      float: right;
+      overflow: hidden;
+    }
+
+    .headerUser b, .headerUser p, .headerUser a {
+      float: left;
+    }
+
+    .headerUser b {
+      width: 89px;
+      height: 44px;
+      background: url("img/qt_userLeft_icon.png") no-repeat;
+      margin-right: 10px;
+    }
+
+    .headerUser p, .headerUser a {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #505050;
+    }
+
+    .headerUser p {
+      margin-right: 20px;
+    }
+
+    .headerUser a {
+      margin-right: 15px;
+    }
+
+    .headerNavBar {
+      width: 100%;
+      height: 36px;
+      background: #921818;
+    }
+
+    .headerContain {
+      width: 960px;
+      margin: 0px auto;
+    }
+
+    #navContain {
+      overflow: hidden;
+    }
+
+    #navContain li {
+      width: 191px;
+      text-align: center;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+    }
+
+    #navContain li a {
+      text-decoration: none;
+      color: #fff;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      width: inherit;
+      height: inherit;
+    }
+    .qtAbout{
+      margin: 0 auto;
+      width: 950px;
+    }
+    .aboutTip{
+      padding-top:1px;
+      height: 47px;
+      border-bottom: 1px solid #921818;
+    }
+    .aboutTip span{
+      display: block;
+      font-size: 18px;
+      color: #921818;
+      width: 72px;
+      margin: 32px auto 0;
+      background: #fcfcfc;
+    }
+    .qtAboutMain{
+      margin:25px auto 0;
+      width: 510px;
+    }
+    .companyProfile{
+      font-size: 12px;
+      color: #3a3a3a;
+      font-weight: 600;
+      text-indent: 2em;
+    }
+    .abilities{
+      margin-top:23px;
+    }
+    .abilitiesTip{
+      height: 72px;
+      border-bottom: 1px solid #921818;
+    }
+    .abilitiesTipLeft{
+      width: 150px;
+      padding-left: 95px;
+      height: 72px;
+      background-image: url("img/shebiezhu_logo1.png");
+      background-repeat: no-repeat ;
+      background-color:#fcfcfc;
+      position: relative;
+      margin-left:-10px;
+    }
+    .shebeiBgimg2{
+      background-image: url("img/shebiezhu_logo2.png");
+    }
+    .shebeiBgimg3{
+      background-image: url("img/shebiezhu_logo3.png");
+    }
+    .abilitiesTipLeft span{
+      position: absolute;
+      bottom: 0;
+      font-size: 18px;
+      color: #921818;
+    }
+    .abilitiesDetali{
+      overflow: hidden;
+      margin: 23px auto 0;
+      width: 510px;
+    }
+    .abilitiesDetaliLeft{
+      float: left;
+      width: 143px;
+      font-size: 12px;
+      color: #921818;
+      margin-left: 40px;;
+    }
+    .abilitiesDetaliRight{
+      float: right;
+      width: 276px;
+      font-size: 12px;
+      color: #3a3a3a;
+    }
+    .abilitiesDetaliRight p{
+      margin-bottom: 10px;
+    }
+    .firstLetter{
+      font-size: 18px;
+      color: #3a3a3a;
+    }
+
+    .nav_click {
+      background: url("img/qt_headernav_click_icon.png") no-repeat;
+    }
+
+    .footer {
+      width: 100%;
+      margin-top: 460px;
+      border-top: 1px solid #921818;
+      background: #fff;
+    }
+
+    .footerMain {
+      margin: 0 auto;
+      width: 360px;
+      text-align: center;
+      font-size: 11px;
+      color: #818181;
+    }
+
+    .footerLink {
+
+      height: 13px;
+      margin-top: 18px;
+      overflow: hidden;
+      font-size: 11px;
+    }
+    .qtzxsk {
+      background: url("img/qt_zxsk_huiziwen_icon.png") no-repeat;
+    }
+    .loginBtn {
+      margin-top: 48px;
+    }
+
+    .footerLink a {
+      margin-right: 24px;
+    }
+
+    .copy {
+      height: 11px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="headerLogo"></div>
+  <div class="headerUser">
+    <b></b>
+
+    <p><span id="userName">游客</span> 欢迎!</p>
+    <a href="javascript:;" id="logout"></a>
+  </div>
+</div>
+<div class="headerNavBar">
+  <div class="headerContain">
+    <ul id="navContain">
+      <li class="qtIndex" id="qtIndex"><a href="qt-index.html">首页</a></li>
+      <li class="qtgcdt" id="qtgcdt"><a href="qt-gcgl.html">馆藏概览</a></li>
+      <li class="qtzxsk" id="qtzxsk"><a href="qt-zxsk.html">在线书库</a></li>
+      <li class="qtdzzx" id="qtdzzx"><a href="qt-dzzx.html">读者中心</a></li>
+      <li class="qtgywm nav_click" id="qtgywm"><a style="color: #e5ab1f" href="about.html">关于我们</a></li>
+    </ul>
+  </div>
+</div>
+<div class="qtAbout">
+  <div class="aboutTip"><span>关于我们</span></div>
+  <div class="qtAboutMain">
+    <p class="companyProfile">
+      北京美斯齐文化科技有限公司是一家专注于中国古籍文献数字化服务,高清扫描设备集成，
+      数字化软件及资源共享平台研发的创新型企业。公司2012年开始与世界一流数字资源服务解决
+      方案供应商法国I2S DIGBOOK集团合作，在中国市场推出I2S A3-2A0幅面系列高清古籍扫描仪，
+      Kirtas全自动扫描仪，LIMB古籍数字化软件以及LIMB GALLERY古籍数字资源共享平台等一系列
+      产品,是目前国内古籍数字化领域最优秀的解决方案供应商。
+    </p>
+    <div class="abilities">
+      <div class="abilitiesTip">
+        <div class="abilitiesTipLeft">
+          <span>设备</span>
+        </div>
+      </div>
+      <div class="abilitiesDetali">
+        <div class="abilitiesDetaliLeft">
+          与法国I2S DIGBOOK集团集
+          团合作，供应软硬件一体的
+          全套古籍数字化图书馆建设
+          设备
+        </div>
+        <div  class="abilitiesDetaliRight">
+          <p><span class="firstLetter">A1</span>幅面扫描仪，目前世界上扫描幅面最大（1100mm
+            *630mm）、精度最高（1000dpi*1000dpi）的高清扫
+            描仪</p>
+
+          <p><span class="firstLetter">A2</span>幅面扫描仪，设备采用无眩目冷光源补光技术，
+            为珍贵的书籍和档案资料在扫描的同时提供了极其充
+            分的保护</p>
+
+          <p><span class="firstLetter">A3</span>幅面高清扫描仪，设备采用了非接触式扫描模式，
+            扫描的同时有效的保护了书本原稿
+            适配设备的古籍管理软件，支持高效在线古籍预览与
+            海量古籍内容索引</p>
+        </div>
+      </div>
+    </div>
+    <div class="abilities">
+      <div class="abilitiesTip">
+        <div class="abilitiesTipLeft shebeiBgimg2">
+          <span>服务</span>
+        </div>
+      </div>
+      <div class="abilitiesDetali">
+        <div class="abilitiesDetaliLeft">
+          提供专业的提供专业的古籍
+          数字化技术服务
+        </div>
+        <div  class="abilitiesDetaliRight">
+          <p>古籍原本扫描保护，元数据生成整理、古籍原本上传
+            展示</p>
+
+          <p>专业团队，提供上门式古籍数字化保护服务
+            分公司管理体系，在各个文化场馆集中地区，设置公
+            司代理机构</p>
+
+          <p>集中式共享平台，能够在馆间共享数字古籍目录，实
+            现馆际联盟与文化交流</p>
+        </div>
+      </div>
+    </div>
+    <div class="abilities">
+      <div class="abilitiesTip">
+        <div class="abilitiesTipLeft shebeiBgimg3">
+          <span>定制</span>
+        </div>
+      </div>
+      <div class="abilitiesDetali">
+        <div class="abilitiesDetaliLeft">
+          拥有专业的软件业务研发团队，
+          身打造属于自己的特色古籍数
+          字图书馆
+        </div>
+        <div  class="abilitiesDetaliRight">
+          <p>古籍保护流程/策略定制，制定私有古籍分类方法和属
+            性集合</p>
+
+          <p>古籍浏览权限定制，适应本地权限要求，分级分角色
+            享有资源</p>
+
+          <p>古籍上传方式定制，根据自身馆藏内容特点，制定古
+            籍在线收藏模板</p>
+          <p>古籍保护门户网站定制，与已有图书/文献资源系统无
+            缝互联</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footerMain">
+    <p class="footerLink"><a href="about.html">关于我们</a><a href="#">合作单位</a><a href="#">技术支持</a></p>
+
+    <p class="copy">版权所有：北京美斯齐文化科技有限公司 备案号京ICP备15044982号</p>
+  </div>
+</div>
+<br/>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/awacs.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script>
+</script>
+</body>
+</html>
